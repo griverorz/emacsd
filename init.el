@@ -46,7 +46,7 @@
 ;; Yasnippet
 (require 'yasnippet)
 (add-to-list 'yas/root-directory "~/.emacs.d/yasnippets/")
-(setq yas/snippet-dirs
+(setq yas-snippet-dirs
       "~/.emacs.d/snippets")
 ;; (yas-load-directory yas-root-directory)
 (provide 'setup-snippet)
@@ -152,3 +152,4 @@
 ;; Kill-ring
 (when (require 'browse-kill-ring nil 'noerror)
   (browse-kill-ring-default-keybindings))
+

@@ -1,3 +1,4 @@
+
 ;; TeX master file
 (setenv "PATH" (concat "/Users/gonzalorivero/.cabal/bin:" (getenv "PATH")))
 (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))

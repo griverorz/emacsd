@@ -28,7 +28,7 @@
 (setq jedi:tooltip-method nil)
 
 ;; python indent
-(setq python-indent 4)
+(setq python-indent-offset 4)
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 
