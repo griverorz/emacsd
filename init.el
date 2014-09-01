@@ -12,20 +12,21 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-
-(el-get 'sync)
+ (with-current-buffer
+     (url-retrieve-synchronously
+     "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+   (let (el-get-master-branch)
+     (goto-char (point-max))
+     (eval-print-last-sexp))))
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero")
 (setq user-mail-address "griverorz(at)gmail.com")
 
-;; Smexs
+;; Enable clipboard
+(setq x-select-enable-clipboard t)
+
+;; Smex
 (load "smex")
 (smex-initialize)
 
@@ -65,6 +66,7 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.jags\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stan\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (setq major-mode 'text-mode)
@@ -148,8 +150,3 @@
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
 (put 'narrow-to-region 'disabled nil)
-
-;; Kill-ring
-(when (require 'browse-kill-ring nil 'noerror)
-  (browse-kill-ring-default-keybindings))
-

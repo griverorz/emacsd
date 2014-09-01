@@ -31,3 +31,6 @@
 (setq split-window-preferred-function nil) ; discourage horizontal splits
 (setq pop-up-windows nil)
 (setq-default display-buffer-reuse-frames nil)
+
+;; Point to julia
+(setq inferior-julia-program-name "/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin/julia")

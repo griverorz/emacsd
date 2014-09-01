@@ -12,5 +12,5 @@
      "http://marmalade-repo.org/packages/"))
 (package-initialize)
 (setq load-path (cons "~/.emacs.d/tidal/" load-path))
-(require 'tidal)
+;;(require 'tidal)
 (setq tidal-interpreter "/usr/local/bin/ghci")

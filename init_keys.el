@@ -89,3 +89,20 @@
 (define-key elpy-mode-map (kbd "<C-up>") nil)
 (define-key elpy-mode-map (kbd "C-c C-f") 'python-shell-send-defun)
 (define-key elpy-mode-map (kbd "C-c C-r") 'elpy-shell-send-region-or-buffer)
+
+;; terminal keys
+;;(define-key input-decode-map "\e[1;2D" [S-left])  
+;;(define-key input-decode-map "\e[1;5D" [C-S-left])  
+
+;;(define-key input-decode-map "\e[1;2C" [S-right])  
+;;(define-key input-decode-map "\e[1;5C" [C-S-right])  
+
+;;(define-key input-decode-map "\e[1;2B" [S-down])  
+;;(define-key input-decode-map "\e[1;5B" [C-S-down])  
+
+;;(define-key input-decode-map "\e[1;2A" [S-up])  
+;;(define-key input-decode-map "\e[1;5A" [C-S-up])  
+
+;;(define-key input-decode-map "\e[1;2F" [S-end])  
+;;(define-key input-decode-map "\e[1;2H" [S-home])
+

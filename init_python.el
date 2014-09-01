@@ -2,7 +2,7 @@
 (package-initialize)
 (elpy-enable)
 (elpy-use-ipython)
-(elpy-clean-modeline)
+;;(elpy-clean-modeline)
  
 ;; (require 'ipython)
 ;; (setq py-python-command-args '("--matplotlib" "--colors" "LightBG"))
@@ -11,12 +11,10 @@
 (setq python-python-command "ipython")
 
 (require 'python)
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
- 
+
 ;; Avoid annoying and useless warnings
 (with-no-warnings
   (require 'cl))
@@ -40,8 +38,6 @@
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
 
-;; Flymake
-;; (setq flymake-gui-warnings-enabled nil)
-(setq elpy-default-minor-modes
-          (remove 'flymake-mode
-                  elpy-default-minor-modes))
+
+
+
