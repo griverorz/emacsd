@@ -100,7 +100,7 @@
 ;;(define-key input-decode-map "\e[1;2B" [S-down])  
 ;;(define-key input-decode-map "\e[1;5B" [C-S-down])  
 
-;;(define-key input-decode-map "\e[1;2A" [S-up])  
+(define-key input-decode-map "\e[1;2A" [S-up])  
 ;;(define-key input-decode-map "\e[1;5A" [C-S-up])  
 
 ;;(define-key input-decode-map "\e[1;2F" [S-end])  
