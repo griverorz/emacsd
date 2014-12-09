@@ -3,7 +3,15 @@
 
 ;; Theme
 (require 'color-theme)
-(load-theme 'zenburn t)
+(require 'color-theme-solarized)
+(color-theme-initialize)
+(setq solarized-termcolors '256)
+
+;; set dark theme
+(color-theme-solarized-dark)
+(setq solarized-use-terminal-theme t)
+;; set light theme
+
 
 ;; Color cursor
 (set-cursor-color "#ff0000") 		

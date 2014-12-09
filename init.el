@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d")
+;;(add-to-list 'load-path "~/.emacs.d")
 
 ;; Marmalade
 (require 'package)
@@ -57,7 +57,7 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Personal elisp lib dir
-(add-to-list 'load-path "~/.emacs.d/")
+;;(add-to-list 'load-path "~/.emacs.d/")
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Open files in correct mode and default to text
@@ -150,3 +150,4 @@
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
 (put 'narrow-to-region 'disabled nil)
+

@@ -33,4 +33,4 @@
 (setq-default display-buffer-reuse-frames nil)
 
 ;; Point to julia
-(setq inferior-julia-program-name "/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin/julia")
+(setq inferior-julia-program-name "/Applications/Julia-0.3.1.app/Contents/Resources/julia/bin/julia")
