@@ -151,3 +151,6 @@
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
 (put 'narrow-to-region 'disabled nil)
 
+;; tabs are 4 spaces
+(custom-set-variables
+ '(tab-width 4))
