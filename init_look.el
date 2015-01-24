@@ -5,16 +5,10 @@
 (require 'color-theme)
 (color-theme-initialize)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai)
-;; (setq solarized-termcolors '256)
-
-;; set dark theme
-;; (color-theme-solarized-dark)
-;; (setq solarized-use-terminal-theme t)
-;; set light theme
+(load-theme 'monokai t)
 
 ;; Color cursor
-(set-cursor-color "#ff0000") 		
+(set-cursor-color "#ff0000")
 
 ;; Menu bar mode
 (when window-system
@@ -58,7 +52,10 @@
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
-								
+(require 'smart-mode-line)
+;; (sml/setup)
+;; (sml/apply-theme 'dark)
+
 ;; Autload flyspell
 (eval-after-load "ispell"
   '(when (executable-find ispell-program-name)
