@@ -46,14 +46,11 @@
 
 ;; Yasnippet
 (require 'yasnippet)
-(add-to-list 'yas/root-directory "~/.emacs.d/yasnippets/")
-(setq yas-snippet-dirs
-      "~/.emacs.d/snippets")
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 ;; (yas-load-directory yas-root-directory)
-(provide 'setup-snippet)
 (yas-global-mode 1)
 ;; Bound trigger to C-TAB
-(define-key yas-minor-mode-map (kbd "C-i") 'yas/expand) 
+(define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Personal elisp lib dir
