@@ -32,12 +32,19 @@
 	    (TeX-PDF-mode 1)
 	    (TeX-source-correlate-mode 1)
 	    (setq TeX-source-correlate-method 'synctex)
-            
+
 	    (setq TeX-view-program-list
-		  '(("Skim" 
-		     "/Applications/Skim.app/Contents/SharedSupport/displayline -g %n %o %b"))
+		  '(("Preview" 
+		     "open -a Preview.app %o"))
 		  TeX-view-program-selection
-		  '((output-pdf "Skim")))))
+		  '((output-pdf "Preview")))))
+
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (push
+			      '("latexmk" "latexmk -pdf %o" TeX-run-TeX nil t
+				:help "Run latexmk on file")
+			      TeX-command-list)))
+(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
 
 (setq TeX-PDF-mode t)
 

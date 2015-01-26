@@ -4,8 +4,10 @@
 ;; Theme
 (require 'color-theme)
 (color-theme-initialize)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'wombat t)
+;; (load-theme 'cyberpunk t)
+
 
 ;; Color cursor
 (set-cursor-color "#ff0000")
