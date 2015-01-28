@@ -3,6 +3,8 @@
 # key: header
 # binding: direct-keybinding
 # --
-## Description: $0
-## Author: Gonzalo Rivero
-## Date: `(format-time-string "%d-%b-%Y %H:%M")`
+'''
+Description: $0
+Author: Gonzalo Rivero
+Date: `(format-time-string "%d-%b-%Y %H:%M")`
+'''
