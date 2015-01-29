@@ -20,7 +20,9 @@
 ;; Speedbar
 ;; (speedbar-add-supported-extension ".R")
 
-
+;; Stop doing weird things with the alignment of formulas
+;; (add-hook 'ess-mode-hook (lambda () (setq ess-arg-function-offset 4)))
+;; (add-hook 'ess-mode-hook (lambda () (setq ess-continued-statement-offset 0)))
 
 ;; I don't like if another frame pops up showing the inferior-ess buffer,
 ;; rather I want unconditionally that the buffer is shown in the current frame.
