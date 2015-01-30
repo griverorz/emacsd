@@ -155,3 +155,20 @@
 	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
 	  (process-send-string pbproxy text)
 	  (process-send-eof pbproxy))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -synctex=1")
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(org-agenda-files (quote ("~/Documents/org/notes.org" "~/Documents/org/work.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
