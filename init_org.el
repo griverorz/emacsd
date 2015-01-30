@@ -13,19 +13,15 @@
 
 ;; Tags shortcuts
 (setq org-tag-alist '(("@work" . ?w) 
-                      ("@home" . ?h) 
                       ("@research" . ?r)
-                      ("@errands" . ?e) 
                       ("@coding" . ?c)
                       ("@email" . ?m)
                       ("@reading" . ?b)
                       ("@computer" . ?l)))
 
 ;; Set org files
-(setq org-agenda-files (list (concat org-directory "home.org")
-                             (concat org-directory "notes.org")
-                             (concat org-directory "work.org")
-                             (concat org-directory "research.org")))
+(setq org-agenda-files (list (concat org-directory "notes.org")
+                             (concat org-directory "work.org")))
 
 ;; Capture 
 (define-key global-map "\C-cc" 'org-capture)
