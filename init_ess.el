@@ -3,6 +3,9 @@
 (require 'ess-eldoc)
 (ess-toggle-underscore nil)
 
+;; Do not load data or save envir
+(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
+
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook
           (lambda ()
