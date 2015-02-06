@@ -34,17 +34,17 @@
 	    (setq TeX-source-correlate-method 'synctex)
 
 	    (setq TeX-view-program-list
-		  '(("Preview" 
-		     "open -a Preview.app %o"))
+		  '(("Skim" 
+		     "open -a Skim.app %o"))
 		  TeX-view-program-selection
-		  '((output-pdf "Preview")))))
+		  '((output-pdf "Skim")))))
 
-(add-hook 'LaTeX-mode-hook (lambda ()
-			     (push
-			      '("latexmk" "latexmk -pdf %o" TeX-run-TeX nil t
-				:help "Run latexmk on file")
-			      TeX-command-list)))
-(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+;; (add-hook 'LaTeX-mode-hook (lambda ()
+;; 			     (push
+;; 			      '("latexmk" "latexmk -pdf %o" TeX-run-TeX nil t
+;; 				:help "Run latexmk on file")
+;; 			      TeX-command-list)))
+;; (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
 
 (setq TeX-PDF-mode t)
 
@@ -72,3 +72,6 @@
 ;; Autoload fold
 (autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
 
+
+;; Markdown here too
+(setq markdown-open-command "/usr/local/bin/mark")

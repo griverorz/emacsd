@@ -8,6 +8,9 @@
 (load-theme 'wombat t)
 ;; (load-theme 'cyberpunk t)
 
+(custom-set-faces
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
+
 
 ;; Color cursor
 (set-cursor-color "#ff0000")

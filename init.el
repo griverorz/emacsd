@@ -9,15 +9,15 @@
 (package-initialize)
 
 ;; el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil 'noerror)
- (with-current-buffer
-     (url-retrieve-synchronously
-     "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-   (let (el-get-master-branch)
-     (goto-char (point-max))
-     (eval-print-last-sexp))))
+;; (unless (require 'el-get nil 'noerror)
+;;  (with-current-buffer
+;;      (url-retrieve-synchronously
+;;      "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+;;    (let (el-get-master-branch)
+;;      (goto-char (point-max))
+;;      (eval-print-last-sexp))))
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero")
@@ -54,8 +54,7 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Personal elisp lib dir
-;;(add-to-list 'load-path "~/.emacs.d/")
-;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Open files in correct mode and default to text
 (add-to-list 'auto-mode-alist '("\\.el\\'" . lisp-mode))
@@ -155,3 +154,4 @@
 	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
 	  (process-send-string pbproxy text)
 	  (process-send-eof pbproxy))))
+

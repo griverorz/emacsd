@@ -1,7 +1,8 @@
 ;; Basic ESS
-(require 'ess-site)
-(require 'ess-eldoc)
-(ess-toggle-underscore nil)
+(autoload 'R-mode "ess-site.el" t)
+
+;; Do not load data or save envir
+(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
 
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook
@@ -30,7 +31,11 @@
 (setq inferior-ess-same-window nil)
 (setq split-window-preferred-function nil) ; discourage horizontal splits
 (setq pop-up-windows nil)
-(setq-default display-buffer-reuse-frames nil)
+
+(add-to-list
+ 'display-buffer-alist
+ '("*.R" . (display-buffer-reuse-window
+	    . ((reusable-frames . t)))))
 
 ;; Point to julia
 (setq inferior-julia-program-name "/Applications/Julia-0.3.1.app/Contents/Resources/julia/bin/julia")

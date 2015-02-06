@@ -5,7 +5,8 @@
 ;;(elpy-clean-modeline)
  
 ;; (require 'ipython)
-;; (setq py-python-command-args '("--matplotlib" "--colors" "LightBG"))
+(setq py-python-command-args
+        '("--gui=wx" "--matplotlib=wx" "--colors=Linux"))
 (setq python-version-checked t)
 (setq python-shell-interpreter "ipython")
 (setq python-python-command "ipython")
