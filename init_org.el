@@ -12,7 +12,6 @@
 ;; Clocking
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
-
 (setq org-log-done t)
 
 ;; Tags shortcuts
@@ -37,7 +36,7 @@
 
 (setq org-capture-templates 
       '(
-        ("t" "Todo" entry (file+headline (concat org-directory "notes.org") "Tasks") "* TODO %?\n  %i\n")
+	("t" "Todo" entry (file+headline (concat org-directory "notes.org") "Tasks") "* TODO %?\n  %i\n")
         ("j" "Journal" plain (file+datetree (concat org-directory "journal.org")) "%?\nEntered on %U\n")))
 
 ;; Visualization
@@ -61,4 +60,3 @@
             (set-face-attribute 'org-level-3 nil :height 1.1)
             (set-face-attribute 'org-level-4 nil :height 1.1)
             (set-face-attribute 'org-level-5 nil :height 1.1)))
-
