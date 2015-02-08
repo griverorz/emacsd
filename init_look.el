@@ -4,8 +4,8 @@
 ;; Theme
 (require 'color-theme)
 (color-theme-initialize)
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'wombat t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
 ;; (load-theme 'cyberpunk t)
 
 (custom-set-faces

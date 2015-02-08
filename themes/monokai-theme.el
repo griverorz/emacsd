@@ -846,7 +846,7 @@ Also affects 'linum-mode' background."
 
    `(font-lock-string-face
      ((,class (:foreground ,yellow))
-      (,terminal-class (:foreground ,terminal-yellow))))
+      (,terminal-class (:slant italic :foreground ,terminal-yellow))))
 
    `(font-lock-type-face
      ((,class (:foreground ,blue
