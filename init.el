@@ -61,6 +61,7 @@
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.jags\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.stan\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . R-mode))
