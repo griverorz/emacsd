@@ -66,6 +66,7 @@
 (add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (setq major-mode 'text-mode)
 
 ;; Lambda mode
