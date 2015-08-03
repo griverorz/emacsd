@@ -1,7 +1,8 @@
 ;; Basic ESS
-(autoload 'R "ess-site.el" "ESS" t)
-(autoload 'R-mode "ess-site.el" t)
-(autoload 'Rd-mode "ess-site.el" "ESS" t)
+(require 'ess-site)
+(autoload 'R "lisp/ess-site.el" "ESS" t)
+(autoload 'R-mode "lisp/ess-site.el" t)
+(autoload 'Rd-mode "lisp/ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 
 ;; Do not load data or save envir
