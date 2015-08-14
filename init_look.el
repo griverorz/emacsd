@@ -55,9 +55,7 @@
 (ido-ubiquitous-mode t)						
 
 ;; powerline
-(require 'powerline)
-(powerline-default-theme)
-(require 'smart-mode-line)
+;; (require 'smart-mode-line)
 ;; (sml/setup)
 ;; (sml/apply-theme 'dark)
 

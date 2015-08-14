@@ -1,4 +1,5 @@
 ;; elpy
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (package-initialize)
 (elpy-enable)
 (elpy-use-ipython)
