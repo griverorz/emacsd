@@ -17,8 +17,7 @@
             (local-set-key (kbd "RET") 'newline)))
 
 ;;;;; If you want all help buffers to go into one frame do
-(setq ess-help-own-frame 'one)
-(setq ess-help-reuse-window t)
+(setq ess-help-reuse-window nil)
 ;; ESS will not print the evaluated comands, also speeds up the evaluation 
 ;; (setq ess-eval-visibly nil)
 
