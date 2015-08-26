@@ -55,6 +55,7 @@
 
 ;; Personal elisp lib dir
 (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+(setq byte-compile-warn nil)
 
 ;; Open files in correct mode and default to text
 (add-to-list 'auto-mode-alist '("\\.el\\'" . lisp-mode))
