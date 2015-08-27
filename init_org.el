@@ -2,12 +2,45 @@
 (require 'org)
 (setq org-directory "~/Documents/org/")
 
+;; Log
 (setq org-log-done t)
 
+;; Bindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; Modules
+(setq org-modules '(org-bbdb
+		    org-gnus
+		    org-drill
+		    org-info
+		    org-jsinfo
+		    org-habit
+		    org-irc
+		    org-mouse
+		    org-annotate-file
+		    org-eval
+		    org-expiry
+		    org-interactive-query
+		    org-man
+		    org-collector
+		    org-panel
+		    org-screen
+		    org-toc))
+(eval-after-load 'org
+  '(org-load-modules-maybe t))
+(setq org-expiry-inactive-timestamps t)
+
+
+;; This makes it easier to add links from outside. 
+(defun my/yank-more ()
+  (interactive)
+  (insert "[[")
+  (yank)
+  (insert "][more]]"))
+(global-set-key (kbd "<f6>") 'my/yank-more)
 
 ;; Clocking
 (setq org-clock-persist 'history)
@@ -60,3 +93,21 @@
             (set-face-attribute 'org-level-3 nil :height 1.1)
             (set-face-attribute 'org-level-4 nil :height 1.1)
             (set-face-attribute 'org-level-5 nil :height 1.1)))
+
+
+;; Navigation
+(setq org-goto-interface 'outline
+      org-goto-max-level 10)
+(require 'imenu)
+(setq org-startup-folded nil)
+(bind-key "C-c j" 'org-clock-goto) ;; jump to current task from anywhere
+(bind-key "C-c C-w" 'org-refile)
+(setq org-cycle-include-plain-lists 'integrate)
+
+;; Refile
+(setq org-reverse-note-order t)
+(setq org-refile-use-outline-path nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+(setq org-refile-use-cache nil)
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+(setq org-blank-before-new-entry nil)

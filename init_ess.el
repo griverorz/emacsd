@@ -1,4 +1,4 @@
-;; Basic ESS
+;; ESS
 (add-to-list 'load-path "~/.emacs.d/ess/lisp")
 (require 'ess-site)
 (autoload 'R "ess-site.el" "ESS" t)

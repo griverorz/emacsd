@@ -42,14 +42,14 @@
   (menu-bar-mode -1))
 (tool-bar-mode -1)
 
-;; ;; Delete seleted text when typing
+;; Delete seleted text when typing
 (delete-selection-mode 1)
 
 ;; Truncate long lines
 (global-visual-line-mode 1)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; ;; Tweaks from starter kit
+;; Tweaks from starter kit
 (ido-mode t)
 (ido-ubiquitous-mode t)						
 
@@ -63,10 +63,10 @@
   '(when (executable-find ispell-program-name)
    (add-hook 'text-mode-hook 'turn-on-flyspell)))
 
-;; ;; Remove yes-no
+;; Remove yes-no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; ;; Parenthesis
+;; Parenthesis
 (show-paren-mode t)
 (setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
 (load "autopair")
@@ -76,7 +76,7 @@
         :weight 'bold :underline nil :overline nil :slant 'normal)
 (set-face-foreground 'show-paren-mismatch-face "red")
 
-;; ;; Cua
+;; Cua
 (cua-selection-mode t)
 (cua-mode t)
 (define-key cua-global-keymap "\M-\r" 'cua-set-rectangle-mark)
@@ -100,7 +100,7 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
 
-;; ;; Switch window
+;; Switch window
 (require 'switch-window)
 
 ;; Disable bells
@@ -111,13 +111,13 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-;; ;; Multicursor
+;; Multicursor
 (require 'multiple-cursors)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c M-p") 'mc/mark-all-like-this)
 
-;; ;; iBuffer groups
+;; iBuffer groups
 (setq ibuffer-saved-filter-groups
     '(("home"
        ("emacs-config" (or (filename . ".emacs.d")
@@ -150,12 +150,12 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
-;; ;; Date and time in status bar
+;; Date and time in status bar
 (setq display-time-day-and-date t
       display-time-24hr-format t)
 (display-time)
 
-;; ;; Set margins
+;; Set margins
 (defun toggle-margin-right ()
   (interactive)
   (if (eq (cdr (window-margins)) nil)

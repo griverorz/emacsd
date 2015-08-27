@@ -15,6 +15,10 @@
 ;; It's all about the project.
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 
+;; Pop to mark
+(bind-key "C-x p" 'pop-to-mark-command)
+(setq set-mark-command-repeat-pop t)
+
 ;; Occur 
 (global-set-key (kbd "C-c o") 'occur)
 

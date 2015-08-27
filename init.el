@@ -1,16 +1,22 @@
-;;(add-to-list 'load-path "~/.emacs.d")
+;; Set my data
+(setq user-full-name "Gonzalo Rivero"
+      user-mail-address "griverorz(at)gmail.com")
 
 ;; Marmalade
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
-			 ("melpa-stable" . "http://stable.melpa.org/packages/")))
-(package-initialize)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(unless (assoc-default "melpa" package-archives)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  (package-refresh-contents))
 
-;; Set my data
-(setq user-full-name "Gonzalo Rivero")
-(setq user-mail-address "griverorz(at)gmail.com")
+;; My elisp files
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(require 'use-package)
+(use-package auto-compile
+	     :ensure t
+	     :init (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
 
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
@@ -62,11 +68,20 @@
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
 
-;; ;; Enable backup files.
+;; Enable backup files.
 (setq make-backup-files t)
 (setq delete-old-versions t)
 (setq version-control t)
-(setq backup-directory-alist (quote ((".*" . "~/Documents/backups_emacs/"))))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
+
+;; Winner mode
+(use-package winner
+	     :ensure t
+	     :defer t
+	     :idle (winner-mode 1))
+
+;; End sentence with single space
+(setq sentence-end-double-space nil)
 
 ;; Comments
 (defun comment-or-uncomment-region-or-line ()
@@ -78,6 +93,76 @@
         (comment-or-uncomment-region (point) (mark))
       (comment-or-uncomment-region (mark) (point)))))
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
+
+;; Helm
+(use-package helm
+	     :ensure t
+	     :diminish helm-mode
+	     :init
+	     (progn
+	       (require 'helm-config)
+	       (setq helm-candidate-number-limit 100)
+	       ;; From https://gist.github.com/antifuchs/9238468
+	       (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+		     helm-input-idle-delay 0.01  ; this actually updates things
+					; reeeelatively quickly.
+		     helm-yas-display-key-on-candidate t
+		     helm-quick-update t
+		     helm-M-x-requires-pattern nil
+		     helm-ff-skip-boring-files t)
+	       (helm-mode))
+	     :bind (("C-c h" . helm-mini)
+		    ("C-h a" . helm-apropos)
+		    ("C-x C-b" . helm-buffers-list)
+		    ("C-x b" . helm-buffers-list)
+		    ("M-y" . helm-show-kill-ring)
+		    ("M-x" . helm-M-x)
+		    ("C-x c o" . helm-occur)
+		    ("C-x c s" . helm-swoop)
+		    ("C-x c y" . helm-yas-complete)
+		    ("C-x c Y" . helm-yas-create-snippet-on-region)
+		    ("C-x c b" . my/helm-do-grep-book-notes)
+		    ("C-x c SPC" . helm-all-mark-rings)))
+(ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
+
+;; Binds
+(use-package helm-descbinds
+	     :defer t
+	     :bind (("C-h b" . helm-descbinds)
+		    ("C-h w" . helm-descbinds)))
+
+;; Package guide
+(use-package guide-key
+  :defer t
+  :diminish guide-key-mode
+  :idle
+  (progn
+    (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
+    (guide-key-mode 1)))  ; Enable guide-key-mode
+
+
+;; Smart mode line
+(use-package smart-mode-line
+  :defer t
+  :idle
+  (progn
+    (setq-default
+     mode-line-format
+     '("%e"
+       mode-line-front-space
+       mode-line-mule-info
+       mode-line-client
+       mode-line-modified
+       mode-line-remote
+       mode-line-frame-identification
+       mode-line-buffer-identification
+       "   "
+       mode-line-position
+       (vc-mode vc-mode)
+       "  "
+       mode-line-modes
+       mode-line-misc-info
+       mode-line-end-spaces))))
 
 ;; Markdown
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
@@ -106,7 +191,7 @@
 (set-face-background 'ac-selection-face "#8cd0d3")
 (set-face-foreground 'ac-selection-face "#1f1f1f")
 
-;; Multi-term as replacement for ansi-term
+;; Multi-term replacement for ansi-term
 (require 'multi-term)
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
@@ -118,6 +203,8 @@
 (global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
 
 ;; Combo for dired 
+(require 'find-dired)
+(setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))
 (global-set-key (kbd "s-<f1>")
                 (lambda ()
                   (interactive)
