@@ -3,19 +3,18 @@
       user-mail-address "griverorz(at)gmail.com")
 
 ;; Marmalade
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(unless (assoc-default "melpa" package-archives)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-  (package-refresh-contents))
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.org/packages/")
+			 ("melpa-stable" . "http://stable.melpa.org/packages/")))
+(package-initialize)
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (setq use-package-verbose t)
 (require 'use-package)
-(use-package auto-compile
-	     :ensure t
-	     :init (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
 
 ;; Enable clipboard
@@ -76,9 +75,7 @@
 
 ;; Winner mode
 (use-package winner
-	     :ensure t
-	     :defer t
-	     :idle (winner-mode 1))
+	     :ensure t)
 
 ;; End sentence with single space
 (setq sentence-end-double-space nil)
@@ -97,7 +94,6 @@
 ;; Helm
 (use-package helm
 	     :ensure t
-	     :diminish helm-mode
 	     :init
 	     (progn
 	       (require 'helm-config)
@@ -127,42 +123,13 @@
 
 ;; Binds
 (use-package helm-descbinds
-	     :defer t
 	     :bind (("C-h b" . helm-descbinds)
 		    ("C-h w" . helm-descbinds)))
 
 ;; Package guide
-(use-package guide-key
-  :defer t
-  :diminish guide-key-mode
-  :idle
-  (progn
-    (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
-    (guide-key-mode 1)))  ; Enable guide-key-mode
-
-
-;; Smart mode line
-(use-package smart-mode-line
-  :defer t
-  :idle
-  (progn
-    (setq-default
-     mode-line-format
-     '("%e"
-       mode-line-front-space
-       mode-line-mule-info
-       mode-line-client
-       mode-line-modified
-       mode-line-remote
-       mode-line-frame-identification
-       mode-line-buffer-identification
-       "   "
-       mode-line-position
-       (vc-mode vc-mode)
-       "  "
-       mode-line-modes
-       mode-line-misc-info
-       mode-line-end-spaces))))
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+(guide-key-mode 1)  ; Enable guide-key-mode
 
 ;; Markdown
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)

@@ -12,25 +12,6 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 ;; Modules
-(setq org-modules '(org-bbdb
-		    org-gnus
-		    org-drill
-		    org-info
-		    org-jsinfo
-		    org-habit
-		    org-irc
-		    org-mouse
-		    org-annotate-file
-		    org-eval
-		    org-expiry
-		    org-interactive-query
-		    org-man
-		    org-collector
-		    org-panel
-		    org-screen
-		    org-toc))
-(eval-after-load 'org
-  '(org-load-modules-maybe t))
 (setq org-expiry-inactive-timestamps t)
 
 
