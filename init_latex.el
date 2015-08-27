@@ -48,11 +48,6 @@
 
 (setq TeX-PDF-mode t)
 
-;; Auto-raise Emacs on activation (from Skim, usually)
-(defun raise-emacs-on-aqua()
-(shell-command "osascript -e 'tell application \"Emacs\" to activate' &"))
-(add-hook 'server-switch-hook 'raise-emacs-on-aqua)
-
 ;; Turn RefTeX on
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 
