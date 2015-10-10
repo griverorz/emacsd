@@ -17,6 +17,10 @@
           (lambda ()
             (local-set-key (kbd "RET") 'newline)))
 
+
+;; Not to indent comments in R mode
+(define-key ess-mode-map (kbd "C-c C-x p") "%>%")
+
 ;; If you want all help buffers to go into one frame do
 (setq ess-help-reuse-window nil)
 
