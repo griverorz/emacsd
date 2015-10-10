@@ -123,6 +123,7 @@
 		  (mode . iESS)))
        ("LaTeX" (mode . latex-mode))
        ("Dired" (mode . dired-mode))
+       ("Lisp" (mode . lisp-mode))
        ("Python" (mode . python-mode))
        ("Twitter" (mode . twittering-mode))
        ("Help" (or (name . "\*Help\*")
@@ -131,17 +132,12 @@
 
 (add-hook 'ibuffer-mode-hook 
           '(lambda ()
-             (ibuffer-switch-to-saved-filter-groups "home")))
+	     (ibuffer-auto-mode 1)
+             (ibuffer-switch-to-saved-filter-groups "default")))
 
 (setq ibuffer-show-empty-filter-groups nil)                     
 
 (setq ibuffer-expert t)
- 
-(add-hook 'ibuffer-mode-hook 
-          '(lambda ()
-             (ibuffer-auto-mode 1)
-             (ibuffer-switch-to-saved-filter-groups "home")))
-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 

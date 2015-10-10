@@ -41,6 +41,7 @@
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
                              (concat org-directory "notes.org")
+			     (concat org-directory "learn.org")
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
 
