@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: subset
+# key: subset
+# group: object oriented
+# --
+
+setMethod("[",
+          \"${1:method}\",
+          function(x, i, j="missing", drop="missing") {
+              $1($2)
+          })

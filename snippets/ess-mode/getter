@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: getter
+# key: getter
+# group: object oriented
+# --
+
+setGeneric(\"${1:method}\", function(object, ...) standardGeneric(\"$1\"))
+setMethod(\"$1\",
+          \"$2\",
+          function(object, ...) {
+              $3
+          })
+

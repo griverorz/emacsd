@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: validity
+# key: valid
+# group: object oriented
+# --
+
+setValidity(${1:class},
+            function(object) {
+                msg <- NULL; valid <- TRUE                
+                if (${2:condition}) {
+                    valid <- FALSE
+                    msg <- append(msg, ${3:message})
+                }
+                if (valid) TRUE else msg
+            })
+

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: union
+# key: union
+# group: object oriented
+# --
+
+setClassUnion(\"${1:name}\", members=c($2))

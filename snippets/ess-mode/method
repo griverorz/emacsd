@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: method
+# key: m
+# group: object oriented
+# --
+
+setMethod(\"${1:method}\",
+          signature=\"${2:signature}\",
+	  definition=function(object) {
+              ${3:def}
+	  }
+	  )

@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: header
+# key: header
+# binding: direct-keybinding
+# --
+---
+layout: post
+title: $1
+date: `(format-time-string "%Y-%m-%d %H:%M:%S")`
+comments: True
+categories: $2
+---

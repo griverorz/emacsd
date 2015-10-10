@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: generic
+# key: generic
+# group: object oriented
+# --
+
+setGeneric(${1:class}, function(object, ...) standardGeneric($1))

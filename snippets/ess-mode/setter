@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: setter
+# key: setter
+# group: object oriented
+# --
+
+setGeneric(\"${1:method}<-\", function(object, value) standardGeneric(\"$1<-\"))
+setReplaceMethod(\"$1\",
+                 \"${2:signature}\",
+                 function(object, value) {
+                     object@$1 <- value
+                     if (validObject(object)) {
+                         return(object)
+                     }
+                 })
