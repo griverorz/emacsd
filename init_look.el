@@ -5,7 +5,7 @@
 (require 'color-theme)
 (color-theme-initialize)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
+(load-theme 'zenburn t)
 ;; (load-theme 'cyberpunk t)
 
 (custom-set-faces
@@ -52,11 +52,6 @@
 ;; Tweaks from starter kit
 (ido-mode t)
 (ido-ubiquitous-mode t)						
-
-;; powerline
-;; (require 'smart-mode-line)
-;; (sml/setup)
-;; (sml/apply-theme 'dark)
 
 ;; Autload flyspell
 (eval-after-load "ispell"

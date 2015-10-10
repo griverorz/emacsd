@@ -48,10 +48,14 @@
 (define-key global-map "\C-cc" 'org-capture)
 (setq org-default-notes-file (concat org-directory "notes.org"))
 
+(defun launch-journal () (interactive) (org-capture nil "j"))
+(define-key global-map "\C-cd" 'launch-journal)
+
 (setq org-capture-templates 
       '(
 	("t" "Todo" entry (file+headline (concat org-directory "notes.org") "Tasks") "* TODO %?\n  %i\n")
         ("j" "Journal" plain (file+datetree (concat org-directory "journal.org")) "%?\nEntered on %U\n")))
+
 
 ;; Visualization
 (add-hook 'org-mode-hook 

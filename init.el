@@ -91,6 +91,9 @@
       (comment-or-uncomment-region (mark) (point)))))
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
 
+;; Projectile
+(projectile-global-mode)
+
 ;; Helm
 (use-package helm
 	     :ensure t
@@ -104,7 +107,9 @@
 					; reeeelatively quickly.
 		     helm-yas-display-key-on-candidate t
 		     helm-quick-update t
-		     helm-M-x-requires-pattern nil
+		     helm-mode-fuzzy-match t
+		     helm-mode-fuzzy-find t
+		     helm-M-x-fuzzy-match t
 		     helm-ff-skip-boring-files t)
 	       (helm-mode))
 	     :bind (("C-c h" . helm-mini)
