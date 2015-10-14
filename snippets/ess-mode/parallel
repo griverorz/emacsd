@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: parallel
+# key: parallel
+# group: parallel
+# --
+
+library(foreach)
+library(doParallel)
+workers <- makeCluster($1) 
+registerDoParallel(workers)
