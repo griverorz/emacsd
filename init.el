@@ -30,13 +30,14 @@
 
 ;; Load init files
 (load "~/.emacs.d/init_look.el")
+(load "~/.emacs.d/init_keys.el")
+(load "~/.emacs.d/init_tools.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
 (load "~/.emacs.d/init_org.el")
 ;; (load "~/.emacs.d/init_haskell.el")
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
-(load "~/.emacs.d/init_keys.el")
 
 ;; Yasnippet
 (require 'yasnippet)
@@ -158,10 +159,6 @@
 (setq ac-auto-start 5)
 (ac-flyspell-workaround)
 (setq ac-auto-show-menu 5)
-(set-face-background 'ac-candidate-face "#366060")
-(set-face-foreground 'ac-selection-face "#1f1f1f")
-(set-face-background 'ac-selection-face "#8cd0d3")
-(set-face-foreground 'ac-selection-face "#1f1f1f")
 
 ;; Multi-term replacement for ansi-term
 (require 'multi-term)
@@ -181,10 +178,6 @@
                 (lambda ()
                   (interactive)
                   (dired "~/")))
-
-;; Twittering mode
-(require 'twittering-mode)      
-(setq twittering-use-master-password t)
 
  ;; EPA
 (require 'epa)

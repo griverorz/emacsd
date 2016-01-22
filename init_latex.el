@@ -1,4 +1,3 @@
-
 ;; TeX master file
 (setenv "PATH" (concat "/Users/gonzalorivero/.cabal/bin:" (getenv "PATH")))
 (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
@@ -21,10 +20,10 @@
 (put 'downcase-region 'disabled nil)
 
 (setq reftex-bibpath-environment-variables
-'("/Users/gonzalorivero/Library/texmf/bibtex/bib"))
+      '("/Users/gonzalorivero/Library/texmf/bibtex/bib"))
 
 (setq reftex-default-bibliography
-'("/Users/gonzalorivero/Documents/bib/ccss.bib"))
+      '("/Users/gonzalorivero/Documents/bib/ccss.bib"))
 
 ;; use skim for PDF
 (add-hook 'LaTeX-mode-hook 
@@ -39,13 +38,6 @@
 		     "open -a Skim.app %o"))
 		  TeX-view-program-selection
 		  '((output-pdf "Skim")))))
-
-;; (add-hook 'LaTeX-mode-hook (lambda ()
-;; 			     (push
-;; 			      '("latexmk" "latexmk -pdf %o" TeX-run-TeX nil t
-;; 				:help "Run latexmk on file")
-;; 			      TeX-command-list)))
-;; (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
 
 (setq TeX-PDF-mode t)
 
@@ -67,7 +59,6 @@
 
 ;; Autoload fold
 (autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
-
 
 ;; Markdown here too
 (setq markdown-open-command "/usr/local/bin/mark")

@@ -30,7 +30,6 @@
 (global-set-key (kbd "M-=") 'er/expand-region)
 
 ;; Smex
-(global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "C-c M-x") 'execute-extended-command)
 
 ;; Perform general cleanup.
@@ -59,9 +58,6 @@
 (global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 
-;; Helm
-(global-set-key (kbd "C-c h") 'helm-mini)
-
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)
 
@@ -86,27 +82,15 @@
 ;; So good!
 (global-set-key (kbd "C-c g") 'magit-status)
 
-;; elpy keys
-(define-key elpy-mode-map (kbd "M-n") nil)
-(define-key elpy-mode-map (kbd "M-p") nil)
-(define-key elpy-mode-map (kbd "<C-down>") nil)
-(define-key elpy-mode-map (kbd "<C-up>") nil)
-(define-key elpy-mode-map (kbd "C-c C-f") 'python-shell-send-defun)
-(define-key elpy-mode-map (kbd "C-c C-r") 'elpy-shell-send-region-or-buffer)
-
-;; terminal keys
-;;(define-key input-decode-map "\e[1;2D" [S-left])  
-;;(define-key input-decode-map "\e[1;5D" [C-S-left])  
-
-;;(define-key input-decode-map "\e[1;2C" [S-right])  
-;;(define-key input-decode-map "\e[1;5C" [C-S-right])  
-
-;;(define-key input-decode-map "\e[1;2B" [S-down])  
-;;(define-key input-decode-map "\e[1;5B" [C-S-down])  
-
 (define-key input-decode-map "\e[1;2A" [S-up])  
-;;(define-key input-decode-map "\e[1;5A" [C-S-up])  
 
-;;(define-key input-decode-map "\e[1;2F" [S-end])  
-;;(define-key input-decode-map "\e[1;2H" [S-home])
-
+;; Comments
+(defun comment-or-uncomment-region-or-line ()
+  (interactive)
+  (if (not mark-active)
+      (comment-or-uncomment-region
+       (line-beginning-position) (line-end-position))
+    (if (< (point) (mark))
+        (comment-or-uncomment-region (point) (mark))
+      (comment-or-uncomment-region (mark) (point)))))
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)

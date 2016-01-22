@@ -14,7 +14,6 @@
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
 
-
 ;; This makes it easier to add links from outside. 
 (defun my/yank-more ()
   (interactive)

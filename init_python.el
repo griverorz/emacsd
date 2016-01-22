@@ -3,14 +3,17 @@
 (package-initialize)
 (elpy-enable)
 (elpy-use-ipython)
-;;(elpy-clean-modeline)
  
-;; (require 'ipython)
+(require 'ipython)
+
+(when (executable-find "ipython")
+  (setq python-shell-interpreter "ipython"))
+
 (setq py-python-command-args
         '("--gui=wx" "--matplotlib=wx" "--colors=Linux"))
 (setq python-version-checked t)
-(setq python-shell-interpreter "ipython")
 (setq python-python-command "ipython")
+
 
 (require 'python)
 (autoload 'python-mode "python-mode" "Python Mode." t)
@@ -44,3 +47,5 @@
 (venv-initialize-interactive-shells) ;; if you want interactive shell support
 (venv-initialize-eshell) ;; if you want eshell support
 (setq venv-location "/opt/virtual_env/")
+
+
