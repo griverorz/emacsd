@@ -45,16 +45,13 @@
                              (concat org-directory "research.org")))
 
 ;; Capture 
-(define-key global-map "\C-cc" 'org-capture)
 (setq org-default-notes-file (concat org-directory "notes.org"))
-
-(defun launch-journal () (interactive) (org-capture nil "j"))
-(define-key global-map "\C-cd" 'launch-journal)
 
 (setq org-capture-templates 
       '(
 	("t" "Todo" entry (file+headline (concat org-directory "notes.org") "Tasks") "* TODO %?\n  %i\n")
         ("j" "Journal" plain (file+datetree (concat org-directory "journal.org")) "%?\nEntered on %U\n")))
+
 
 
 ;; Visualization
@@ -96,3 +93,10 @@
 (setq org-refile-use-cache nil)
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
 (setq org-blank-before-new-entry nil)
+
+;; Journal
+(defun launch-journal ()
+  (interactive)
+  (org-capture nil "j")
+  (activate-input-method 'spanish-prefix))
+(define-key global-map "\C-cd" 'launch-journal)

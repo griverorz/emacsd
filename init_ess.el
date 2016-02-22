@@ -1,5 +1,5 @@
 ;; ESS
-;; (add-to-list 'load-path "~/.emacs.d/ess/lisp")
+(add-to-list 'load-path "~/.emacs.d/ess/lisp")
 
 (setq load-path 
       (append '("~/.emacs.d/polymode" "~/.emacs.d/polymode/modes")

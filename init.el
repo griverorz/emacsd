@@ -32,12 +32,13 @@
 (load "~/.emacs.d/init_look.el")
 (load "~/.emacs.d/init_keys.el")
 (load "~/.emacs.d/init_tools.el")
+(load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
-(load "~/.emacs.d/init_org.el")
 ;; (load "~/.emacs.d/init_haskell.el")
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
+
 
 ;; Yasnippet
 (require 'yasnippet)
@@ -63,6 +64,10 @@
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (setq major-mode 'text-mode)
+
+;; Journal
+(defun launch-journal () (interactive) (org-capture nil "j"))
+(define-key global-map "\C-cd" 'launch-journal)
 
 ;; Lambda mode
 (require 'pretty-lambdada)
@@ -190,10 +195,11 @@
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
 (put 'narrow-to-region 'disabled nil)
 
-;; Copy to clipboard
-(setq interprogram-cut-function
-      (lambda (text &optional push)
-	(let* ((process-connection-type nil)
-	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
-	  (process-send-string pbproxy text)
-	  (process-send-eof pbproxy))))
+;; ;; Copy to clipboard
+;; (setq interprogram-cut-function
+;;       (lambda (text &optional push)
+;; 	(let* ((process-connection-type nil)
+;; 	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
+;; 	  (process-send-string pbproxy text)
+;; 	  (process-send-eof pbproxy))))
+
