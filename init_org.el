@@ -22,11 +22,6 @@
   (insert "][more]]"))
 (global-set-key (kbd "<f6>") 'my/yank-more)
 
-;; Clocking
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
-(setq org-log-done t)
-
 ;; Tags shortcuts
 (setq org-tag-alist '(("@work" . ?w) 
                       ("@home" . ?h) 
