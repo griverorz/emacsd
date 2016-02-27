@@ -11,6 +11,9 @@
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
 
+(require 'powerline)
+(powerline-vim-theme)
+
 ;; Color cursor
 (set-cursor-color "#ff0000")
 

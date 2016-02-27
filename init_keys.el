@@ -94,3 +94,28 @@
         (comment-or-uncomment-region (point) (mark))
       (comment-or-uncomment-region (mark) (point)))))
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
+
+(defun center-text ()
+  "Center the text in the middle of the buffer. Works best in full screen"
+  (interactive)
+  (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
+		      (/ (window-width) 4)
+		      (/ (window-width) 4)))
+
+(defun center-text-clear ()
+  (interactive)
+  (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
+		      nil
+		      nil))
+
+(setq centered nil)
+
+(defun center-text-mode ()
+  (interactive)
+  (if centered
+      (progn (center-text-clear)
+	     (setq centered nil))
+    (progn (center-text)
+	   (setq centered t))))
+
+(define-key global-map (kbd "C-c M-t") 'center-text-mode)
