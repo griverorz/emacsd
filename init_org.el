@@ -95,3 +95,13 @@
   (org-capture nil "j")
   (activate-input-method 'spanish-prefix))
 (define-key global-map "\C-cd" 'launch-journal)
+
+(defun new-post ()
+  (interactive)
+  (setq md-major-mode (quote markdown-mode))
+  (let ((buf (generate-new-buffer "untitled")))
+    (switch-to-buffer buf)
+    (center-text-mode)    
+    (funcall (and md-major-mode))
+    (setq buffer-offer-save t)))
+(define-key global-map "\C-cp" 'new-post)

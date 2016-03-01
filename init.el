@@ -26,7 +26,6 @@
 
 ;; Server
 (load "server")
-(unless (server-running-p) (server-start))
 
 ;; Load init files
 (load "~/.emacs.d/init_look.el")
@@ -149,6 +148,7 @@
 
 ;; Pandoc
 (load "pandoc-mode")
+(require 'pandoc)
 (add-hook 'markdown-mode-hook 'turn-on-pandoc)
 (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
@@ -195,11 +195,11 @@
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
 (put 'narrow-to-region 'disabled nil)
 
-;; ;; Copy to clipboard
-;; (setq interprogram-cut-function
-;;       (lambda (text &optional push)
-;; 	(let* ((process-connection-type nil)
-;; 	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
-;; 	  (process-send-string pbproxy text)
-;; 	  (process-send-eof pbproxy))))
+;; Copy to clipboard
+(setq interprogram-cut-function
+      (lambda (text &optional push)
+	(let* ((process-connection-type nil)
+	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
+	  (process-send-string pbproxy text)
+	  (process-send-eof pbproxy))))
 
