@@ -148,9 +148,6 @@
 
 ;; Pandoc
 (load "pandoc-mode")
-(require 'pandoc)
-(add-hook 'markdown-mode-hook 'turn-on-pandoc)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
 ;; Autocomplete
 (byte-recompile-directory "~/.emacs.d/src/auto-complete")
@@ -193,7 +190,6 @@
 ;; Abbreviation mode
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs/abbrev_defs")
-(put 'narrow-to-region 'disabled nil)
 
 ;; Copy to clipboard
 (setq interprogram-cut-function
@@ -203,3 +199,4 @@
 	  (process-send-string pbproxy text)
 	  (process-send-eof pbproxy))))
 
+(put 'narrow-to-region 'disabled nil)

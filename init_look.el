@@ -150,8 +150,8 @@
 (display-time)
 
 ;; Set margins
-(defun toggle-margin-right ()
-  (interactive)
-  (if (eq (cdr (window-margins)) nil)
-      (set-window-margins nil 0 (- (window-body-width) fill-column))
-    (set-window-margins nil 0 0)))
+;; (defun toggle-margin-right ()
+;;   (interactive)
+;;   (if (eq (cdr (window-margins)) nil)
+;;       (set-window-margins nil 0 (- (window-body-width) fill-column))
+;;     (set-window-margins nil 0 0)))
