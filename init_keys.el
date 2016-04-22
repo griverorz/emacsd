@@ -82,18 +82,11 @@
 ;; So good!
 (global-set-key (kbd "C-c g") 'magit-status)
 
-(define-key input-decode-map "\e[1;2A" [S-up])  
+(define-key input-decode-map "\e[1;2A" [S-up])
 
-;; Comments
-(defun comment-or-uncomment-region-or-line ()
-  (interactive)
-  (if (not mark-active)
-      (comment-or-uncomment-region
-       (line-beginning-position) (line-end-position))
-    (if (< (point) (mark))
-        (comment-or-uncomment-region (point) (mark))
-      (comment-or-uncomment-region (mark) (point)))))
-(global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
+;; Let's try with the default commands
+(define-key global-map (kbd "C-x \;") 'comment-line)
+
 
 (defun center-text ()
   "Center the text in the middle of the buffer. Works best in full screen"
@@ -119,3 +112,15 @@
 	   (setq centered t))))
 
 (define-key global-map (kbd "C-c M-t") 'center-text-mode)
+(global-set-key (kbd "C-x C-g") 'god-local-mode)
+
+(defun my-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+
+(add-hook 'god-mode-enabled-hook 'my-update-cursor)
+(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;; Use hippie
+(global-set-key [remap dabbrev-expand] 'hippie-expand)

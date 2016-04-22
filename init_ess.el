@@ -14,9 +14,6 @@
 ;; Do not load data or save envir
 (setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
 
-;; Do not load data or save envir
-(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
-
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook
           (lambda ()
@@ -43,15 +40,6 @@
 ;; (setq ess-use-tracebug nil)
 (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
 (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
-
-;; Adapted with one minor change from Felipe Salazar at
-;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics
-(setq ess-ask-for-ess-directory nil)
-(setq ess-local-process-name "R")
-(setq ansi-color-for-comint-mode 'filter)
-(setq comint-scroll-to-bottom-on-input t)
-(setq comint-scroll-to-bottom-on-output t)
-(setq comint-move-point-for-output t)
 
 (defun my-ess-start-R ()
   (interactive)
@@ -92,6 +80,7 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+
 (defun my-ess-start-R ()
   (interactive)
   (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
@@ -110,6 +99,7 @@
   (if (and transient-mark-mode mark-active)
       (call-interactively 'ess-eval-region)
     (call-interactively 'ess-eval-line-and-step)))
+
 (add-hook 'ess-mode-hook
 	  '(lambda()
 	     (local-set-key [(shift return)] 'my-ess-eval)))
@@ -119,5 +109,8 @@
 	     (local-set-key [C-down] 'comint-next-input)))
 (add-hook 'Rnw-mode-hook
 	  '(lambda()
-	     (local-set-key [(shift return)] 'my-ess-eval)))
+	     (local-set-key (kbd "C-c RET") 'my-ess-eval)))
 (require 'ess-site)
+
+;; No wait
+;; (setq ess-eval-visibly-p 'no-wait)
