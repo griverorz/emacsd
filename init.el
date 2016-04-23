@@ -18,7 +18,7 @@
 (setq load-prefer-newer t)
 
 ;; Enable clipboard
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 
 ;; Smex
 (load "smex")
@@ -49,23 +49,31 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Personal elisp lib dir
-(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Open files in correct mode and default to text
 (add-to-list 'auto-mode-alist '("\\.el\\'" . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . LaTeX-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.jags\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.jags\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.R\\'" . R-mode))
-(add-to-list 'auto-mode-alist '("\\.stan\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.stan\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
-(add-to-list 'auto-mode-alist '("\\.bugs\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (setq major-mode 'text-mode)
 
+;; Abbreviation mode
+(setq save-abbrevs t)
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
+(setq save-abbrevs 'silently)
+
 ;; Journal
-(defun launch-journal () (interactive) (org-capture nil "j"))
+(defun launch-journal ()
+  (interactive)
+  (org-capture nil "j"))
 (define-key global-map "\C-cd" 'launch-journal)
 
 ;; Lambda mode
@@ -84,17 +92,6 @@
 
 ;; End sentence with single space
 (setq sentence-end-double-space nil)
-
-;; Comments
-(defun comment-or-uncomment-region-or-line ()
-  (interactive)
-  (if (not mark-active)
-      (comment-or-uncomment-region
-       (line-beginning-position) (line-end-position))
-    (if (< (point) (mark))
-        (comment-or-uncomment-region (point) (mark))
-      (comment-or-uncomment-region (mark) (point)))))
-(global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
 
 ;; Projectile
 (projectile-global-mode)
@@ -147,7 +144,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; Pandoc
-(load "pandoc-mode")
+(require 'pandoc-mode)
 
 ;; Autocomplete
 (byte-recompile-directory "~/.emacs.d/src/auto-complete")
@@ -186,10 +183,6 @@
 (require 'epa-file)
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
 (epa-file-name-regexp-update)
-
-;; Abbreviation mode
-(setq save-abbrevs t)
-(setq abbrev-file-name "~/.emacs/abbrev_defs")
 
 ;; Copy to clipboard
 (setq interprogram-cut-function
