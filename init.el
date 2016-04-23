@@ -200,3 +200,5 @@
 	  (process-send-eof pbproxy))))
 
 (put 'narrow-to-region 'disabled nil)
+
+(setq-default indent-tabs-mode nil)

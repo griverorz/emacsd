@@ -14,9 +14,6 @@
 ;; Do not load data or save envir
 (setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
 
-;; Do not load data or save envir
-(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
-
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook
           (lambda ()
@@ -46,7 +43,7 @@
 
 ;; Adapted with one minor change from Felipe Salazar at
 ;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics
-(setq ess-ask-for-ess-directory nil)
+;; (setq ess-ask-for-ess-directory nil)
 (setq ess-local-process-name "R")
 (setq ansi-color-for-comint-mode 'filter)
 (setq comint-scroll-to-bottom-on-input t)
