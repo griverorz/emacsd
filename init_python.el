@@ -6,17 +6,10 @@
 (when (executable-find "ipython")
   (setq python-shell-interpreter "ipython"))
 
-(setq py-python-command-args
-        '("--gui=wx" "--matplotlib=wx" "--colors=Linux"))
 (setq python-version-checked t)
 (setq python-python-command "ipython")
 
 (setq py-load-pymacs-p nil)
-;; (require 'python-mode)
-
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 (setq python-shell-completion-native-enable nil)
 
@@ -25,7 +18,6 @@
   (require 'cl))
 
 ;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 (setq jedi:tooltip-method nil)
@@ -68,7 +60,6 @@
   (let ((map (make-sparse-keymap)))
     ;; Alphabetical order to make it easier to find free C-c C-X
     ;; bindings in the future. Heh.
-    
 
     (define-key map (kbd "C-M-x")   'python-shell-send-defun)
     (define-key map (kbd "C-c <")   'python-indent-shift-left)
@@ -90,14 +81,14 @@
     (define-key map (kbd "C-c C-w") 'elpy-doc-websearch)
     ;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
     
-    (define-key map (kbd "<C-down>") 'elpy-nav-forward-definition)
-    (define-key map (kbd "<C-up>")  'elpy-nav-backward-definition)
+    ;; (define-key map (kbd "<C-down>") 'elpy-nav-forward-definition)
+    ;; (define-key map (kbd "<C-up>")   'elpy-nav-backward-definition)
     ;; (define-key map (kbd "M-,")     'iedit-mode
     (define-key map (kbd "M-.")     'elpy-goto-definition)
-    ;; (define-key map (kbd "M-a")     'elpy-nav-backward-statement)
-    ;; (define-key map (kbd "M-e")     'elpy-nav-forward-statement)
-    ;; (define-key map (kbd "M-n")     'elpy-nav-forward-definition)
-    ;; (define-key map (kbd "M-p")     'elpy-nav-backward-definition)
+    (define-key map (kbd "M-a")     'elpy-nav-backward-statement)
+    (define-key map (kbd "M-e")     'elpy-nav-forward-statement)
+    (define-key map (kbd "M-n")     'elpy-nav-forward-definition)
+    (define-key map (kbd "M-p")     'elpy-nav-backward-definition)
 
     map)
   "Key map for the Emacs Lisp Python Environment.")

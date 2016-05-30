@@ -63,6 +63,7 @@
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
 
 ;; Abbreviation mode
@@ -178,7 +179,7 @@
                   (interactive)
                   (dired "~/")))
 
- ;; EPA
+;; EPA
 (require 'epa)
 (require 'epa-file)
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
@@ -193,5 +194,4 @@
 	  (process-send-eof pbproxy))))
 
 (put 'narrow-to-region 'disabled nil)
-
 (setq-default indent-tabs-mode nil)
