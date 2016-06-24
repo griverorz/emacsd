@@ -34,7 +34,7 @@
 (load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
-;; (load "~/.emacs.d/init_haskell.el")
+(load "~/.emacs.d/init_haskell.el")
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
 
@@ -194,3 +194,23 @@
 	  (process-send-eof pbproxy))))
 
 (put 'narrow-to-region 'disabled nil)  
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -synctex=1")
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(package-selected-packages
+   (quote
+    (hindent haskell-mode ztree yaml-mode winner-mode-enable warm-night-theme virtualenvwrapper use-package twittering-mode switch-window sublime-themes stan-mode solarized-theme smex smart-mode-line-powerline-theme pretty-lambdada pandoc-mode ox-rst ox-pandoc org-pandoc org-journal org-gcal org-drill-table multiple-cursors multi-term material-theme markdown-mode magit jedi jazz-theme ipython import-popwin idomenu ido-ubiquitous hyde history helm-projectile helm-fuzzy-find helm-bind-key guide-key-tip god-mode ghc fuzzy flyspell-popup flymake-python-pyflakes flycheck-pyflakes flycheck-haskell expand-region ess emacs-cl elpy cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-approximate color-theme clojure-snippets cl-format browse-kill-ring bash-completion base16-theme autopair auto-compile auctex-latexmk airline-themes ac-dabbrev ac-cider 0blayout))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
