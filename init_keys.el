@@ -92,8 +92,8 @@
   "Center the text in the middle of the buffer. Works best in full screen"
   (interactive)
   (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
-		      (/ (window-width) 4)
-		      (/ (window-width) 4)))
+		      (/ (window-body-width) 3)
+		      (/ (window-body-width) 3)))
 
 (defun center-text-clear ()
   (interactive)

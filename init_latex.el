@@ -3,6 +3,13 @@
 (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 
+(setq TeX-parse-self t); Enable parse on load.
+(setq TeX-auto-save t); Enable parse on save.
+(setq-default TeX-master nil)
+(require 'tex)
+(TeX-global-PDF-mode t)
+(setq TeX-PDF-mode t); PDF mode (rather than DVI-mode)
+
 ;; LaTeX path
 (setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
 (setq-default TeX-master nil) ; Query for master file.
