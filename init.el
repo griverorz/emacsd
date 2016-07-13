@@ -1,3 +1,9 @@
+(getenv "PATH")
+ (setenv "PATH"
+(concat
+ "/usr/texbin" ":"
+ (getenv "PATH")))
+
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero"
       user-mail-address "griverorz(at)gmail.com")
@@ -77,9 +83,6 @@
   (org-capture nil "j"))
 (define-key global-map "\C-cd" 'launch-journal)
 
-;; Lambda mode
-(require 'pretty-lambdada)
-(pretty-lambda-for-modes)
 
 ;; Enable backup files.
 (setq make-backup-files t)
@@ -134,19 +137,6 @@
 	     :bind (("C-h b" . helm-descbinds)
 		    ("C-h w" . helm-descbinds)))
 
-;; Package guide
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
-(guide-key-mode 1)  ; Enable guide-key-mode
-
-;; Markdown
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-(put 'upcase-region 'disabled nil)
-
-;; Pandoc
-(require 'pandoc-mode)
-
 ;; Autocomplete
 (byte-recompile-directory "~/.emacs.d/src/auto-complete")
 (byte-recompile-directory "~/.emacs.d/src/auto-complete/dict/ess")
@@ -171,27 +161,20 @@
 (global-set-key (kbd "C-c t") 'multi-term-next)
 (global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
 
-;; Combo for dired 
-(require 'find-dired)
-(setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))
-(global-set-key (kbd "s-<f1>")
-                (lambda ()
-                  (interactive)
-                  (dired "~/")))
-
-;; EPA
-(require 'epa)
-(require 'epa-file)
-(setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
-(epa-file-name-regexp-update)
-
-;; Copy to clipboard
-(setq interprogram-cut-function
-      (lambda (text &optional push)
-	(let* ((process-connection-type nil)
-	       (pbproxy (start-process "pbcopy" "pbcopy" "/usr/bin/pbcopy")))
-	  (process-send-string pbproxy text)
-	  (process-send-eof pbproxy))))
-
 (put 'narrow-to-region 'disabled nil)
 (setq-default indent-tabs-mode nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -synctex=1")
+ '(package-selected-packages
+   (quote
+    (flymake-json magit color-theme-tangotango color-theme-zenburn color-theme-wombat zenburn-theme virtualenvwrapper use-package twittering-mode switch-window smex smart-mode-line-powerline-theme simpleclip python-mode pymacs pycomplete projectile project-root pretty-lambdada pandoc-mode multiple-cursors multi-term material-theme markdown-mode jedi ipython idomenu ido-ubiquitous helm haskell-mode guide-key flymake-python-pyflakes flycheck expand-region ess erc-hipchatify elpy el-get color-theme-solarized autopair auto-virtualenv auto-compile auctex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

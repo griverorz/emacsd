@@ -19,11 +19,11 @@
 (setq sentence-end-double-space nil)
 
 ;; Lambda mode
-;;(require 'pretty-lambdada)
-;; (pretty-lambda-for-modes)
+(require 'pretty-lambdada)
+(pretty-lambda-for-modes)
 
 ;; Projectile
-;; (projectile-global-mode)
+(projectile-global-mode)
 
 ;; Helm
 (use-package helm
@@ -139,4 +139,5 @@
     ;; cc the content into kill ring at the same time
     (kill-new str)
     ))
+
 
