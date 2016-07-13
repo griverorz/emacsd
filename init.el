@@ -72,6 +72,12 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
 
+;; Pandoc
+(load "pandoc-mode")
+(add-hook 'markdown-mode-hook 'turn-on-pandoc)
+(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+
+
 ;; Abbreviation mode
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
