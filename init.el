@@ -86,7 +86,9 @@
 ;; Journal
 (defun launch-journal ()
   (interactive)
-  (org-capture nil "j"))
+  (org-capture nil "j")
+  (center-text-mode)
+  (set-input-method "spanish-prefix"))
 (define-key global-map "\C-cd" 'launch-journal)
 
 
@@ -108,40 +110,40 @@
 
 ;; Helm
 (use-package helm
-	     :ensure t
-	     :init
-	     (progn
-	       (require 'helm-config)
-	       (setq helm-candidate-number-limit 100)
-	       ;; From https://gist.github.com/antifuchs/9238468
-	       (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-		     helm-input-idle-delay 0.01  ; this actually updates things
+  :ensure t
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    ;; From https://gist.github.com/antifuchs/9238468
+    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+          helm-input-idle-delay 0.01  ; this actually updates things
 					; reeeelatively quickly.
-		     helm-yas-display-key-on-candidate t
-		     helm-quick-update t
-		     helm-mode-fuzzy-match t
-		     helm-mode-fuzzy-find t
-		     helm-M-x-fuzzy-match t
-		     helm-ff-skip-boring-files t)
-	       (helm-mode))
-	     :bind (("C-c h" . helm-mini)
-		    ("C-h a" . helm-apropos)
-		    ("C-x C-b" . helm-buffers-list)
-		    ("C-x b" . helm-buffers-list)
-		    ("M-y" . helm-show-kill-ring)
-		    ("M-x" . helm-M-x)
-		    ("C-x c o" . helm-occur)
-		    ("C-x c s" . helm-swoop)
-		    ("C-x c y" . helm-yas-complete)
-		    ("C-x c Y" . helm-yas-create-snippet-on-region)
-		    ("C-x c b" . my/helm-do-grep-book-notes)
-		    ("C-x c SPC" . helm-all-mark-rings)))
+          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-mode-fuzzy-match t
+          helm-mode-fuzzy-find t
+          helm-M-x-fuzzy-match t
+          helm-ff-skip-boring-files t)
+    (helm-mode))
+  :bind (("C-c h" . helm-mini)
+         ("C-h a" . helm-apropos)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x b" . helm-buffers-list)
+         ("M-y" . helm-show-kill-ring)
+         ("M-x" . helm-M-x)
+         ("C-x c o" . helm-occur)
+         ("C-x c s" . helm-swoop)
+         ("C-x c y" . helm-yas-complete)
+         ("C-x c Y" . helm-yas-create-snippet-on-region)
+         ("C-x c b" . my/helm-do-grep-book-notes)
+         ("C-x c SPC" . helm-all-mark-rings)))
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
 ;; Binds
 (use-package helm-descbinds
-	     :bind (("C-h b" . helm-descbinds)
-		    ("C-h w" . helm-descbinds)))
+  :bind (("C-h b" . helm-descbinds)
+         ("C-h w" . helm-descbinds)))
 
 ;; Autocomplete
 (byte-recompile-directory "~/.emacs.d/src/auto-complete")
