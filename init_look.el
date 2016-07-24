@@ -4,6 +4,9 @@
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+;; Padding
+(set-window-margins nil 2)
+
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
