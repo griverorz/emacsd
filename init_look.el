@@ -186,8 +186,5 @@
 (display-time)
 
 ;; Set margins
-;; (defun toggle-margin-right ()
-;;   (interactive)
-;;   (if (eq (cdr (window-margins)) nil)
-;;       (set-window-margins nil 0 (- (window-body-width) fill-column))
-;;     (set-window-margins nil 0 0)))
+(setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
+

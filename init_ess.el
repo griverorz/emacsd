@@ -82,3 +82,11 @@
 (setq comint-move-point-for-output t)
 
 ;; (setq ess-eval-visibly-p 'no-wait)
+
+;; Create comments
+(defun fill-to-end (char)
+  (interactive "cFill Character:")
+  (save-excursion
+    (end-of-line)
+    (while (< (current-column) 80)
+      (insert-char char))))
