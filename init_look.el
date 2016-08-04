@@ -16,9 +16,9 @@
 (load "color-theme-tangotango")
 
 (setq my-color-themes (list
+  'color-theme-tangotango
   'color-theme-zenburn
   'color-theme-wombat
-  'color-theme-tangotango
 ))
 
 (defun my-theme-set-default () ; Set the first row
