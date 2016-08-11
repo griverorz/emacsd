@@ -1,11 +1,8 @@
 ;; Font
-(set-frame-font "Source Code Pro-12")
+(set-frame-font "Source Code Pro-13")
 
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-;; Padding
-(set-window-margins nil 2)
 
 (require 'color-theme)
 (setq color-theme-is-global t)
@@ -30,7 +27,7 @@
   (interactive)
   (message "%s" (car theme-current)))
 
-                                        ; Set the next theme (fixed by Chris Webber - tanks)
+;; Set the next theme (fixed by Chris Webber - tanks)
 (defun my-theme-cycle ()            
   (interactive)
   (setq theme-current (cdr theme-current))

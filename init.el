@@ -24,7 +24,19 @@
 (setq load-prefer-newer t)
 
 ;; Enable clipboard
-(setq select-enable-clipboard t)
+(defun pbcopy ()
+  (interactive)
+  (let ((deactivate-mark t))
+    (call-process-region (point) (mark) "pbcopy")))
+
+(defun pbpaste ()
+  (interactive)
+  (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
+
+(defun pbcut ()
+  (interactive)
+  (pbcopy)
+  (delete-region (region-beginning) (region-end)))
 
 ;; Smex
 (load "smex")
@@ -68,6 +80,7 @@
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
@@ -87,7 +100,6 @@
 (defun launch-journal ()
   (interactive)
   (org-capture nil "j")
-  (center-text-mode)
   (set-input-method "spanish-prefix"))
 (define-key global-map "\C-cd" 'launch-journal)
 
@@ -171,18 +183,3 @@
 
 (put 'narrow-to-region 'disabled nil)
 (setq-default indent-tabs-mode nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex -synctex=1")
- '(package-selected-packages
-   (quote
-    (flymake-json magit color-theme-tangotango color-theme-zenburn color-theme-wombat zenburn-theme virtualenvwrapper use-package twittering-mode switch-window smex smart-mode-line-powerline-theme simpleclip python-mode pymacs pycomplete projectile project-root pretty-lambdada pandoc-mode multiple-cursors multi-term material-theme markdown-mode jedi ipython idomenu ido-ubiquitous helm haskell-mode guide-key flymake-python-pyflakes flycheck expand-region ess erc-hipchatify elpy el-get color-theme-solarized autopair auto-virtualenv auto-compile auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
