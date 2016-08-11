@@ -13,9 +13,9 @@
 (load "color-theme-tangotango")
 
 (setq my-color-themes (list
+  'color-theme-tangotango
   'color-theme-zenburn
   'color-theme-wombat
-  'color-theme-tangotango
 ))
 
 (defun my-theme-set-default () ; Set the first row
@@ -183,8 +183,5 @@
 (display-time)
 
 ;; Set margins
-;; (defun toggle-margin-right ()
-;;   (interactive)
-;;   (if (eq (cdr (window-margins)) nil)
-;;       (set-window-margins nil 0 (- (window-body-width) fill-column))
-;;     (set-window-margins nil 0 0)))
+(setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
+
