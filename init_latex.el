@@ -69,3 +69,9 @@
 
 ;; Markdown here too
 (setq markdown-open-command "/usr/local/bin/mark")
+
+(add-hook 'TeX-mode-hook
+  (lambda ()
+    (setq TeX-command-extra-options "-shell-escape")
+  )
+)

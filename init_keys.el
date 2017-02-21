@@ -92,8 +92,8 @@
   "Center the text in the middle of the buffer. Works best in full screen"
   (interactive)
   (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
-		      (/ (window-body-width) 3)
-		      (/ (window-body-width) 3)))
+		      (/ (window-body-width) 4)
+		      (/ (window-body-width) 4)))
 
 (defun center-text-clear ()
   (interactive)
@@ -112,15 +112,15 @@
 	   (setq centered t))))
 
 (define-key global-map (kbd "C-c M-t") 'center-text-mode)
-(global-set-key (kbd "C-x C-g") 'god-local-mode)
+;; (global-set-key (kbd "C-x C-g") 'god-local-mode)
 
-(defun my-update-cursor ()
-  (setq cursor-type (if (or god-local-mode buffer-read-only)
-                        'box
-                      'bar)))
+;; (defun my-update-cursor ()
+;;   (setq cursor-type (if (or god-local-mode buffer-read-only)
+;;                         'box
+;;                       'bar)))
 
-(add-hook 'god-mode-enabled-hook 'my-update-cursor)
-(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+;; (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+;; (add-hook 'god-mode-disabled-hook 'my-update-cursor)
 
 ;; Use hippie
 (global-set-key [remap dabbrev-expand] 'hippie-expand)

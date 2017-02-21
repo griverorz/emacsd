@@ -87,8 +87,7 @@
 
 ;; Pandoc
 (load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'turn-on-pandoc)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+(add-hook 'markdown-mode-hook 'pandoc-mode)
 
 
 ;; Abbreviation mode
@@ -180,6 +179,13 @@
 ;; multiterm
 (global-set-key (kbd "C-c t") 'multi-term-next)
 (global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
+
+(push "~/.virtualenvs/default/bin" exec-path)
+(setenv "PATH"
+        (concat
+         "~/.virtualenvs/default/bin" ":"
+         (getenv "PATH")
+         ))
 
 (put 'narrow-to-region 'disabled nil)
 (setq-default indent-tabs-mode nil)

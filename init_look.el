@@ -8,14 +8,10 @@
 (setq color-theme-is-global t)
 (color-theme-initialize)
 
-(load "color-theme-wombat")
-(load "color-theme-zenburn")
 (load "color-theme-tangotango")
 
 (setq my-color-themes (list
   'color-theme-tangotango
-  'color-theme-zenburn
-  'color-theme-wombat
 ))
 
 (defun my-theme-set-default () ; Set the first row
