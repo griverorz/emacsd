@@ -11,8 +11,6 @@
 
 (setq py-load-pymacs-p nil)
 
-(setq python-shell-completion-native-enable nil)
-
 ;; Otherwise I get odd characters
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 

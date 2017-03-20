@@ -1,9 +1,8 @@
 ;; ESS
 (add-to-list 'load-path "~/.emacs.d/ess/lisp")
 
-(setq load-path 
-      (append '("~/.emacs.d/polymode" "~/.emacs.d/polymode/modes")
-	      load-path))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
+(setq exec-path (append exec-path '("/usr/local/stata")))
 
 (require 'ess-site)
 (autoload 'R "ess-site.el" "ESS" t)
