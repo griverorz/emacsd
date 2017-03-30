@@ -75,3 +75,12 @@
     (setq TeX-command-extra-options "-shell-escape")
   )
 )
+
+;; set special font highlighting for \cite* commands
+(add-hook 'LaTeX-mode-hook
+     (lambda ()
+       (font-lock-add-keywords nil  '(("\\(\\\\citep\\)\\s-*{" 1 font-lock-keyword-face t)))
+       (font-lock-add-keywords nil  '(("\\(\\\\citet\\)\\s-*{" 1 font-lock-keyword-face t)))
+       (font-latex-add-keywords '(("citep" "*[[{")) 'reference)
+       (font-latex-add-keywords '(("citet" "*[[{")) 'reference)
+       ))
