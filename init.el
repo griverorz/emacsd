@@ -192,24 +192,3 @@
 
 (put 'narrow-to-region 'disabled nil)
 (setq-default indent-tabs-mode nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex -synctex=1")
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
- '(haskell-tags-on-save t)
- '(package-selected-packages
-   (quote
-    (ztree yaml-mode xclip winner-mode-enable warm-night-theme virtualenvwrapper use-package twittering-mode switch-window swiper sublime-themes stan-mode solarized-theme smex smart-mode-line-powerline-theme python-mode pymacs py-yapf pretty-lambdada pandoc-mode ox-rst ox-pandoc org-journal org-gcal org-drill-table muttrc-mode multiple-cursors multi-term material-theme markdown-mode magit lorem-ipsum jedi jazz-theme ipython import-popwin idomenu ido-ubiquitous hyde history hindent helm-projectile helm-fuzzy-find helm-bind-key guide-key-tip god-mode ghc fuzzy flyspell-popup flymake-python-pyflakes flycheck-pyflakes flycheck-haskell expand-region ess emacs-cl elpy dockerfile-mode cyberpunk-theme color-theme-zenburn color-theme-wombat color-theme-tangotango color-theme-tango color-theme-sanityinc-tomorrow color-theme-monokai color-theme-approximate clojure-snippets cl-format centered-window-mode browse-kill-ring bash-completion base16-theme autopair auto-compile auctex anti-zenburn-theme airline-themes ac-dabbrev ac-cider 2048-game 0blayout))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
