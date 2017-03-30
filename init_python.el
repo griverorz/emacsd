@@ -3,13 +3,12 @@
 (elpy-enable)
 (elpy-use-ipython)
 
-(when (executable-find "ipython")
-  (setq python-shell-interpreter "ipython"))
-
 (setq python-version-checked t)
 (setq python-python-command "ipython")
 
 (setq py-load-pymacs-p nil)
+
+(setq python-shell-completion-native-enable nil)
 
 ;; Otherwise I get odd characters
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
@@ -36,11 +35,6 @@
 (autoload 'pymacs-eval "pymacs" nil t)
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
-
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells) ;; if you want interactive shell support
-(venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location "/opt/virtual_env/")
 
 
 (defun elpy-eval-region-or-line ()
