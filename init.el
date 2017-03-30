@@ -52,7 +52,7 @@
 (load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
-(load "~/.emacs.d/init_haskell.el")
+;; (load "~/.emacs.d/init_haskell.el")
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
 
@@ -78,7 +78,7 @@
 (add-to-list 'auto-mode-alist '("\\.stan\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
-(add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+;; (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
