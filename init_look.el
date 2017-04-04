@@ -4,6 +4,7 @@
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
+
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
@@ -180,4 +181,14 @@
 
 ;; Set margins
 (setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
+
+;; Do not show minor
+(diminish 'projectile-mode)
+(diminish 'helm-mode)
+(diminish 'autopair-mode)
+(diminish 'auto-complete-mode)
+(diminish 'yas-global-mode)
+(diminish 'yas-minor-mode)
+(diminish 'visual-line-mode)
+(diminish 'auto-fill-mode)
 
