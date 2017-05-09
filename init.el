@@ -81,6 +81,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
@@ -189,9 +190,6 @@
          "~/.virtualenvs/default/bin" ":"
          (getenv "PATH")
          ))
-
-(put 'narrow-to-region 'disabled nil)
-(setq-default indent-tabs-mode nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -200,7 +198,7 @@
  '(LaTeX-command "latex -synctex=1")
  '(package-selected-packages
    (quote
-    (ztree yaml-mode xclip winner-mode-enable warm-night-theme use-package twittering-mode switch-window swiper sublime-themes stan-mode solarized-theme smex smart-mode-line-powerline-theme python-mode pymacs py-yapf pretty-lambdada pandoc-mode ox-rst ox-pandoc org-journal org-gcal org-drill-table muttrc-mode multiple-cursors multi-term material-theme markdown-mode magit lorem-ipsum jedi jazz-theme ipython import-popwin idomenu ido-ubiquitous hyde history hindent helm-projectile helm-fuzzy-find helm-bind-key guide-key-tip god-mode ghc fuzzy flyspell-popup flymake-python-pyflakes flycheck-pyflakes flycheck-haskell expand-region ess emacs-cl elpy dockerfile-mode cyberpunk-theme color-theme-zenburn color-theme-wombat color-theme-tangotango color-theme-tango color-theme-sanityinc-tomorrow color-theme-monokai color-theme-approximate clojure-snippets cl-format centered-window-mode browse-kill-ring bash-completion base16-theme autopair auto-compile auctex anti-zenburn-theme airline-themes ac-dabbrev ac-cider 2048-game 0blayout))))
+    (ztree yaml-mode xclip winner-mode-enable warm-night-theme use-package twittering-mode switch-window swiper sublime-themes stan-mode solarized-theme smex smart-mode-line-powerline-theme python-mode pymacs py-yapf pretty-lambdada polymode pandoc-mode pandoc ox-rst ox-pandoc org-journal org-gcal org-drill-table muttrc-mode multiple-cursors multi-term material-theme markdown-mode magit lorem-ipsum jedi jazz-theme ipython import-popwin idomenu ido-ubiquitous hyde history hindent helm-projectile helm-fuzzy-find helm-bind-key guide-key-tip god-mode ghc fuzzy flyspell-popup flymake-python-pyflakes flycheck-pyflakes flycheck-haskell expand-region ess emacs-cl elpy dockerfile-mode cyberpunk-theme color-theme-zenburn color-theme-wombat color-theme-tangotango color-theme-tango color-theme-sanityinc-tomorrow color-theme-monokai color-theme-approximate clojure-snippets cl-format browse-kill-ring bash-completion base16-theme autopair auto-compile auctex anti-zenburn-theme airline-themes ac-dabbrev ac-cider 2048-game 0blayout))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

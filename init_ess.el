@@ -89,3 +89,30 @@
     (end-of-line)
     (while (< (current-column) 80)
       (insert-char char))))
+
+;; Polymode
+;; Just an Emacs personal dir containing polymode packages etc.
+(setq MY-EMACS  "~/.emacs.d/") 
+
+(defun my-emacs  (subfolder)
+  "Get path to personal dir + subfolder"
+  (concat (expand-file-name MY-EMACS) "/" subfolder))
+
+;; ESS Markdown
+;; -------------
+(defun rmd-mode ()
+  "ESS Markdown mode for rmd files"
+  (interactive)
+  (setq load-path 
+        (append (list (my-emacs "polymode/") 
+                      (my-emacs "polymode/modes/"))
+                load-path))
+  (require 'poly-R)
+  (require 'poly-markdown)
+  (poly-markdown+r-mode))
+
+;; Wrap line in markdown. Comment if you don't dislike words cut in the middle
+(add-hook 'markdown-mode-hook (lambda () (visual-line-mode 1)))
+
+;; Let you use markdown buffer easily
+(setq ess-nuke-trailing-whitespace-p nil)  
