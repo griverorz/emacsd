@@ -192,3 +192,9 @@
 (diminish 'visual-line-mode)
 (diminish 'auto-fill-mode)
 
+;; Markdown increase and center
+(add-hook 'markdown-mode-hook
+      (lambda ()
+        (setq tab-width 2)
+	(center-text-mode)
+	(text-scale-increase 3)))
