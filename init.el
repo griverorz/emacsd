@@ -89,7 +89,11 @@
 ;; Pandoc
 (load "pandoc-mode")
 (add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
+(add-hook 'markdown-mode-hook
+      (lambda ()
+        (setq tab-width 2)))
 
 ;; Abbreviation mode
 (setq save-abbrevs t)
@@ -184,6 +188,36 @@
 (global-set-key (kbd "C-c t") 'multi-term-next)
 (global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
 
+;; Tags
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "Directory: ")
+  (eshell-command 
+   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+
+
+(defadvice find-tag (around refresh-etags activate)
+  "Rerun etags and reload tags if tag not found and redo find-tag.              
+   If buffer is modified, ask about save before running etags."
+  (let ((extension (file-name-extension (buffer-file-name))))
+    (condition-case err
+        ad-do-it
+      (error (and (buffer-modified-p)
+                  (not (ding))
+                  (y-or-n-p "Buffer is modified, save it? ")
+                  (save-buffer))
+             (er-refresh-etags extension)
+             ad-do-it))))
+
+(defun er-refresh-etags (&optional extension)
+  "Run etags on all peer files in current dir and reload them silently."
+  (interactive)
+  (shell-command (format "etags *.%s" (or extension "el")))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently          
+    (visit-tags-table default-directory nil)))
+
+
+;; Virtualenvs
 (push "~/.virtualenvs/default/bin" exec-path)
 (setenv "PATH"
         (concat
