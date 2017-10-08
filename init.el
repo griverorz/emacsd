@@ -1,8 +1,8 @@
 (getenv "PATH")
- (setenv "PATH"
-(concat
- "/usr/texbin" ":"
- (getenv "PATH")))
+(setenv "PATH"
+	(concat
+	 "/usr/texbin" ":"
+	 (getenv "PATH")))
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero"
@@ -224,3 +224,23 @@
          "~/.virtualenvs/default/bin" ":"
          (getenv "PATH")
          ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "latex -synctex=1")
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
+ '(haskell-tags-on-save t)
+ '(package-selected-packages
+   (quote
+    (linum-relative zenburn-theme yaml-mode virtualenvwrapper use-package twittering-mode switch-window swiper smex smart-mode-line-powerline-theme simpleclip python-mode pymacs pycomplete projectile project-root pretty-lambdada polymode pandoc-mode pandoc multiple-cursors multi-term material-theme markdown-mode magit lorem-ipsum jedi ipython idomenu ido-ubiquitous helm-swoop haskell-mode guide-key flymake-python-pyflakes flymake-json flycheck flx-ido expand-region ess erc-hipchatify elpy el-get docker ctags css-eldoc color-theme-zenburn color-theme-wombat color-theme-tangotango color-theme-solarized autopair auto-compile auctex anything-exuberant-ctags))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

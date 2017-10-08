@@ -112,9 +112,20 @@
 ;; Stop at the end of the file, not just add lines
 (setq next-line-add-newlines nil)
 
-;; ;; Show line/column-number in the mode line
+;; Show line/column-number in the mode line
 (line-number-mode 1)
 (column-number-mode 1)
+
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
 
 ;; ;; Turn on auto-fill-mode by default in all major modes
 (setq auto-fill-mode 1)
@@ -122,7 +133,7 @@
 ;; Default fill column 
 (setq-default fill-column 80)
 
-;; ;; Navigation
+;; Navigation
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
