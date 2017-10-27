@@ -203,9 +203,8 @@
 (diminish 'visual-line-mode)
 (diminish 'auto-fill-mode)
 
-;; Markdown increase and center
-(add-hook 'markdown-mode-hook
-      (lambda ()
-        (setq tab-width 2)
-	(center-text-mode)
-	(text-scale-increase 3)))
+(setq-default
+    indent-tabs-mode nil
+    tab-width 4
+    tab-stop-list (quote (4 8))
+)
