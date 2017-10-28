@@ -87,31 +87,7 @@
 ;; Let's try with the default commands
 (define-key global-map (kbd "C-x \;") 'comment-line)
 
-
-(defun center-text ()
-  "Center the text in the middle of the buffer. Works best in full screen"
-  (interactive)
-  (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
-		      (/ (window-body-width) 4)
-		      (/ (window-body-width) 4)))
-
-(defun center-text-clear ()
-  (interactive)
-  (set-window-margins (car (get-buffer-window-list (current-buffer) nil t))
-		      nil
-		      nil))
-
-(setq centered nil)
-
-(defun center-text-mode ()
-  (interactive)
-  (if centered
-      (progn (center-text-clear)
-	     (setq centered nil))
-    (progn (center-text)
-	   (setq centered t))))
-
-(define-key global-map (kbd "C-c M-t") 'center-text-mode)
+(define-key global-map (kbd "C-c M-t") 'writeroom-mode)
 ;; (global-set-key (kbd "C-x C-g") 'god-local-mode)
 
 ;; (defun my-update-cursor ()

@@ -3,8 +3,6 @@
 
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
@@ -41,11 +39,13 @@
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
 
-(require 'powerline)
-(powerline-vim-theme)
-
 ;; Color cursor
 (set-cursor-color "#ff0000")
+
+;; Powerline
+(setq sml/no-confirm-load-theme t)
+(sml/setup)
+(setq sml/theme 'dark)
 
 ;; Menu bar mode
 (when window-system
@@ -141,6 +141,7 @@
 
 ;; Switch window
 (require 'switch-window)
+
 
 ;; Disable bells
 (setq ring-bell-function 'ignore)

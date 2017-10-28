@@ -22,9 +22,6 @@
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
 
-;; Projectile
-(projectile-global-mode)
-
 ;; Helm
 (use-package helm
 	     :ensure t
@@ -126,6 +123,7 @@
 (defun my/paste-in-minibuffer ()
   (local-set-key (kbd "M-y") 'paste-from-x-clipboard)
   )
+
 
 (defun copy-from-clipboard-and-cc-kill-ring ()
   "paste from clipboard and cc the content into kill ring"
