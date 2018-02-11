@@ -68,9 +68,13 @@
 
 ;; Pandoc
 (load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'turn-on-pandoc)
-(add-hook 'org-mode-hook 'turn-on-pandoc)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+(add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'org-mode-hook 'pandoc-mode)
+
+(add-hook 'markdown-mode-hook
+      (lambda ()
+        (setq tab-width 2)))
+
 
 ;; Combo for dired 
 (require 'find-dired)
@@ -140,11 +144,3 @@
     ))
 
 
-(defcustom writeroom-width 82
-  "Width of the writeroom writing area.
-This can be specified as an absolute width (the number of
-characters in a line), or as a fraction of the total window
-width, in the latter it should be a number between 0 and 1."
-  :group 'writeroom
-  :type '(choice (integer :tag "Absolute width:")
-(float :tag "Relative width:" :value 0.5)))

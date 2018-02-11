@@ -13,7 +13,6 @@
 ;; LaTeX path
 (setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
 (setq-default TeX-master nil) ; Query for master file.
-(custom-set-variables '(LaTeX-command "latex -synctex=1") )
 
 ; AUCTeX hyperref autoref customization
 (load "tex-site")

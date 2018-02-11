@@ -72,9 +72,15 @@
 (setq org-goto-interface 'outline
       org-goto-max-level 10)
 (require 'imenu)
-(setq org-startup-folded nil)
+
+(setq org-hide-leading-stars t)
+(setq org-startup-truncated nil)
+
 ;; Indentation in org-mode
 (setq org-startup-indented t)
+(setq org-startup-folded 0)
+(add-hook 'org-mode-hook 'org-indent-mode)
+
 (bind-key "C-c j" 'org-clock-goto) ;; jump to current task from anywhere
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)

@@ -49,7 +49,7 @@
 (load "~/.emacs.d/init_look.el")
 (load "~/.emacs.d/init_keys.el")
 (load "~/.emacs.d/init_tools.el")
-;; (load "~/.emacs.d/init_org.el")
+(load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
 ;; (load "~/.emacs.d/init_haskell.el")
@@ -85,17 +85,6 @@
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
-
-;; Pandoc
-(load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'pandoc-mode)
-(add-hook 'org-mode-hook 'pandoc-mode)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
-
-(add-hook 'markdown-mode-hook
-      (lambda ()
-        (setq tab-width 2)))
-
 ;; Abbreviation mode
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
@@ -184,19 +173,3 @@
 
 ;; Virtualenvs
 (push "~/.virtualenvs/default/bin" exec-path)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex -synctex=1")
- '(package-selected-packages
-   (quote
-    (adaptive-wrap writeroom-mode use-package switch-window smex smart-mode-line pretty-lambdada polymode pandoc-mode pandoc olivetti multiple-cursors multi-term markdown-mode magit ido-ubiquitous helm-projectile helm-project-persist guide-key god-mode expand-region ess elpy diminish color-theme-tangotango centered-window autopair auto-complete auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

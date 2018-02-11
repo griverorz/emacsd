@@ -207,3 +207,6 @@
     tab-width 4
     tab-stop-list (quote (4 8))
 )
+
+;; Longer writeroom
+(setq writeroom-width 84)
