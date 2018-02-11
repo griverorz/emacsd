@@ -79,8 +79,8 @@
 (delete-selection-mode 1)
 
 ;; Truncate long lines
-(global-visual-line-mode 1)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook #'visual-line-mode)
+(add-hook 'markdown-mode-hook #'visual-line-mode)
 
 ;; Tweaks from starter kit
 (ido-mode t)
@@ -191,8 +191,6 @@
       display-time-24hr-format t)
 (display-time)
 
-;; Set margins
-(setq-default left-margin-width 2 right-margin-width 2) ; Define new widths.
 
 ;; Do not show minor
 (diminish 'projectile-mode)

@@ -49,7 +49,7 @@
 (load "~/.emacs.d/init_look.el")
 (load "~/.emacs.d/init_keys.el")
 (load "~/.emacs.d/init_tools.el")
-(load "~/.emacs.d/init_org.el")
+;; (load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
 ;; (load "~/.emacs.d/init_haskell.el")
@@ -89,6 +89,7 @@
 ;; Pandoc
 (load "pandoc-mode")
 (add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'org-mode-hook 'pandoc-mode)
 (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
 (add-hook 'markdown-mode-hook
@@ -190,9 +191,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-command "latex -synctex=1")
- '(custom-safe-themes
+ '(package-selected-packages
    (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default))))
+    (adaptive-wrap writeroom-mode use-package switch-window smex smart-mode-line pretty-lambdada polymode pandoc-mode pandoc olivetti multiple-cursors multi-term markdown-mode magit ido-ubiquitous helm-projectile helm-project-persist guide-key god-mode expand-region ess elpy diminish color-theme-tangotango centered-window autopair auto-complete auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

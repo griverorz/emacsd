@@ -58,10 +58,6 @@
             (set-face-attribute 'org-level-4 nil :height 1.1)
             (set-face-attribute 'org-level-5 nil :height 1.1)))
 
-
-;; Indentation in org-mode
-(setq org-startup-indented t)
-
 ;; Faces in Org-mode
 (add-hook 'org-mode-hook 
           (lambda ()
@@ -77,6 +73,8 @@
       org-goto-max-level 10)
 (require 'imenu)
 (setq org-startup-folded nil)
+;; Indentation in org-mode
+(setq org-startup-indented t)
 (bind-key "C-c j" 'org-clock-goto) ;; jump to current task from anywhere
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)

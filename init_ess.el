@@ -1,5 +1,6 @@
 ;; ESS
 (add-to-list 'load-path "~/.emacs.d/ess/lisp")
+(unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
 (setq exec-path (append exec-path '("/usr/local/stata")))
@@ -68,7 +69,6 @@
 (add-hook 'Rnw-mode-hook
           '(lambda()
              (local-set-key [(shift return)] 'my-ess-eval)))
-(require 'ess-site)
 
 ;; Adapted with one minor change from Felipe Salazar at
 ;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics

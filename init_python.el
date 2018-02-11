@@ -1,7 +1,6 @@
 ;; elpy
 (package-initialize)
 (elpy-enable)
-(elpy-use-ipython)
 
 (setq python-version-checked t)
 (setq python-python-command "ipython")
