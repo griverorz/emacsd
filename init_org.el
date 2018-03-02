@@ -1,5 +1,11 @@
 ;; Basic configuration
 (require 'org)
+(require 'org-ref)
+
+(define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
+(setq org-ref-show-citation-on-enter nil)
+(setq org-ref-show-broken-links t)
+
 (setq org-directory "~/Documents/org/")
 
 ;; Log

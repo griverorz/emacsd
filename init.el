@@ -173,3 +173,18 @@
 
 ;; Virtualenvs
 (push "~/.virtualenvs/default/bin" exec-path)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+    ("~/Documents/org/home.org" "~/Documents/org/notes.org" "~/Documents/org/learn.org" "~/Documents/org/work.org" "~/Documents/org/research.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

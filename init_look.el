@@ -81,6 +81,7 @@
 ;; Truncate long lines
 (add-hook 'LaTeX-mode-hook #'visual-line-mode)
 (add-hook 'markdown-mode-hook #'visual-line-mode)
+(add-hook 'org-mode-hook #'visual-line-mode)
 
 ;; Tweaks from starter kit
 (ido-mode t)
@@ -209,4 +210,4 @@
 )
 
 ;; Longer writeroom
-(setq writeroom-width 84)
+(setq writeroom-width 82)
