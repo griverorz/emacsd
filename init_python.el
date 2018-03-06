@@ -3,6 +3,11 @@
 (elpy-enable)
 
 (setq python-version-checked t)
+;; For elpy
+(setq elpy-rpc-python-command "python3")
+;; For interactive shell
+(setq python-shell-interpreter "python3")
+;; For commands
 (setq python-python-command "ipython")
 
 (setq py-load-pymacs-p nil)
