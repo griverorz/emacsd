@@ -10,15 +10,20 @@
 
 ;; Marmalade
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
-                         ("melpa-stable" . "http://stable.melpa.org/packages/")))
+(setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
+                         ("marmalade"     . "https://marmalade-repo.org/packages/")
+			             ("melpa-estable" . "https://stable.melpa.org/packages/")
+                         ("melpa"         . "https://melpa.org/packages/")))
+
 (package-initialize)
+
+;; Package shell initialize
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+ (package-install 'use-package))
 (setq use-package-verbose t)
 (require 'use-package)
 (setq load-prefer-newer t)
@@ -173,18 +178,37 @@
 
 ;; Virtualenvs
 (push "~/.virtualenvs/default/bin" exec-path)
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Langtools
+;; (setq langtool-language-tool-jar "/Applications/LanguageTool-4.1/languagetool-commandline.jar")
+;; (require 'langtool)
+
+;; (defun langtool-autoshow-detail-popup (overlays)
+;;   (when (require 'popup nil t)
+;;     ;; Do not interrupt current popup
+;;     (unless (or popup-instances
+;;                 ;; suppress popup after type `C-g` .
+;;                 (memq last-command '(keyboard-quit)))
+;;       (let ((msg (langtool-details-error-message overlays)))
+;;         (popup-tip msg)))))
+
+;; (setq langtool-autoshow-message-function
+;;       'langtool-autoshow-detail-popup)
+(put 'narrow-to-region 'disabled nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
+ '(package-selected-packages
    (quote
-    ("~/Documents/org/home.org" "~/Documents/org/notes.org" "~/Documents/org/learn.org" "~/Documents/org/work.org" "~/Documents/org/research.org"))))
+    (magit fold-this writeroom-mode polymode exec-path-from-shell markdown-mode flycheck use-package-el-get switch-window smex smart-mode-line pretty-lambdada pandoc-mode org-ref multiple-cursors multi-term langtool ido-ubiquitous guide-key expand-region ess elpy autopair auto-complete auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

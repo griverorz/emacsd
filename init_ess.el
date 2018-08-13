@@ -21,7 +21,13 @@
 
 
 ;; Not to indent comments in R mode
-(define-key ess-mode-map (kbd "C-c C-x p") "%>%")
+(defun then_R_operator ()
+  "R - %>% operator or 'then' pipe operator"
+  (interactive)
+  (just-one-space 1)
+  (insert "%>%")
+  (reindent-then-newline-and-indent))
+(define-key ess-mode-map (kbd "C-c C-x p") 'then_R_operator)
 
 ;; If you want all help buffers to go into one frame do
 (setq ess-help-reuse-window nil)
@@ -116,3 +122,26 @@
 
 ;; Let you use markdown buffer easily
 (setq ess-nuke-trailing-whitespace-p nil)  
+
+(defun rmd-fold-block ()
+  "Fold the contents of the current R block, in an Rmarkdown file (can be undone
+   with fold-this-unfold-at-point)"
+  (interactive)
+  (and (eq (oref pm/chunkmode :mode) 'r-mode)
+       (pm-with-narrowed-to-span nil
+         (goto-char (point-min))
+         (forward-line)
+         (fold-this (point) (point-max)))))
+
+(defun rmd-fold-all-blocks (arg)
+  "Fold all R blocks in an Rmarkdown file (can be undone with
+   fold-this-unfold-all)"
+  ;; Interactive, with a prefix argument
+  (interactive "P")
+  (save-restriction
+    (widen)
+    (save-excursion
+      (pm-map-over-spans
+       'rmd-fold-block (point-min)
+       ;; adjust this point to fold prior regions
+       (if arg (point) (point-max))))))

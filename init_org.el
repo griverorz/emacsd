@@ -8,8 +8,14 @@
 
 (setq org-directory "~/Documents/org/")
 
+;; Export to latex
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+
 ;; Log
 (setq org-log-done t)
+
+;; Change ellipsis
+(setq org-ellipsis "⤵")
 
 ;; Bindings
 (global-set-key "\C-cl" 'org-store-link)
@@ -41,19 +47,16 @@
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
                              (concat org-directory "notes.org")
-			     (concat org-directory "learn.org")
+			                 (concat org-directory "learn.org")
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
 
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "notes.org"))
 
-(setq org-capture-templates 
-      '(
-	("t" "Todo" entry (file+headline (concat org-directory "notes.org") "Tasks") "* TODO %?\n  %i\n")
-        ("j" "Journal" plain (file+datetree (concat org-directory "journal.org")) "%?\nEntered on %U\n")))
-
-
+(setq org-capture-templates
+ '(("t" "Todo" entry (file+headline "~/Documents/org/notes.org" "Tasks") "* TODO %?\n  %i\n")
+   ("j" "Journal" plain (file+olp+datetree "~/Documents/org/journal.gpg") "%?\nEntered on %U\n")))
 
 ;; Visualization
 (add-hook 'org-mode-hook 
@@ -101,9 +104,9 @@
 
 ;; Journal
 (defun launch-journal ()
-  (interactive)
-  (org-capture nil "j")
-  (activate-input-method 'spanish-prefix))
+    (interactive)
+    (org-capture nil "j")
+    (activate-input-method 'spanish-prefix))
 (define-key global-map "\C-cd" 'launch-journal)
 
 (defun new-post ()
@@ -111,7 +114,7 @@
   (setq md-major-mode (quote markdown-mode))
   (let ((buf (generate-new-buffer "untitled")))
     (switch-to-buffer buf)
-    (center-text-mode)    
+    (writeroom-mode)    
     (funcall (and md-major-mode))
     (setq buffer-offer-save t)))
 (define-key global-map "\C-cp" 'new-post)

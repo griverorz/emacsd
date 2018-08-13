@@ -1,5 +1,4 @@
 ;; elpy
-(package-initialize)
 (elpy-enable)
 
 (setq python-version-checked t)
@@ -69,20 +68,13 @@
     (define-key map (kbd "C-c C-f") 'find-file-in-project)
     ;; (define-key map (kbd "C-c C-i") 'yasnippet-expand)
     (define-key map (kbd "C-c C-j") 'idomenu)
-    (define-key map (kbd "C-c C-n") 'elpy-flymake-forward-error)
     (define-key map (kbd "C-c C-o") 'elpy-occur-definitions)
-    (define-key map (kbd "C-c C-p") 'elpy-flymake-backward-error)
     (define-key map (kbd "C-c C-q") 'elpy-show-defun)
     (define-key map (kbd "C-c C-r") 'elpy-refactor)
     (define-key map (kbd "C-c C-s") 'elpy-rgrep-symbol)
     (define-key map (kbd "C-c C-t") 'elpy-test)
     (define-key map (kbd "C-c C-v") 'elpy-check)
     (define-key map (kbd "C-c C-w") 'elpy-doc-websearch)
-    ;; (define-key map (kbd "C-c C-z") 'python-shell-switch-to-shell)
-    
-    ;; (define-key map (kbd "<C-down>") 'elpy-nav-forward-definition)
-    ;; (define-key map (kbd "<C-up>")   'elpy-nav-backward-definition)
-    ;; (define-key map (kbd "M-,")     'iedit-mode
     (define-key map (kbd "M-.")     'elpy-goto-definition)
     (define-key map (kbd "M-a")     'elpy-nav-backward-statement)
     (define-key map (kbd "M-e")     'elpy-nav-forward-statement)
