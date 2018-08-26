@@ -61,11 +61,9 @@
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
 
-
 ;; Yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-;; (yas-load-directory yas-root-directory)
 (yas-global-mode 1)
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
@@ -127,15 +125,16 @@
 ;; Autocomplete
 (byte-recompile-directory "~/.emacs.d/src/auto-complete")
 (byte-recompile-directory "~/.emacs.d/src/auto-complete/dict/ess")
+
+(require 'pos-tip)
 (require 'auto-complete)
-(require 'auto-complete-config)
 (global-auto-complete-mode t)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/src/auto-complete/dict")
 (ac-config-default)
 (ac-set-trigger-key "TAB")
-(setq ac-auto-start 5)
+(setq ac-auto-start 4)
 (ac-flyspell-workaround)
-(setq ac-auto-show-menu 5)
+(setq ac-auto-show-menu 0.5)
 
 ;; Multi-term replacement for ansi-term
 (require 'multi-term)
@@ -205,7 +204,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit fold-this writeroom-mode polymode exec-path-from-shell markdown-mode flycheck use-package-el-get switch-window smex smart-mode-line pretty-lambdada pandoc-mode org-ref multiple-cursors multi-term langtool ido-ubiquitous guide-key expand-region ess elpy autopair auto-complete auctex))))
+    (pos-tip magit fold-this writeroom-mode polymode exec-path-from-shell markdown-mode flycheck use-package-el-get switch-window smex smart-mode-line pretty-lambdada pandoc-mode org-ref multiple-cursors multi-term langtool ido-ubiquitous guide-key expand-region ess elpy autopair auto-complete auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
