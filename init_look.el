@@ -159,15 +159,15 @@
 (display-time)
 
 
-;; Do not show minor
-(diminish 'projectile-mode)
-(diminish 'helm-mode)
-(diminish 'autopair-mode)
-(diminish 'auto-complete-mode)
-(diminish 'yas-global-mode)
-(diminish 'yas-minor-mode)
-(diminish 'visual-line-mode)
-(diminish 'auto-fill-mode)
+;; ;; Do not show minor
+;; (diminish 'projectile-mode)
+;; (diminish 'helm-mode)
+;; (diminish 'autopair-mode)
+;; (diminish 'auto-complete-mode)
+;; (diminish 'yas-global-mode)
+;; (diminish 'yas-minor-mode)
+;; (diminish 'visual-line-mode)
+;; (diminish 'auto-fill-mode)
 
 (setq-default
     indent-tabs-mode nil

@@ -57,6 +57,7 @@
 (load "~/.emacs.d/init_org.el")
 (load "~/.emacs.d/init_latex.el")
 (load "~/.emacs.d/init_ess.el")
+(load "~/.emacs.d/init_js.el")
 ;; (load "~/.emacs.d/init_haskell.el")
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
