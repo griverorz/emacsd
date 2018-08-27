@@ -1,5 +1,5 @@
 ;; Font
-(set-frame-font "Source Code Pro-13")
+(set-frame-font "Inconsolata-12")
 
 ;; Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")

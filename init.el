@@ -12,9 +12,8 @@
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
-			             ("melpa-estable" . "https://stable.melpa.org/packages/")
+			 ("melpa-estable" . "https://stable.melpa.org/packages/")
                          ("melpa"         . "https://melpa.org/packages/")))
-
 (package-initialize)
 
 ;; Package shell initialize
@@ -91,6 +90,7 @@
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
+
 ;; Abbreviation mode
 (setq save-abbrevs t)
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
@@ -199,17 +199,9 @@
 ;; (setq langtool-autoshow-message-function
 ;;       'langtool-autoshow-detail-popup)
 (put 'narrow-to-region 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (magit fold-this writeroom-mode polymode exec-path-from-shell markdown-mode flycheck use-package-el-get switch-window smex smart-mode-line pretty-lambdada pandoc-mode org-ref multiple-cursors multi-term langtool ido-ubiquitous guide-key expand-region ess elpy autopair auto-complete auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
+
+(setenv "PATH"
+        (concat
+         "~/.virtualenvs/default/bin" ":"
+         (getenv "PATH")
+         ))
