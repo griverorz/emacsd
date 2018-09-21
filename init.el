@@ -140,10 +140,9 @@
 ;; Tags
 (defun create-tags (dir-name)
   "Create tags file."
-  (interactive "Directory: ")
+  (interactive "-> Directory: ")
   (eshell-command 
    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
-
 
 (defadvice find-tag (around refresh-etags activate)
   "Rerun etags and reload tags if tag not found and redo find-tag.              
@@ -194,18 +193,3 @@
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (jedi xref-js2 writeroom-mode use-package-el-get switch-window smex smart-mode-line skewer-mode projectile pretty-lambdada pos-tip polymode pandoc-mode org-ref multi-term markdown-mode magit langtool js-doc indium imenu-list ido-ubiquitous guide-key fold-this flycheck expand-region exec-path-from-shell elpy dockerfile-mode docker-compose-mode docker diminish autopair auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
