@@ -12,7 +12,7 @@
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
-			 ("melpa-estable" . "https://stable.melpa.org/packages/")
+			             ("melpa-estable" . "https://stable.melpa.org/packages/")
                          ("melpa"         . "https://melpa.org/packages/")))
 (package-initialize)
 
@@ -26,21 +26,6 @@
 (setq use-package-verbose t)
 (require 'use-package)
 (setq load-prefer-newer t)
-
-;; Enable clipboard
-(defun pbcopy ()
-  (interactive)
-  (let ((deactivate-mark t))
-    (call-process-region (point) (mark) "pbcopy")))
-
-(defun pbpaste ()
-  (interactive)
-  (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
-
-(defun pbcut ()
-  (interactive)
-  (pbcopy)
-  (delete-region (region-beginning) (region-end)))
 
 ;; Smex
 (load "smex")
@@ -65,12 +50,10 @@
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
+
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
-
-;; Personal elisp lib dir
-;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Open files in correct mode and default to text
 (add-to-list 'auto-mode-alist '("\\.el\\'" . lisp-mode))
@@ -81,7 +64,6 @@
 (add-to-list 'auto-mode-alist '("\\.stan\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.jl\\'" . julia-mode))
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
-;; (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
@@ -124,12 +106,17 @@
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
 
-;; Autocomplete
+;; Autocomplete with company
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-global-modes '(not python-mode))
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
 (setq company-dabbrev-downcase 0)
 (setq company-idle-delay 0)
+
+;; Do not use company in text modes
+(add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
+(add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
+(add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
 
 ;; Imenu
 (use-package imenu-list
@@ -185,7 +172,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Langtools
-(setq langtool-language-tool-jar "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
+(setq langtool-language-tool-jar
+      "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
 (require 'langtool)
 
 (defun langtool-autoshow-detail-popup (overlays)
@@ -200,13 +188,13 @@
 (setq langtool-autoshow-message-function
       'langtool-autoshow-detail-popup)
 
+;; Narrow region
 (put 'narrow-to-region 'disabled nil)
 
-(setenv "PATH"
-        (concat
-         "~/.virtualenvs/default/bin" ":"
-         (getenv "PATH")
-         ))
+;; Add custom variables somewhere else
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

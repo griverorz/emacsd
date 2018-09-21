@@ -1,43 +1,12 @@
+;; Set env path
+(setenv "PATH"
+        (concat
+         "~/.virtualenvs/default/bin" ":"
+         (getenv "PATH")
+         ))
+
 ;; elpy
 (elpy-enable)
-
-(setq python-version-checked t)
-;; For elpy
-(setq elpy-rpc-python-command "python3")
-;; For interactive shell
-(setq python-shell-interpreter "python3")
-;; For commands
-(setq python-python-command "ipython")
-(setq py-load-pymacs-p nil)
-(setq python-shell-completion-native-enable nil)
-
-;; Otherwise I get odd characters
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-
-;; Avoid annoying and useless warnings
-(with-no-warnings
-  (require 'cl))
-
-;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook (lambda () (company-mode -1)) 'append)
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-
-;; python indent
-(setq python-indent-offset 4)
-(set-variable 'py-indent-offset 4)
-(set-variable 'python-indent-guess-indent-offset nil)
-(set-variable 'indent-tabs-mode nil)
-
-;; pymacs
-(setq ropemacs-enable-shortcuts 'nil)
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-
 
 (defun elpy-eval-region-or-line ()
     "Evaluate the region or the current line if there's no active region."
@@ -52,6 +21,7 @@
 (add-hook 'elpy-mode-hook
           (lambda ()
 	    (local-set-key (kbd "C-c C-l") 'elpy-eval-region-or-line)))
+
 
 (defvar elpy-mode-map
   (let ((map (make-sparse-keymap)))
@@ -82,4 +52,40 @@
 
     map)
   "Key map for the Emacs Lisp Python Environment.")
+
+
+;; Python executable
+(setq python-version-checked t)
+(setq elpy-rpc-python-command "python3")
+(setq python-shell-interpreter "python3")
+(setq python-python-command "ipython")
+(setq py-load-pymacs-p nil)
+(setq python-shell-completion-native-enable nil)
+
+;; Otherwise I get odd characters
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+
+;; Avoid annoying and useless warnings
+(with-no-warnings
+  (require 'cl))
+
+;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook (lambda () (company-mode -1)) 'append)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+
+;; python indent
+(setq python-indent-offset 4)
+(set-variable 'py-indent-offset 4)
+(set-variable 'python-indent-guess-indent-offset nil)
+(set-variable 'indent-tabs-mode nil)
+
+;; pymacs
+(setq ropemacs-enable-shortcuts 'nil)
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
 
