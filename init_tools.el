@@ -10,6 +10,8 @@
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
+;; Merge command
+(setq smerge-command-prefix "\C-cv")
 
 ;; Winner mode
 (use-package winner

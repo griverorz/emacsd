@@ -126,6 +126,14 @@
   (setq imenu-list-focus-after-activation t
         imenu-list-auto-resize nil))
 
+;; Imenu
+(use-package imenu-list
+  :ensure t
+  :bind (("C-c `" . imenu-list-smart-toggle))
+  :config
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil))
+
 ;; Multi-term replacement for ansi-term
 (require 'multi-term)
 (autoload 'multi-term "multi-term" nil t)
