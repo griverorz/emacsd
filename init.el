@@ -61,11 +61,9 @@
 ;; (load "~/.emacs.d/init_mail.el")
 (load "~/.emacs.d/init_python.el")
 
-
 ;; Yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-;; (yas-load-directory yas-root-directory)
 (yas-global-mode 1)
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
@@ -87,6 +85,7 @@
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
@@ -126,17 +125,19 @@
          ("C-h w" . helm-descbinds)))
 
 ;; Autocomplete
-(byte-recompile-directory "~/.emacs.d/src/auto-complete")
-(byte-recompile-directory "~/.emacs.d/src/auto-complete/dict/ess")
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/src/auto-complete/dict")
-(ac-config-default)
-(ac-set-trigger-key "TAB")
-(setq ac-auto-start 5)
-(ac-flyspell-workaround)
-(setq ac-auto-show-menu 5)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-global-modes '(not python-mode))
+(global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
+
+;; Imenu
+(use-package imenu-list
+  :ensure t
+  :bind (("C-c `" . imenu-list-smart-toggle))
+  :config
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil))
 
 ;; Multi-term replacement for ansi-term
 (require 'multi-term)
@@ -184,20 +185,21 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Langtools
-;; (setq langtool-language-tool-jar "/Applications/LanguageTool-4.1/languagetool-commandline.jar")
-;; (require 'langtool)
+(setq langtool-language-tool-jar "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
+(require 'langtool)
 
-;; (defun langtool-autoshow-detail-popup (overlays)
-;;   (when (require 'popup nil t)
-;;     ;; Do not interrupt current popup
-;;     (unless (or popup-instances
-;;                 ;; suppress popup after type `C-g` .
-;;                 (memq last-command '(keyboard-quit)))
-;;       (let ((msg (langtool-details-error-message overlays)))
-;;         (popup-tip msg)))))
+(defun langtool-autoshow-detail-popup (overlays)
+  (when (require 'popup nil t)
+    ;; Do not interrupt current popup
+    (unless (or popup-instances
+                ;; suppress popup after type `C-g` .
+                (memq last-command '(keyboard-quit)))
+      (let ((msg (langtool-details-error-message overlays)))
+        (popup-tip msg)))))
 
-;; (setq langtool-autoshow-message-function
-;;       'langtool-autoshow-detail-popup)
+(setq langtool-autoshow-message-function
+      'langtool-autoshow-detail-popup)
+
 (put 'narrow-to-region 'disabled nil)
 
 (setenv "PATH"
@@ -205,3 +207,17 @@
          "~/.virtualenvs/default/bin" ":"
          (getenv "PATH")
          ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (jedi xref-js2 writeroom-mode use-package-el-get switch-window smex smart-mode-line skewer-mode projectile pretty-lambdada pos-tip polymode pandoc-mode org-ref multi-term markdown-mode magit langtool js-doc indium imenu-list ido-ubiquitous guide-key fold-this flycheck expand-region exec-path-from-shell elpy dockerfile-mode docker-compose-mode docker diminish autopair auctex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

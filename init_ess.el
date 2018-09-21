@@ -11,6 +11,10 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 
+
+;; Set autocomplete using company
+(setq ess-use-company 'script-only)
+
 ;; Do not load data or save envir
 (setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
 
@@ -65,7 +69,7 @@
 
 (add-hook 'ess-mode-hook
           '(lambda()
-             (local-set-key [(shift return)] 'my-ess-eval)))
+             (local-set-key [(super return)] 'my-ess-eval)))
 
 (add-hook 'inferior-ess-mode-hook
           '(lambda()

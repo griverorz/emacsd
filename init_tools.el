@@ -15,6 +15,16 @@
 (use-package winner
 	     :ensure t)
 
+;; Docker mode
+(use-package docker
+	     :ensure t)
+
+(use-package dockerfile-mode
+	     :ensure t)
+
+(use-package docker-compose-mode
+	     :ensure t)
+
 ;; End sentence with single space
 (setq sentence-end-double-space nil)
 
