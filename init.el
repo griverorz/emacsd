@@ -85,6 +85,7 @@
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
@@ -124,18 +125,19 @@
          ("C-h w" . helm-descbinds)))
 
 ;; Autocomplete
-(byte-recompile-directory "~/.emacs.d/src/auto-complete")
-(byte-recompile-directory "~/.emacs.d/src/auto-complete/dict/ess")
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-global-modes '(not python-mode))
+(global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
 
-(require 'pos-tip)
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/src/auto-complete/dict")
-(ac-config-default)
-(ac-set-trigger-key "TAB")
-(setq ac-auto-start 4)
-(ac-flyspell-workaround)
-(setq ac-auto-show-menu 0.5)
+;; Imenu
+(use-package imenu-list
+  :ensure t
+  :bind (("C-c `" . imenu-list-smart-toggle))
+  :config
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil))
 
 ;; Imenu
 (use-package imenu-list
@@ -213,18 +215,3 @@
          "~/.virtualenvs/default/bin" ":"
          (getenv "PATH")
          ))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (docker-compose-mode dockerfile-mode docker js-doc imenu-list xref-js2 writeroom-mode use-package-el-get switch-window smex smart-mode-line projectile pretty-lambdada pos-tip polymode pandoc-mode org-ref multi-term markdown-mode magit langtool indium ido-ubiquitous guide-key fold-this flycheck expand-region exec-path-from-shell elpy diminish autopair auto-complete auctex))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))

@@ -12,6 +12,7 @@
   (setq mouse-sel-mode t)
   )
 
+
 ;; It's all about the project.
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 

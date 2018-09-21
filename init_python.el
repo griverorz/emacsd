@@ -8,9 +8,7 @@
 (setq python-shell-interpreter "python3")
 ;; For commands
 (setq python-python-command "ipython")
-
 (setq py-load-pymacs-p nil)
-
 (setq python-shell-completion-native-enable nil)
 
 ;; Otherwise I get odd characters
@@ -21,9 +19,10 @@
   (require 'cl))
 
 ;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook (lambda () (company-mode -1)) 'append)
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
-(setq jedi:tooltip-method nil)
 
 ;; python indent
 (setq python-indent-offset 4)
