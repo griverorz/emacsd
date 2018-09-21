@@ -12,7 +12,7 @@
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
-			 ("melpa-estable" . "https://stable.melpa.org/packages/")
+			             ("melpa-estable" . "https://stable.melpa.org/packages/")
                          ("melpa"         . "https://melpa.org/packages/")))
 (package-initialize)
 
@@ -215,3 +215,17 @@
          "~/.virtualenvs/default/bin" ":"
          (getenv "PATH")
          ))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (company-jedi xref-js2 use-package switch-window smex smart-mode-line python-mode pretty-lambdada pandoc-mode org-ref multi-term langtool indium imenu-list ido-ubiquitous guide-key flycheck expand-region ess elpy dockerfile-mode docker-compose-mode docker autopair auctex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
