@@ -1,7 +1,3 @@
-;; Smex
-(load "smex")
-(smex-initialize)
-
 ;; Yasnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))

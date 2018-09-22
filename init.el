@@ -27,10 +27,6 @@
 (require 'use-package)
 (setq load-prefer-newer t)
 
-;; Smex
-(load "smex")
-(smex-initialize)
-
 ;; Server
 (load "server")
 
