@@ -105,6 +105,8 @@
 (use-package helm-descbinds
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
+(require 'helm-xref)
+(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
 
 ;; Autocomplete with company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -148,7 +150,7 @@
 ;; Tags
 (defun create-tags (dir-name)
   "Create tags file."
-  (interactive "-> Directory: ")
+  (interactive "Directory: ")
   (eshell-command 
    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 

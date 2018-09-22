@@ -74,6 +74,9 @@
 ;; Help should search more than just commands
 (define-key 'help-command "a" 'apropos)
 
+;; Apropos
+(global-set-key (kbd "C-c M-.") 'xref-find-apropos)
+
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c e") 'esk-eval-and-replace)
 

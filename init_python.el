@@ -11,7 +11,6 @@
 (setq elpy-rpc-python-command "python3")
 (setq python-shell-interpreter "python3")
 (setq python-python-command "ipython")
-(setq py-load-pymacs-p nil)
 (setq python-shell-completion-native-enable nil)
 
 ;; Otherwise I get odd characters
@@ -31,14 +30,6 @@
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
-
-;; pymacs
-(setq ropemacs-enable-shortcuts 'nil)
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
 
 (defun elpy-eval-region-or-line ()
     "Evaluate the region or the current line if there's no active region."
@@ -91,7 +82,6 @@
 (setq elpy-rpc-python-command "python3")
 (setq python-shell-interpreter "python3")
 (setq python-python-command "ipython")
-(setq py-load-pymacs-p nil)
 (setq python-shell-completion-native-enable nil)
 
 ;; Otherwise I get odd characters
@@ -112,12 +102,4 @@
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
-
-;; pymacs
-(setq ropemacs-enable-shortcuts 'nil)
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
 
