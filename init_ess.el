@@ -11,7 +11,6 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 
-
 ;; Set autocomplete using company
 (setq ess-use-company 'script-only)
 
@@ -41,13 +40,6 @@
 
 ;; I don't like if another frame pops up showing the inferior-ess buffer,
 ;; rather I want unconditionally that the buffer is shown in the current frame.
-;; (defun ess-buffer-visible-other-frame (buf) nil)
-;; (setq ess-display-buffer-reuse-frames t)
-;; (setq inferior-ess-own-frame t)
-;; (setq inferior-ess-same-window nil)
-;; (setq split-window-preferred-function nil) ; discourage horizontal splits
-;; (setq pop-up-windows nil)
-;; (setq ess-use-tracebug nil)
 (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
 (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
 
@@ -82,15 +74,12 @@
 
 ;; Adapted with one minor change from Felipe Salazar at
 ;; http://www.emacswiki.org/emacs/EmacsSpeaksStatistics
-
 (setq ess-ask-for-ess-directory nil)
 (setq ess-local-process-name "R")
 (setq ansi-color-for-comint-mode 'filter)
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
-
-;; (setq ess-eval-visibly-p 'no-wait)
 
 ;; Create comments
 (defun fill-to-end (char)
@@ -109,7 +98,6 @@
   (concat (expand-file-name MY-EMACS) "/" subfolder))
 
 ;; ESS Markdown
-;; -------------
 (defun rmd-mode ()
   "ESS Markdown mode for rmd files"
   (interactive)
@@ -120,9 +108,6 @@
   (require 'poly-R)
   (require 'poly-markdown)
   (poly-markdown+r-mode))
-
-;; Wrap line in markdown. Comment if you don't dislike words cut in the middle
-(add-hook 'markdown-mode-hook (lambda () (visual-line-mode 1)))
 
 ;; Let you use markdown buffer easily
 (setq ess-nuke-trailing-whitespace-p nil)  

@@ -52,10 +52,6 @@
 (add-hook 'markdown-mode-hook #'visual-line-mode)
 (add-hook 'org-mode-hook #'visual-line-mode)
 
-;; Tweaks from starter kit
-(ido-mode t)
-(ido-ubiquitous-mode t)						
-
 ;; Autload flyspell
 (eval-after-load "ispell"
   '(when (executable-find ispell-program-name)
@@ -71,6 +67,16 @@
 (define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
 (define-key smartparens-mode-map (kbd "C-c M-b") 'sp-backward-sexp)
 
+(add-hook 'js-mode-hook #'smartparens-mode)
+(add-hook 'lisp-mode-hook #'smartparens-mode)
+(add-hook 'LaTeX-mode-hook #'smartparens-mode)
+(add-hook 'python-mode-hook #'smartparens-mode)
+(add-hook 'jags-mode-hook #'smartparens-mode)
+(add-hook 'julia-mode-hook #'smartparens-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+(add-hook 'markdown-mode-hook #'smartparens-mode)
+(add-hook 'rmd-mode-hook #'smartparens-mode)
+(add-hook 'js2-mode-hook #'smartparens-mode)
 
 ;; Cua
 (cua-selection-mode t)
@@ -106,10 +112,6 @@
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
-
-;; Switch window
-(require 'switch-window)
-
 
 ;; Disable bells
 (setq ring-bell-function 'ignore)
@@ -148,8 +150,7 @@
 	     (ibuffer-auto-mode 1)
              (ibuffer-switch-to-saved-filter-groups "default")))
 
-(setq ibuffer-show-empty-filter-groups nil)                     
-
+(setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-expert t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
@@ -159,22 +160,9 @@
       display-time-24hr-format t)
 (display-time)
 
-
-;; ;; Do not show minor
-;; (diminish 'projectile-mode)
-;; (diminish 'helm-mode)
-;; (diminish 'autopair-mode)
-;; (diminish 'auto-complete-mode)
-;; (diminish 'yas-global-mode)
-;; (diminish 'yas-minor-mode)
-;; (diminish 'visual-line-mode)
-;; (diminish 'auto-fill-mode)
-
+;; Defaut is 4
 (setq-default
     indent-tabs-mode nil
     tab-width 4
     tab-stop-list (quote (4 8))
 )
-
-;; Longer writeroom
-(setq writeroom-width 82)

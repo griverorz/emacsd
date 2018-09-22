@@ -2,16 +2,13 @@
 (require 'yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
+
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Merge command
-(setq smerge-command-prefix "\C-cv")
-
-;; Winner mode
-(use-package winner
-	     :ensure t)
+(setq smerge-command-prefix "C-c v")
 
 ;; Docker mode
 (use-package docker
@@ -27,8 +24,13 @@
 (setq sentence-end-double-space nil)
 
 ;; Lambda mode
-(require 'pretty-lambdada)
-(pretty-lambda-for-modes)
+(defconst lisp--prettify-symbols-alist
+  '(("lambda"  . ?λ)))
+
+(defconst python--prettify-symbols-alist
+  '(("lambda"  . ?λ)))
+
+(global-prettify-symbols-mode +1)
 
 ;; Helm
 (use-package helm
@@ -39,38 +41,39 @@
 	       (setq helm-candidate-number-limit 100)
 	       ;; From https://gist.github.com/antifuchs/9238468
 	       (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-		     helm-input-idle-delay 0.01  ; this actually updates things
-					; reeeelatively quickly.
-		     helm-yas-display-key-on-candidate t
-		     helm-quick-update t
-		     helm-mode-fuzzy-match t
-		     helm-mode-fuzzy-find t
-		     helm-M-x-fuzzy-match t
-		     helm-ff-skip-boring-files t)
+		         helm-input-idle-delay 0.01  ; this actually updates things
+                                        ; reeeelatively quickly.
+		         helm-yas-display-key-on-candidate t
+		         helm-quick-update t
+		         helm-mode-fuzzy-match t
+		         helm-mode-fuzzy-find t
+		         helm-M-x-fuzzy-match t
+		         helm-ff-skip-boring-files t)
 	       (helm-mode))
 	     :bind (
-		    ("C-c h" . helm-mini)
-		    ("C-h a" . helm-apropos)
-		    ("C-x C-b" . helm-buffers-list)
-		    ("C-x b" . helm-buffers-list)
-		    ("C-x C-f" . helm-find-files)		    
-		    ("M-y" . helm-show-kill-ring)
-		    ("M-x" . helm-M-x)
-		    ("C-x c o" . helm-occur)
-		    ("C-x c s" . helm-swoop)
-		    ("C-x c y" . helm-yas-complete)
-		    ("C-x c Y" . helm-yas-create-snippet-on-region)
-		    ("C-x c b" . my/helm-do-grep-book-notes)
-		    ("C-x c SPC" . helm-all-mark-rings)))
-(ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
+		        ("C-c h" . helm-mini)
+		        ("C-h a" . helm-apropos)
+		        ("C-x C-b" . helm-buffers-list)
+		        ("C-x b" . helm-buffers-list)
+		        ("C-x C-f" . helm-find-files)		    
+		        ("M-y" . helm-show-kill-ring)
+		        ("M-x" . helm-M-x)
+		        ("C-x c o" . helm-occur)
+		        ("C-x c s" . helm-swoop)
+		        ("C-x c y" . helm-yas-complete)
+		        ("C-x c Y" . helm-yas-create-snippet-on-region)
+		        ("C-x c b" . my/helm-do-grep-book-notes)
+		        ("C-x c SPC" . helm-all-mark-rings)))
 
 ;; Package guide
-(require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
-(guide-key-mode 1)  ; Enable guide-key-mode
+(require 'which-key)
 
 ;; Markdown
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)
+(setq markdown-open-command "/usr/local/bin/mark")
+
+(autoload 'markdown-mode
+  "markdown-mode.el"
+  "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (put 'upcase-region 'disabled nil)
 
@@ -98,7 +101,6 @@
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
 (epa-file-name-regexp-update)
 
-
 ;; Copy to clipboard
 (setq *is-a-mac* (eq system-type 'darwin))
 (setq *cygwin* (eq system-type 'cygwin) )
@@ -109,7 +111,8 @@
       (progn
         (cond
          ((and (display-graphic-p) x-select-enable-clipboard)
-          (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
+          (x-set-selection 'CLIPBOARD
+                           (buffer-substring (region-beginning) (region-end))))
          (t (shell-command-on-region (region-beginning) (region-end)
                                      (cond
                                       (*cygwin* "putclip")

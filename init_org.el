@@ -2,10 +2,12 @@
 (require 'org)
 (require 'org-ref)
 
+;; Citation
 (define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
 (setq org-ref-show-citation-on-enter nil)
 (setq org-ref-show-broken-links t)
 
+;; Document org
 (setq org-directory "~/Documents/org/")
 
 ;; Export to latex
@@ -58,34 +60,15 @@
  '(("t" "Todo" entry (file+headline "~/Documents/org/notes.org" "Tasks") "* TODO %?\n  %i\n")
    ("j" "Journal" plain (file+olp+datetree "~/Documents/org/journal.gpg") "%?\nEntered on %U\n")))
 
-;; Visualization
-(add-hook 'org-mode-hook 
-          (lambda ()
-            (set-face-attribute 'org-level-1 nil :height 1.4)
-            (set-face-attribute 'org-level-2 nil :height 1.2)
-            (set-face-attribute 'org-level-3 nil :height 1.1)
-            (set-face-attribute 'org-level-4 nil :height 1.1)
-            (set-face-attribute 'org-level-5 nil :height 1.1)))
-
-;; Faces in Org-mode
-(add-hook 'org-mode-hook 
-          (lambda ()
-            (set-face-attribute 'org-level-1 nil :height 1.5)
-            (set-face-attribute 'org-level-2 nil :height 1.2)
-            (set-face-attribute 'org-level-3 nil :height 1.1)
-            (set-face-attribute 'org-level-4 nil :height 1.1)
-            (set-face-attribute 'org-level-5 nil :height 1.1)))
-
 
 ;; Navigation
 (setq org-goto-interface 'outline
       org-goto-max-level 10)
 (require 'imenu)
 
+;; Indentation in org-mode
 (setq org-hide-leading-stars t)
 (setq org-startup-truncated nil)
-
-;; Indentation in org-mode
 (setq org-startup-indented t)
 (setq org-startup-folded 0)
 (add-hook 'org-mode-hook 'org-indent-mode)
@@ -109,6 +92,7 @@
     (activate-input-method 'spanish-prefix))
 (define-key global-map "\C-cd" 'launch-journal)
 
+;; New post
 (defun new-post ()
   (interactive)
   (setq md-major-mode (quote markdown-mode))

@@ -3,15 +3,12 @@
 (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 
+(require 'tex)
 (setq TeX-parse-self t); Enable parse on load.
 (setq TeX-auto-save t); Enable parse on save.
 (setq-default TeX-master nil)
-(require 'tex)
 (TeX-global-PDF-mode t)
 (setq TeX-PDF-mode t); PDF mode (rather than DVI-mode)
-
-;; LaTeX path
-(setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
 (setq-default TeX-master nil) ; Query for master file.
 
 ; AUCTeX hyperref autoref customization
@@ -24,12 +21,6 @@
 
 ;; RefTeX and default bibliography
 (put 'downcase-region 'disabled nil)
-
-(setq reftex-bibpath-environment-variables
-      '("/Users/gonzalorivero/Library/texmf/bibtex/bib"))
-
-(setq reftex-default-bibliography
-      '("/Users/gonzalorivero/Documents/bib/ccss.bib"))
 
 ;; use skim for PDF
 (add-hook 'LaTeX-mode-hook 
@@ -44,42 +35,31 @@
 		     "open -a Skim.app %o"))
 		  TeX-view-program-selection
 		  '((output-pdf "Skim")))))
-
 (setq TeX-PDF-mode t)
 
 ;; Turn RefTeX on
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 
-;; Faces in LaTeX mode
-(add-hook 'latex-mode-hook 
-          (lambda ()
-            (set-face-attribute 'font-latex-sectioning-5-face nil :inherit nil :foreground "#b58900")
-            (set-face-attribute 'font-latex-sectioning-0-face nil :height 3)
-            (set-face-attribute 'font-latex-sectioning-1-face nil :height 2)
-            (set-face-attribute 'font-latex-sectioning-2-face nil :height 1.5)
-            (set-face-attribute 'font-latex-sectioning-3-face nil :height 1.2)
-            (set-face-attribute 'font-latex-sectioning-4-face nil :height 1.0)))
-
 ;; Autoload corrector
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 ;; Autoload fold
-(autoload 'TeX-fold-mode "tex-fold" "Minor mode for hiding and revealing macros and environments." t)
-
-;; Markdown here too
-(setq markdown-open-command "/usr/local/bin/mark")
+(autoload 'TeX-fold-mode
+  "tex-fold"
+  "Minor mode for hiding and revealing macros and environments."
+  t)
 
 (add-hook 'TeX-mode-hook
-  (lambda ()
-    (setq TeX-command-extra-options "-shell-escape")
-  )
-)
+          (lambda ()
+            (setq TeX-command-extra-options "-shell-escape")
+            )
+          )
 
 ;; set special font highlighting for \cite* commands
 (add-hook 'LaTeX-mode-hook
-     (lambda ()
-       (font-lock-add-keywords nil  '(("\\(\\\\citep\\)\\s-*{" 1 font-lock-keyword-face t)))
-       (font-lock-add-keywords nil  '(("\\(\\\\citet\\)\\s-*{" 1 font-lock-keyword-face t)))
-       (font-latex-add-keywords '(("citep" "*[[{")) 'reference)
-       (font-latex-add-keywords '(("citet" "*[[{")) 'reference)
-       ))
+          (lambda ()
+            (font-lock-add-keywords nil  '(("\\(\\\\citep\\)\\s-*{" 1 font-lock-keyword-face t)))
+            (font-lock-add-keywords nil  '(("\\(\\\\citet\\)\\s-*{" 1 font-lock-keyword-face t)))
+            (font-latex-add-keywords '(("citep" "*[[{")) 'reference)
+            (font-latex-add-keywords '(("citet" "*[[{")) 'reference)
+            ))

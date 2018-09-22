@@ -102,4 +102,3 @@
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
-

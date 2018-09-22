@@ -90,13 +90,6 @@
 (setq auto-save-file-name-transforms
       `((".*" , "~/.emacs.d/backups/")))
 
-;; Winner mode
-(use-package winner
-	     :ensure t)
-
-;; End sentence with single space
-(setq sentence-end-double-space nil)
-
 ;; Binds
 (use-package helm-descbinds
   :bind (("C-h b" . helm-descbinds)
@@ -115,6 +108,7 @@
 (add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
 (add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
 (add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
+
 
 ;; Imenu
 (use-package imenu-list
@@ -146,7 +140,7 @@
 ;; Tags
 (defun create-tags (dir-name)
   "Create tags file."
-  (interactive "Directory: ")
+  (interactive "nDirectory: ")
   (eshell-command 
    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 
@@ -169,9 +163,6 @@
   (shell-command (format "etags *.%s" (or extension "el")))
   (let ((tags-revert-without-query t))  ; don't query, revert silently          
     (visit-tags-table default-directory nil)))
-
-;; Virtualenvs
-(push "~/.virtualenvs/default/bin" exec-path)
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
