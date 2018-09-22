@@ -16,4 +16,3 @@
 
 (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
 
-

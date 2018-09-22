@@ -65,11 +65,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Parenthesis
-(show-paren-mode t)
-(setq show-paren-style 'expression) ; alternatives are 'parenthesis' and 'mixed'
-(load "autopair")
-(autopair-global-mode)
-(setq autopair-blink t)
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
+(define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
+(define-key smartparens-mode-map (kbd "C-c M-b") 'sp-backward-sexp)
+
 
 ;; Cua
 (cua-selection-mode t)
