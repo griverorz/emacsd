@@ -3,6 +3,19 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
+;; Projectile
+(use-package projectile
+  :ensure t
+  :pin melpa
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+
+(projectile-global-mode)
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
+
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
@@ -67,6 +80,9 @@
 
 ;; Package guide
 (require 'which-key)
+(which-key-mode)
+(which-key-setup-minibuffer)
+(setq which-key-popup-type 'minibuffer)
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
