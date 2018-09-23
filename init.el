@@ -31,16 +31,16 @@
 (load "server")
 
 ;; Load init files
-(load "~/.emacs.d/init_look.el")
-(load "~/.emacs.d/init_keys.el")
-(load "~/.emacs.d/init_tools.el")
-(load "~/.emacs.d/init_org.el")
-(load "~/.emacs.d/init_latex.el")
-(load "~/.emacs.d/init_ess.el")
-(load "~/.emacs.d/init_js.el")
-;; (load "~/.emacs.d/init_haskell.el")
-;; (load "~/.emacs.d/init_mail.el")
-(load "~/.emacs.d/init_python.el")
+(load "~/.emacs.d/init-look.el")
+(load "~/.emacs.d/init-keys.el")
+(load "~/.emacs.d/init-tools.el")
+(load "~/.emacs.d/init-org.el")
+(load "~/.emacs.d/init-latex.el")
+(load "~/.emacs.d/init-ess.el")
+(load "~/.emacs.d/init-js.el")
+(load "~/.emacs.d/init-haskell.el")
+;; (load "~/.emacs.d/init-mail.el")
+(load "~/.emacs.d/init-python.el")
 
 ;; Yasnippet
 (require 'yasnippet)
