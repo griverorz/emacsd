@@ -110,7 +110,7 @@
 (which-key-mode)
 (which-key-setup-minibuffer)
 (setq which-key-popup-type 'minibuffer)
-(setq which-key-idle-delay 0.25)
+(setq which-key-idle-delay 1.)
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
@@ -120,7 +120,6 @@
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (put 'upcase-region 'disabled nil)
-(add-hook 'markdown-mode-hook 'turn-on-reftex)
 (setq markdown-hide-markup t)
 (setq markdown-hide-urls t)
 (add-hook 'org-mode-hook 'turn-on-reftex)
@@ -128,22 +127,6 @@
 (setq reftex-external-file-finders
       '(("bib" . "kpsewhich -format=.bib %f")))
 
-;; define markdown citation formats
-(defvar markdown-cite-format)
-(setq markdown-cite-format
-      '(
-        (?\C-m . "[@%l]")
-        (?p . "[@%l]")
-        (?t . "@%l")
-        )
-      )
-
-;; wrap reftex-citation with local variables for markdown format
-(defun markdown-reftex-citation ()
-  (interactive)
-  (let ((reftex-cite-format markdown-cite-format)
-        (reftex-cite-key-separator "; @"))
-    (reftex-citation)))
 
 ;; Pandoc
 (load "pandoc-mode")
@@ -223,3 +206,73 @@
     ))
 
 
+
+;; Langtools
+(setq langtool-language-tool-jar
+      "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
+(require 'langtool)
+
+(defun langtool-autoshow-detail-popup (overlays)
+  (when (require 'popup nil t)
+    ;; Do not interrupt current popup
+    (unless (or popup-instances
+                ;; suppress popup after type `C-g` .
+                (memq last-command '(keyboard-quit)))
+      (let ((msg (langtool-details-error-message overlays)))
+        (popup-tip msg)))))
+
+(setq langtool-autoshow-message-function
+      'langtool-autoshow-detail-popup)
+
+
+;; Multi-term replacement for ansi-term
+(require 'multi-term)
+(autoload 'multi-term "multi-term" nil t)
+(autoload 'multi-term-next "multi-term" nil t)
+
+(setq multi-term-program "/bin/bash")   ;; use bash
+
+;; multiterm
+(global-set-key (kbd "C-c t") 'multi-term-next)
+(global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
+
+
+;; Tags
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (eshell-command 
+   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+
+
+(defadvice find-tag (around refresh-etags activate)
+  "Rerun etags and reload tags if tag not found and redo find-tag.              
+   If buffer is modified, ask about save before running etags."
+     (let ((extension (file-name-extension (buffer-file-name))))
+    (condition-case err
+        ad-do-it
+      (error (and (buffer-modified-p)
+                  (not (ding))
+                  (y-or-n-p "Buffer is modified, save it? ")
+                  (save-buffer))
+             (er-refresh-etags extension)
+             ad-do-it))))
+
+(defun er-refresh-etags (&optional extension)
+  "Run etags on all peer files in current dir and reload them silently."
+  (interactive)
+  (shell-command (format "etags *.%s" (or extension "el")))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently          
+    (visit-tags-table default-directory nil)))
+
+
+;; Imenu
+(use-package imenu-list
+  :ensure t
+  :bind (("C-c `" . imenu-list-smart-toggle))
+  :config
+  (setq imenu-list-focus-after-activation t
+        imenu-list-auto-resize nil))
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)

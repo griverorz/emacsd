@@ -80,7 +80,6 @@
   (set-input-method "spanish-prefix"))
 (define-key global-map "\C-cd" 'launch-journal)
 
-
 ;; Enable backup files.
 (setq make-backup-files t)
 (setq delete-old-versions t)
@@ -109,80 +108,42 @@
 (add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
 (add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
 
+;; Define markdown citation formats
+(defvar markdown-cite-format)
+(setq markdown-cite-format
+      '(
+        (?\C-m . "[@%l]")
+        (?p . "[@%l]")
+        (?t . "@%l")
+        )
+      )
 
-;; Imenu
-(use-package imenu-list
-  :ensure t
-  :bind (("C-c `" . imenu-list-smart-toggle))
-  :config
-  (setq imenu-list-focus-after-activation t
-        imenu-list-auto-resize nil))
-
-;; Imenu
-(use-package imenu-list
-  :ensure t
-  :bind (("C-c `" . imenu-list-smart-toggle))
-  :config
-  (setq imenu-list-focus-after-activation t
-        imenu-list-auto-resize nil))
-
-;; Multi-term replacement for ansi-term
-(require 'multi-term)
-(autoload 'multi-term "multi-term" nil t)
-(autoload 'multi-term-next "multi-term" nil t)
-
-(setq multi-term-program "/bin/bash")   ;; use bash
-
-;; multiterm
-(global-set-key (kbd "C-c t") 'multi-term-next)
-(global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
-
-;; Tags
-(defun create-tags (dir-name)
-  "Create tags file."
-  (interactive "DDirectory: ")
-  (eshell-command 
-   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
-
-(defadvice find-tag (around refresh-etags activate)
-  "Rerun etags and reload tags if tag not found and redo find-tag.              
-   If buffer is modified, ask about save before running etags."
-     (let ((extension (file-name-extension (buffer-file-name))))
-    (condition-case err
-        ad-do-it
-      (error (and (buffer-modified-p)
-                  (not (ding))
-                  (y-or-n-p "Buffer is modified, save it? ")
-                  (save-buffer))
-             (er-refresh-etags extension)
-             ad-do-it))))
-
-(defun er-refresh-etags (&optional extension)
-  "Run etags on all peer files in current dir and reload them silently."
+;; wrap reftex-citation with local variables for markdown format
+(defun markdown-reftex-citation ()
   (interactive)
-  (shell-command (format "etags *.%s" (or extension "el")))
-  (let ((tags-revert-without-query t))  ; don't query, revert silently          
-    (visit-tags-table default-directory nil)))
+  (let ((reftex-cite-format markdown-cite-format)
+        (reftex-cite-key-separator "; @"))
+    (reftex-citation)))
 
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; bind modified reftex-citation to C-c[, without enabling reftex-mode
+;; https://www.gnu.org/software/auctex/manual/reftex/Citations-Outside-LaTeX.html#SEC31
+(add-hook
+ 'markdown-mode-hook
+ (lambda ()
+   (define-key markdown-mode-map "\C-c[" 'markdown-reftex-citation)))
 
-;; Langtools
-(setq langtool-language-tool-jar
-      "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
-(require 'langtool)
-
-(defun langtool-autoshow-detail-popup (overlays)
-  (when (require 'popup nil t)
-    ;; Do not interrupt current popup
-    (unless (or popup-instances
-                ;; suppress popup after type `C-g` .
-                (memq last-command '(keyboard-quit)))
-      (let ((msg (langtool-details-error-message overlays)))
-        (popup-tip msg)))))
-
-(setq langtool-autoshow-message-function
-      'langtool-autoshow-detail-popup)
+;; Diminish
+(require 'diminish)
+(diminish 'ivy-mode)
+(diminish 'projectile-mode)
+(diminish 'helm-mode)
+(diminish 'flycheck-mode)
+(diminish 'smartparens-mode)
+(diminish 'auto-revert-mode)
+(diminish 'reftex-mode)
+(diminish 'markdown-mode)
+(diminish 'pandoc-mode)
+(diminish 'which-key-mode)
 
 ;; Narrow region
 (put 'narrow-to-region 'disabled nil)

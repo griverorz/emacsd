@@ -132,19 +132,6 @@
 (global-set-key (kbd "C-c M-p") 'mc/mark-all-like-this)
 
 
-;; Diminish
-(require 'diminish)
-(diminish 'ivy-mode)
-(diminish 'helm-mode)
-(diminish 'flycheck-mode)
-(diminish 'smartparens-mode)
-(diminish 'auto-revert-mode)
-(diminish 'reftex-mode)
-(diminish 'markdown-mode)
-(diminish 'pandoc-mode)
-(diminish 'which-key-mode)
-
-
 ;; iBuffer groups
 (setq ibuffer-saved-filter-groups
     '(("home"
