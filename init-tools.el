@@ -3,6 +3,26 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
+;; Ivy mode
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "C-c M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
 ;; Projectile
 (use-package projectile
   :ensure t
@@ -15,6 +35,7 @@
 (setq projectile-indexing-method 'native)
 (setq projectile-enable-caching t)
 (setq projectile-require-project-root nil)
+(setq projectile-completion-system 'ivy)
 
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
@@ -54,8 +75,7 @@
 	       (setq helm-candidate-number-limit 100)
 	       ;; From https://gist.github.com/antifuchs/9238468
 	       (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-		         helm-input-idle-delay 0.01  ; this actually updates things
-                                        ; reeeelatively quickly.
+		         helm-input-idle-delay 0.01  ; this actually updates things quickly.
 		         helm-yas-display-key-on-candidate t
 		         helm-quick-update t
 		         helm-mode-fuzzy-match t
@@ -68,7 +88,6 @@
 		        ("C-h a" . helm-apropos)
 		        ("C-x C-b" . helm-buffers-list)
 		        ("C-x b" . helm-buffers-list)
-		        ("C-x C-f" . helm-find-files)		    
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
 		        ("C-x c o" . helm-occur)
@@ -77,6 +96,9 @@
 		        ("C-x c Y" . helm-yas-create-snippet-on-region)
 		        ("C-x c b" . my/helm-do-grep-book-notes)
 		        ("C-x c SPC" . helm-all-mark-rings)))
+
+(use-package helm-swoop
+	     :ensure t)
 
 ;; Package guide
 (require 'which-key)
