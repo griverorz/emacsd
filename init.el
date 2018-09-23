@@ -140,7 +140,7 @@
 ;; Tags
 (defun create-tags (dir-name)
   "Create tags file."
-  (interactive "nDirectory: ")
+  (interactive "DDirectory: ")
   (eshell-command 
    (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 

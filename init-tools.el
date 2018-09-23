@@ -114,12 +114,36 @@
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
-
+(require 'reftex)
 (autoload 'markdown-mode
   "markdown-mode.el"
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (put 'upcase-region 'disabled nil)
+(add-hook 'markdown-mode-hook 'turn-on-reftex)
+(setq markdown-hide-markup t)
+(setq markdown-hide-urls t)
+(add-hook 'org-mode-hook 'turn-on-reftex)
+
+(setq reftex-external-file-finders
+      '(("bib" . "kpsewhich -format=.bib %f")))
+
+;; define markdown citation formats
+(defvar markdown-cite-format)
+(setq markdown-cite-format
+      '(
+        (?\C-m . "[@%l]")
+        (?p . "[@%l]")
+        (?t . "@%l")
+        )
+      )
+
+;; wrap reftex-citation with local variables for markdown format
+(defun markdown-reftex-citation ()
+  (interactive)
+  (let ((reftex-cite-format markdown-cite-format)
+        (reftex-cite-key-separator "; @"))
+    (reftex-citation)))
 
 ;; Pandoc
 (load "pandoc-mode")
