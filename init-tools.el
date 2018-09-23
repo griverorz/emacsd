@@ -3,6 +3,9 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
+;; Magit
+(require 'magit)
+
 ;; Ivy mode
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -11,13 +14,11 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -87,6 +88,7 @@
 		        ("C-c h" . helm-mini)
 		        ("C-h a" . helm-apropos)
 		        ("C-x C-b" . helm-buffers-list)
+                ("C-x C-f" . helm-find-files)
 		        ("C-x b" . helm-buffers-list)
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
@@ -100,11 +102,15 @@
 (use-package helm-swoop
 	     :ensure t)
 
+(require 'helm-projectile)
+(helm-projectile-on) 
+
 ;; Package guide
 (require 'which-key)
 (which-key-mode)
 (which-key-setup-minibuffer)
 (setq which-key-popup-type 'minibuffer)
+(setq which-key-idle-delay 0.25)
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
