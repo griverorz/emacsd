@@ -33,9 +33,8 @@
   (projectile-mode +1))
 
 (projectile-global-mode)
-(setq projectile-indexing-method 'native)
+(setq projectile-indexing-method 'alien)
 (setq projectile-enable-caching t)
-(setq projectile-require-project-root nil)
 (setq projectile-completion-system 'ivy)
 
 ;; Bound trigger to C-TAB
