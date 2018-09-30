@@ -66,7 +66,7 @@
 
 ;; Parenthesis
 (require 'smartparens-config)
-(show-smartparens-global-mode +1)
+(show-smartparens-global-mode t)
 (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
 (define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
 (define-key smartparens-mode-map (kbd "C-c M-b") 'sp-backward-sexp)
@@ -81,6 +81,7 @@
 (add-hook 'markdown-mode-hook #'smartparens-mode)
 (add-hook 'rmd-mode-hook #'smartparens-mode)
 (add-hook 'js2-mode-hook #'smartparens-mode)
+(add-hook 'ess-mode-hook #'smartparens-mode)
 
 ;; Cua
 (cua-selection-mode t)

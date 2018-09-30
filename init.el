@@ -17,8 +17,7 @@
 (package-initialize)
 
 ;; Package shell initialize
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+(exec-path-from-shell-initialize)
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)

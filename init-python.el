@@ -8,9 +8,9 @@
 ;; elpy
 (elpy-enable)
 (setq python-version-checked t)
-(setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter "python3")
-(setq python-python-command "ipython")
+(setq elpy-rpc-python-command "/usr/local/bin/python3")
+(setq python-shell-interpreter "/usr/local/bin/python3")
+(setq python-python-command "/usr/local/bin/ipython")
 (setq python-shell-completion-native-enable nil)
 
 ;; Otherwise I get odd characters

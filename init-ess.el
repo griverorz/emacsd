@@ -10,9 +10,20 @@
 (autoload 'R-mode "ess-site.el" t)
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
+(setq ess-R-argument-suffix "=")
 
 ;; Set autocomplete using company
 (setq ess-use-company 'script-only)
+
+;;; ESS
+(defun my-ess-hook ()
+  ;; ensure company-R-library is in ESS backends
+  (make-local-variable 'company-backends)
+  (cl-delete-if (lambda (x) (and (eq (car-safe x) 'company-R-args))) company-backends)
+  (push (list 'company-R-args 'company-R-objects 'company-R-library :separate)
+        company-backends))
+
+(add-hook 'ess-mode-hook 'my-ess-hook)
 
 ;; Do not load data or save envir
 (setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
