@@ -92,7 +92,7 @@
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
 		        ("C-x c o" . helm-occur)
-		        ("C-x c s" . helm-swoop)
+                ("C-c s" . helm-projectile-ag)
 		        ("C-x c y" . helm-yas-complete)
 		        ("C-x c Y" . helm-yas-create-snippet-on-region)
 		        ("C-x c b" . my/helm-do-grep-book-notes)
@@ -275,3 +275,15 @@
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+(defun insert-random-string (NUM)
+  "Insert a random alphanumerics string of length 5.
+The possible chars are: A to Z, a to z, 0 to 9.
+Call `universal-argument' before for different count.
+URL `http://ergoemacs.org/emacs/elisp_insert_random_number_string.html'
+Version 2018-08-03"
+  (interactive "P")
+  (let* (($charset "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+         ($baseCount (length $charset)))
+    (dotimes (_ (if (numberp NUM) (abs NUM) 5))
+      (insert (elt $charset (random $baseCount))))))
