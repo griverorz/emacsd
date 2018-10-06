@@ -1,7 +1,7 @@
-(require 'js2-mode)
-(require 'js2-refactor)
-(require 'xref-js2)
-(require 'indium)
+(use-package js2-mode)
+(use-package js2-refactor)
+(use-package xref-js2)
+(use-package indium)
 
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-r")

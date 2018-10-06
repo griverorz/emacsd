@@ -41,11 +41,6 @@
 ;; (load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 
-;; Yasnippet
-(require 'yasnippet)
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-(yas-global-mode 1)
-
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
@@ -92,7 +87,7 @@
 (use-package helm-descbinds
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
-(require 'helm-xref)
+(use-package helm-xref)
 (setq xref-show-xrefs-function 'helm-xref-show-xrefs)
 
 ;; Autocomplete with company
@@ -132,7 +127,7 @@
    (define-key markdown-mode-map "\C-c[" 'markdown-reftex-citation)))
 
 ;; Diminish
-(require 'diminish)
+(use-package diminish)
 (diminish 'ivy-mode)
 (diminish 'projectile-mode)
 (diminish 'helm-mode)

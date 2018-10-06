@@ -65,7 +65,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Parenthesis
-(require 'smartparens-config)
+(use-package smartparens-config)
 (show-smartparens-global-mode t)
 (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
 (define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
@@ -127,7 +127,7 @@
 (prefer-coding-system 'utf-8)
 
 ;; Multicursor
-(require 'multiple-cursors)
+(use-package multiple-cursors) 
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c M-p") 'mc/mark-all-like-this)

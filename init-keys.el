@@ -27,7 +27,7 @@
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 
 ;; expand region
-(require 'expand-region)
+(use-package expand-region)
 (global-set-key (kbd "M-=") 'er/expand-region)
 
 ;; Font size

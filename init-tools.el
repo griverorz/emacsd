@@ -1,10 +1,10 @@
 ;; Yasnippet
-(require 'yasnippet)
+(use-package yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
 ;; Magit
-(require 'magit)
+(use-package magit)
 
 ;; Ivy mode
 (ivy-mode 1)
@@ -98,22 +98,23 @@
 		        ("C-x c b" . my/helm-do-grep-book-notes)
 		        ("C-x c SPC" . helm-all-mark-rings)))
 
-(use-package helm-swoop
-	     :ensure t)
+(use-package helm-swoop)
 
-(require 'helm-projectile)
+(use-package helm-projectile)
 (helm-projectile-on) 
 
 ;; Package guide
-(require 'which-key)
-(which-key-mode)
+(use-package which-key
+  :init
+  (which-key-mode))
+
 (which-key-setup-minibuffer)
 (setq which-key-popup-type 'minibuffer)
 (setq which-key-idle-delay 1.)
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
-(require 'reftex)
+(use-package reftex)
 (autoload 'markdown-mode
   "markdown-mode.el"
   "Major mode for editing Markdown files" t)
@@ -138,7 +139,7 @@
 
 
 ;; Combo for dired 
-(require 'find-dired)
+(use-package find-dired)
 (setq find-ls-option '("-print0 | xargs -0 ls -ld" . "-ld"))
 (global-set-key (kbd "s-<f1>")
                 (lambda ()
@@ -146,8 +147,8 @@
                   (dired "~/")))
 
  ;; EPA
-(require 'epa)
-(require 'epa-file)
+(use-package epa)
+(use-package epa-file)
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
 (epa-file-name-regexp-update)
 
@@ -209,10 +210,10 @@
 ;; Langtools
 (setq langtool-language-tool-jar
       "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
-(require 'langtool)
+(use-package langtool)
 
 (defun langtool-autoshow-detail-popup (overlays)
-  (when (require 'popup nil t)
+  (when (require 'popup)
     ;; Do not interrupt current popup
     (unless (or popup-instances
                 ;; suppress popup after type `C-g` .
@@ -225,7 +226,7 @@
 
 
 ;; Multi-term replacement for ansi-term
-(require 'multi-term)
+(use-package multi-term)
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
@@ -267,6 +268,7 @@
 
 ;; Imenu
 (use-package imenu-list
+  :ensure t
   :ensure t
   :bind (("C-c `" . imenu-list-smart-toggle))
   :config

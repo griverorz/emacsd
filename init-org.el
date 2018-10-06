@@ -1,6 +1,6 @@
 ;; Basic configuration
-(require 'org)
-(require 'org-ref)
+(use-package org)
+(use-package org-ref)
 
 ;; Citation
 (define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
@@ -64,7 +64,7 @@
 ;; Navigation
 (setq org-goto-interface 'outline
       org-goto-max-level 10)
-(require 'imenu)
+(use-package imenu)
 
 ;; Indentation in org-mode
 (setq org-hide-leading-stars t)

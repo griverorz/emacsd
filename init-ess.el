@@ -5,7 +5,7 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
 (setq exec-path (append exec-path '("/usr/local/stata")))
 
-(require 'ess-site)
+(use-package ess-site)
 (autoload 'R "ess-site.el" "ESS" t)
 (autoload 'R-mode "ess-site.el" t)
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
