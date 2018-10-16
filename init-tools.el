@@ -120,7 +120,6 @@
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (put 'upcase-region 'disabled nil)
-(setq markdown-hide-markup t)
 (setq markdown-hide-urls t)
 (add-hook 'org-mode-hook 'turn-on-reftex)
 

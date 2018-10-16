@@ -7,14 +7,6 @@
 
 ;; elpy
 (elpy-enable)
-(setq python-version-checked t)
-(setq elpy-rpc-python-command "/usr/local/bin/python3")
-(setq python-shell-interpreter "/usr/local/bin/python3")
-(setq python-python-command "/usr/local/bin/ipython")
-(setq python-shell-completion-native-enable nil)
-
-;; Otherwise I get odd characters
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
@@ -78,14 +70,9 @@
 
 
 ;; Python executable
-(setq python-version-checked t)
-(setq elpy-rpc-python-command "python3")
-(setq python-shell-interpreter "python3")
-(setq python-python-command "ipython")
-(setq python-shell-completion-native-enable nil)
-
-;; Otherwise I get odd characters
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+(setq python-shell-interpreter "ipython3"
+      python-shell-interpreter-args "-i --simple-prompt")
+(setq elpy-rpc-python-command "/usr/local/bin/python3")
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
