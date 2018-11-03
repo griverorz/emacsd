@@ -91,7 +91,7 @@
 		        ("C-x b" . helm-buffers-list)
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
-		        ("C-x c o" . helm-occur)
+		        ("C-c o" . helm-occur)
                 ("C-c s" . helm-projectile-ag)
 		        ("C-x c y" . helm-yas-complete)
 		        ("C-x c Y" . helm-yas-create-snippet-on-region)
