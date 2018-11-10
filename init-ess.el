@@ -15,6 +15,9 @@
 ;; Set autocomplete using company
 (setq ess-use-company 'script-only)
 
+;; Smartparens
+(add-hook 'ess-R-post-run-hook (lambda () (smartparens-mode 1)))
+
 ;;; ESS
 (defun my-ess-hook ()
   ;; ensure company-R-library is in ESS backends

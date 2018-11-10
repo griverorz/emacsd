@@ -65,11 +65,21 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Parenthesis
-(use-package smartparens-config)
-(show-smartparens-global-mode t)
-(add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
-(define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
-(define-key smartparens-mode-map (kbd "C-c M-b") 'sp-backward-sexp)
+(use-package smartparens
+  :ensure t
+  :after circe
+  :config
+
+  ;; Activate smartparens globally
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode t)
+  (add-hook 'minibuffer-setup-hook 'turn-on-smartparens-strict-mode)
+  (define-key smartparens-mode-map (kbd "C-c M-f") 'sp-forward-sexp)
+  (define-key smartparens-mode-map (kbd "C-c M-b") 'sp-backward-sexp)
+  (add-hook 'ess-R-post-run-hook (lambda () (smartparens-mode 1)))
+  ;; Activate smartparens in minibuffer
+  (add-hook 'eval-expression-minibuffer-setup-hook #'smartparens-mode))
+
 
 (add-hook 'js-mode-hook #'smartparens-mode)
 (add-hook 'lisp-mode-hook #'smartparens-mode)

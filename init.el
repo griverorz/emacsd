@@ -94,8 +94,11 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-global-modes '(not python-mode))
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
+(setq company-minimum-prefix-length 3)
 (setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0)
+(setq company-idle-delay 0.5)
+(setq company-selection-wrap-around t)
+(company-tng-configure-default)
 
 ;; Do not use company in text modes
 (add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
