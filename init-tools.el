@@ -44,6 +44,12 @@
 ;; Merge command
 (setq smerge-command-prefix "C-c v")
 
+;; Auto-fill mode
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(add-hook 'markdown-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+
 ;; Docker mode
 (use-package docker
 	     :ensure t)
