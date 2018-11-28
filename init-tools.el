@@ -280,9 +280,6 @@
   (setq imenu-list-focus-after-activation t
         imenu-list-auto-resize nil))
 
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 (defun insert-random-string (NUM)
   "Insert a random alphanumerics string of length 5.
 The possible chars are: A to Z, a to z, 0 to 9.

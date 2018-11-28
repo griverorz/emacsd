@@ -134,7 +134,6 @@
 (diminish 'ivy-mode)
 (diminish 'projectile-mode)
 (diminish 'helm-mode)
-(diminish 'flycheck-mode)
 (diminish 'smartparens-mode)
 (diminish 'auto-revert-mode)
 (diminish 'reftex-mode)

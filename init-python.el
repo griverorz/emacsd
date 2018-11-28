@@ -5,23 +5,18 @@
          (getenv "PATH")
          ))
 
+;; Jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+(setq jedi:complete-on-dot t)
+
 ;; elpy
 (elpy-enable)
+(setq elpy-rpc-backend "jedi")  
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
   (require 'cl))
-
-;; jedi-company
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; python indent
-(setq python-indent-offset 4)
-(set-variable 'py-indent-offset 4)
-(set-variable 'python-indent-guess-indent-offset nil)
-(set-variable 'indent-tabs-mode nil)
 
 (defun elpy-eval-region-or-line ()
     "Evaluate the region or the current line if there's no active region."
@@ -78,14 +73,9 @@
 (with-no-warnings
   (require 'cl))
 
-;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook (lambda () (company-mode -1)) 'append)
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-
 ;; python indent
 (setq python-indent-offset 4)
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
+
