@@ -5,14 +5,8 @@
          (getenv "PATH")
          ))
 
-;; Jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'jedi:ac-setup)
-(setq jedi:complete-on-dot t)
-
 ;; elpy
 (elpy-enable)
-(setq elpy-rpc-backend "jedi")  
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings

@@ -91,8 +91,8 @@
 (setq xref-show-xrefs-function 'helm-xref-show-xrefs)
 
 ;; Autocomplete with company
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-global-modes '(not python-mode))
+(global-company-mode)
+;; (setq company-global-modes '(not python-mode))
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
 (setq company-minimum-prefix-length 3)
 (setq company-dabbrev-downcase 0)
