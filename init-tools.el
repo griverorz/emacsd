@@ -10,7 +10,7 @@
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
-(global-set-key (kbd "C-M-s") 'swiper)
+(global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c M-x") 'counsel-M-x)
@@ -101,7 +101,6 @@
                 ("C-c s" . helm-projectile-ag)
 		        ("C-x c y" . helm-yas-complete)
 		        ("C-x c Y" . helm-yas-create-snippet-on-region)
-		        ("C-x c b" . my/helm-do-grep-book-notes)
 		        ("C-x c SPC" . helm-all-mark-rings)))
 
 (use-package helm-swoop)
@@ -291,3 +290,8 @@ Version 2018-08-03"
          ($baseCount (length $charset)))
     (dotimes (_ (if (numberp NUM) (abs NUM) 5))
       (insert (elt $charset (random $baseCount))))))
+
+
+(require 'openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "Skim.app" (file))))
