@@ -24,41 +24,39 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-switchb)
+(global-set-key "\C-cB" 'helm-org-agenda-files-headings)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
-
-;; This makes it easier to add links from outside. 
-(defun my/yank-more ()
-  (interactive)
-  (insert "[[")
-  (yank)
-  (insert "][more]]"))
-(global-set-key (kbd "<f6>") 'my/yank-more)
 
 ;; Tags shortcuts
 (setq org-tag-alist '(("@work" . ?w) 
                       ("@home" . ?h) 
                       ("@research" . ?r)
                       ("@errands" . ?e) 
-                      ("@coding" . ?c)
-                      ("@email" . ?m)
-                      ("@reading" . ?b)
-                      ("@computer" . ?l)))
+                      ("@write" . ?m)
+                      ("@reading" . ?b)))
 
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
                              (concat org-directory "notes.org")
 			                 (concat org-directory "learn.org")
+                             (concat org-directory "todo.org")
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
+
+(setq org-archive-location (concat org-directory "archive/archived.org::"))
 
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "notes.org"))
 
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/Documents/org/notes.org" "Tasks") "* TODO %?\n  %i\n")
-   ("j" "Journal" plain (file+olp+datetree "~/Documents/org/journal.gpg") "%?\nEntered on %U\n")))
+      '(("t" "Todo" entry
+         (file+headline "~/Documents/org/todo.org" "Tasks")
+         "* TODO %?\n  %i\n")
+        ("j" "Journal" plain
+         (file+olp+datetree "~/Documents/org/journal.gpg")
+         "%?\nEntered on %U\n")))
 
 
 ;; Navigation
@@ -84,6 +82,12 @@
 (setq org-refile-use-cache nil)
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
 (setq org-blank-before-new-entry nil)
+
+;; Change keybindings for timestamps
+(global-set-key (kbd "C-c <up>") 'org-timestamp-up)
+(global-set-key (kbd "C-c <down>") 'org-timestamp-down-down)
+(global-set-key (kbd "C-c <left>") 'org-timestamp-down-day)
+(global-set-key (kbd "C-c <right>") 'org-timestamp-up-day)
 
 ;; Journal
 (defun launch-journal ()

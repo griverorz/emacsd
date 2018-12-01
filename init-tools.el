@@ -154,6 +154,7 @@
 (use-package epa)
 (use-package epa-file)
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
+(custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg"))
 (epa-file-name-regexp-update)
 
 ;; Copy to clipboard
