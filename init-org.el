@@ -106,3 +106,11 @@
     (funcall (and md-major-mode))
     (setq buffer-offer-save t)))
 (define-key global-map "\C-cp" 'new-post)
+
+;; Org bullets
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; imenu
+(eval-after-load "org"
+  '(define-key org-mode-map (kbd "C-c `") 'counsel-imenu))
