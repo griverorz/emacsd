@@ -17,19 +17,22 @@
 (package-initialize)
 
 ;; Package shell initialize
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
+  (exec-path-from-shell-initialize))
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
- (package-install 'use-package))
+  (package-install 'use-package))
 (setq use-package-verbose t)
 (require 'use-package)
 (setq load-prefer-newer t)
 
-;; Server
-(load "server")
-
 ;; Load init files
+(load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
 (load "~/.emacs.d/init-keys.el")
 (load "~/.emacs.d/init-tools.el")
