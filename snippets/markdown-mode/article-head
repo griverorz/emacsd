@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# name: article
+# key: article
+# --
+
+---
+title: $1
+author:
+  - name: Gonzalo Rivero
+    affiliation: 1
+address:
+  - code: 1
+    address: Statistics Unit, Westat
+date: `(format-time-string "%Y-%m-%d %H:%M:%S")`
+fontsize: 11pt
+output:
+   bookdown::pdf_document2:
+    fig_width: 6.5
+    number_sections: true
+    keep_tex: true
+    template: ~/.pandoc/default.latex
+toc: false
+citecolor: blue
+bibliography: $2
+abstract: |
+          Some nice abstract here
+---
