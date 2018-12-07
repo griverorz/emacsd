@@ -1,7 +1,7 @@
 ;; Font
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
-                    :height 110
+                    :height 135
                     :weight 'normal
                     :width 'normal)
 
