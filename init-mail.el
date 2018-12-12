@@ -1,3 +1,6 @@
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+(setq mu4e-mu-binary "/usr/local/bin/mu")
+
 (require 'mu4e)
 (setq mu4e-maildir "~/.Mail")
 (setq mu4e-drafts-folder "/[Gmail].Drafts")
@@ -37,7 +40,7 @@
 (add-hook 'mu4e-compose-mode-hook
         (defun my-do-compose-stuff ()
            "My settings for message composition."
-           (set-fill-column 72)
+           (set-fill-column 80)
            (flyspell-mode)))
 
 ;; add option to view html message in a browser

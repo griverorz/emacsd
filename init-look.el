@@ -47,6 +47,7 @@
   ;; if terminal
   (menu-bar-mode -1))
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Delete seleted text when typing
 (delete-selection-mode 1)

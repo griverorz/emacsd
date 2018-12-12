@@ -3,6 +3,7 @@
 (unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
+(setq inferior-R-program-name "/usr/local/bin/R")
 (setq exec-path (append exec-path '("/usr/local/stata")))
 
 (use-package ess-site)
@@ -11,6 +12,8 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 (setq ess-R-argument-suffix "=")
+
+(defalias 'newname 'oldname)
 
 ;; Smartparens
 (add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))

@@ -13,7 +13,7 @@
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
 			             ("melpa-estable" . "https://stable.melpa.org/packages/")
-                         ("melpa"         . "https://melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 ;; Package shell initialize
@@ -41,7 +41,7 @@
 (load "~/.emacs.d/init-ess.el")
 (load "~/.emacs.d/init-js.el")
 (load "~/.emacs.d/init-haskell.el")
-;; (load "~/.emacs.d/init-mail.el")
+(load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 
 ;; Bound trigger to C-TAB
@@ -150,3 +150,4 @@
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+(put 'set-goal-column 'disabled nil)

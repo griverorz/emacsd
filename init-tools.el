@@ -19,6 +19,7 @@
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-x b") 'counsel-ibuffer)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -92,13 +93,12 @@
 	     :bind (
 		        ("C-c h" . helm-mini)
 		        ("C-h a" . helm-apropos)
-		        ("C-x C-b" . helm-buffers-list)
                 ("C-x C-f" . helm-find-files)
-		        ("C-x b" . helm-buffers-list)
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
+                ("C-x C-b" . helm-buffers-list)
 		        ("C-x c o" . helm-occur)
-                ("C-c s" . helm-projectile-ag)
+                ("C-c s" . projectile-ag)
 		        ("C-x c y" . helm-yas-complete)
 		        ("C-x c Y" . helm-yas-create-snippet-on-region)
 		        ("C-x c SPC" . helm-all-mark-rings)))
@@ -157,6 +157,7 @@
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
 (custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg"))
 (epa-file-name-regexp-update)
+(setf epa-pinentry-mode 'loopback)
 
 ;; Copy to clipboard
 (setq *is-a-mac* (eq system-type 'darwin))
