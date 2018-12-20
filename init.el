@@ -84,9 +84,9 @@
   kept-old-versions 2
   version-control t)
 (setq backup-directory-alist
-      `(("." . , "~/.emacs.d/backups/")))
+      `((".*" . , "~/.emacs.d/backups/")))
 (setq auto-save-file-name-transforms
-      `(("." , "~/.emacs.d/backups/")))
+      `((".*" , "~/.emacs.d/backups/")))
 
 ;; Binds
 (use-package helm-descbinds
