@@ -272,6 +272,8 @@
   (let ((tags-revert-without-query t))  ; don't query, revert silently          
     (visit-tags-table default-directory nil)))
 
+;; Never “Keep current list of tags tables also”
+(setq tags-add-tables nil)
 
 ;; Imenu
 (use-package imenu-list

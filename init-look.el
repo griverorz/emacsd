@@ -6,9 +6,25 @@
                     :width 'normal)
 
 ;; Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
+(require 'doom-themes)
 
+;; Global settings (defaults)
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+;; may have their own settings.
+(load-theme 'doom-molokai t)
+
+;; Enable custom neotree theme (all-the-icons must be installed!)
+(doom-themes-neotree-config)
+;; or for treemacs users
+(doom-themes-treemacs-config)
+
+;; Corrects (and improves) org-mode's native fontification.
+(doom-themes-org-config)
+
+;; Italic
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
 

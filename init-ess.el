@@ -26,6 +26,36 @@
           (lambda ()
             (local-set-key (kbd "RET") 'newline)))
 
+;; ESS syntax highlight  
+(setq ess-R-font-lock-keywords 
+	  '((ess-R-fl-keyword:keywords . t)
+	    (ess-R-fl-keyword:constants . t)
+	    (ess-R-fl-keyword:modifiers . t)
+	    (ess-R-fl-keyword:fun-defs . t)
+	    (ess-R-fl-keyword:assign-ops . t)
+	    (ess-fl-keyword:fun-calls . t)
+	    (ess-fl-keyword:numbers . t)
+	    (ess-fl-keyword:operators . t)
+	    (ess-fl-keyword:delimiters . t)
+	    (ess-fl-keyword:= . t)
+	    (ess-R-fl-keyword:F&T . t)
+	    (ess-R-fl-keyword:%op% . t)))
+
+(setq inferior-ess-r-font-lock-keywords 
+	  '((ess-S-fl-keyword:prompt . t)
+ 	    (ess-R-fl-keyword:messages . t)
+	    (ess-R-fl-keyword:modifiers . nil)
+	    (ess-R-fl-keyword:fun-defs . t)
+	    (ess-R-fl-keyword:keywords . nil)
+	    (ess-R-fl-keyword:assign-ops . t)
+	    (ess-R-fl-keyword:constants . t)
+	    (ess-fl-keyword:matrix-labels . t)
+	    (ess-fl-keyword:fun-calls . nil)
+	    (ess-fl-keyword:numbers . nil)
+	    (ess-fl-keyword:operators . nil)
+	    (ess-fl-keyword:delimiters . nil)
+	    (ess-fl-keyword:= . t)
+	    (ess-R-fl-keyword:F&T . nil)))
 
 ;; Not to indent comments in R mode
 (defun then_R_operator ()
