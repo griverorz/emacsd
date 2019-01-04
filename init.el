@@ -59,7 +59,7 @@
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))

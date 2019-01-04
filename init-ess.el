@@ -124,43 +124,24 @@
     (while (< (current-column) 80)
       (insert-char char))))
 
-;; Polymode
-;; Just an Emacs personal dir containing polymode packages etc.
-(setq MY-EMACS  "~/.emacs.d/") 
-
-(defun my-emacs  (subfolder)
-  "Get path to personal dir + subfolder"
-  (concat (expand-file-name MY-EMACS) "/" subfolder))
-
-;; ESS Markdown
-(defun rmd-mode ()
-  "ESS Markdown mode for rmd files"
-  (interactive)
-  (setq load-path 
-        (append (list (my-emacs "polymode/") 
-                      (my-emacs "polymode/modes/"))
-                load-path))
-  (require 'poly-R)
-  (require 'poly-markdown)
-  (poly-markdown+r-mode))
-
 ;; Let you use markdown buffer easily
 (setq ess-nuke-trailing-whitespace-p nil)  
 
-(defun rmd-fold-block ()
-  "Fold the contents of the current R block, in an Rmarkdown file (can be undone
-   with fold-this-unfold-at-point)"
+
+;; Fold
+(defun rmd-fold-block (span)
+  "Fold the contents of the current R block"
   (interactive)
   (and (eq (oref pm/chunkmode :mode) 'r-mode)
        (pm-with-narrowed-to-span nil
-         (goto-char (point-min))
-         (forward-line)
-         (fold-this (point) (point-max)))))
+                                 (goto-char (point-min))
+                                 (fold-this (point) (point-max)))))
+
+(defun rmd-unfold-all-blocks ()
+  fold-this-unfold-all)
 
 (defun rmd-fold-all-blocks (arg)
-  "Fold all R blocks in an Rmarkdown file (can be undone with
-   fold-this-unfold-all)"
-  ;; Interactive, with a prefix argument
+  "Fold all R blocks in an Rmarkdown file"
   (interactive "P")
   (save-restriction
     (widen)

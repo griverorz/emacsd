@@ -71,7 +71,6 @@
 (setq org-startup-folded 0)
 (add-hook 'org-mode-hook 'org-indent-mode)
 
-(bind-key "C-c j" 'org-clock-goto) ;; jump to current task from anywhere
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)
 

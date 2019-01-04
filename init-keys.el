@@ -1,3 +1,4 @@
+
 ;; Enable mouse support
 (unless window-system
   (require 'mouse)
@@ -14,6 +15,7 @@
 
 
 ;; It's all about the project.
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 
 ;; Pop to mark
@@ -46,7 +48,6 @@
 (global-set-key (kbd "C-x C-i") 'imenu)
 
 ;; File finding
-(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 

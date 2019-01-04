@@ -24,6 +24,8 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+(setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                              (t . ivy--regex-fuzzy)))
 
 ;; Projectile
 (use-package projectile
@@ -93,7 +95,7 @@
 	     :bind (
 		        ("C-c h" . helm-mini)
 		        ("C-h a" . helm-apropos)
-                ("C-x C-f" . helm-find-files)
+                ;; ("C-x C-f" . helm-find-files)
 		        ("M-y" . helm-show-kill-ring)
 		        ("M-x" . helm-M-x)
                 ("C-x C-b" . helm-buffers-list)
@@ -131,16 +133,10 @@
 (setq reftex-external-file-finders
       '(("bib" . "kpsewhich -format=.bib %f")))
 
-
 ;; Pandoc
 (load "pandoc-mode")
 (add-hook 'markdown-mode-hook 'pandoc-mode)
 (add-hook 'org-mode-hook 'pandoc-mode)
-
-(add-hook 'markdown-mode-hook
-      (lambda ()
-        (setq tab-width 2)))
-
 
 ;; Combo for dired 
 (use-package find-dired)
