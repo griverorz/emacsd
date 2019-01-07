@@ -1,7 +1,7 @@
 ;; Font
 (set-face-attribute 'default nil
-                    :family "Fira Code"
-                    :height 135
+                    :family "Source Code Pro"
+                    :height 145
                     :weight 'normal
                     :width 'normal)
 
@@ -33,8 +33,8 @@
 
 ;; Powerline
 (setq sml/no-confirm-load-theme t)
-(sml/setup)
 (setq sml/theme 'dark)
+(sml/setup)
 
 ;; Menu bar mode
 (when window-system
@@ -64,6 +64,14 @@
   (menu-bar-mode -1))
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(setq ns-use-proxy-icon nil)
+
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+(setq ns-use-proxy-icon nil)
+(setq frame-title-format nil)
+
 
 ;; Delete seleted text when typing
 (delete-selection-mode 1)

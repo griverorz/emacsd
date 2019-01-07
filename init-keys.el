@@ -14,6 +14,8 @@
   )
 
 
+(global-set-key (kbd "<f5>") 'toggle-frame-fullscreen)
+
 ;; It's all about the project.
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c f") 'find-file-in-project)
