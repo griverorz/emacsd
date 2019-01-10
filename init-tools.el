@@ -108,7 +108,7 @@
 (use-package helm-swoop)
 
 (use-package helm-projectile)
-(helm-projectile-on) 
+(helm-projectile-on)
 
 ;; Package guide
 (use-package which-key
