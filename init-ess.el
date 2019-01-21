@@ -12,7 +12,7 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 (setq ess-R-argument-suffix "=")
-
+(require 'ess-r-xref)
 (defalias 'newname 'oldname)
 
 ;; Smartparens
