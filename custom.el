@@ -13,8 +13,7 @@
  '(haskell-tags-on-save t)
  '(package-selected-packages
    (quote
-    (xref-js2 writeroom-mode which-key use-package-el-get smartparens smart-mode-line skewer-mode shrink-path pymacs poly-R pandoc-mode org-ref org-bullets openwith nginx-mode multi-term magit langtool js-doc jedi ini-mode indium imenu-list helm-xref helm-swoop helm-projectile helm-mu helm-grepint helm-descbinds helm-c-yasnippet helm-ag haskell-mode fold-this expand-region exec-path-from-shell elpy eldoc-eval doom-themes dockerfile-mode docker-compose-mode docker diminish counsel-projectile company-quickhelp auctex ag)))
- '(safe-local-variable-values (quote ((reftex-default-bibliography "./ml-voting.bib")))))
+    (flycheck pyflakes doom-modeline xref-js2 writeroom-mode which-key use-package-el-get smartparens smart-mode-line skewer-mode shrink-path pymacs powerline-evil poly-R pandoc-mode org-ref org-bullets openwith nginx-mode neotree multi-term magit langtool js-doc jedi ini-mode indium imenu-list helm-xref helm-swoop helm-projectile helm-mu helm-grepint helm-descbinds helm-c-yasnippet helm-ag haskell-mode fold-this expand-region exec-path-from-shell elpy eldoc-eval doom-themes dockerfile-mode docker-compose-mode docker diminish counsel-projectile company-quickhelp auctex ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
