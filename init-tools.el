@@ -297,6 +297,13 @@ Version 2018-08-03"
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "Skim.app" (file))))
 
-;; Neotree
+;; Speed bar
 (require 'neotree)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (global-set-key [f8] 'neotree-toggle)
+(setq neo-window-fixed-size nil)
+(add-hook 'neo-change-root-hook
+          (lambda () (neo-buffer--with-resizable-window
+                 (let ((fit-window-to-buffer-horizontally t))
+                   (fit-window-to-buffer)))))
+
