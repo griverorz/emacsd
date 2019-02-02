@@ -39,12 +39,10 @@
     (define-key map (kbd "C-c C-z") 'elpy-shell-switch-to-shell)
     (define-key map (kbd "C-c C-d") 'elpy-doc)
     (define-key map (kbd "C-c C-f") 'find-file-in-project)
-    ;; (define-key map (kbd "C-c C-i") 'yasnippet-expand)
     (define-key map (kbd "C-c C-j") 'idomenu)
     (define-key map (kbd "C-c C-o") 'elpy-occur-definitions)
     (define-key map (kbd "C-c C-q") 'elpy-show-defun)
     (define-key map (kbd "C-c C-r") 'elpy-refactor)
-    (define-key map (kbd "C-c C-s") 'elpy-rgrep-symbol)
     (define-key map (kbd "C-c C-t") 'elpy-test)
     (define-key map (kbd "C-c C-v") 'elpy-check)
     (define-key map (kbd "C-c C-w") 'elpy-doc-websearch)
@@ -62,6 +60,7 @@
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "/usr/local/bin/python3")
+(setq elpy-rpc-backend "jedi")
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
@@ -73,3 +72,10 @@
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
 
+;; Python flycheck
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+(remove-hook 'elpy-modules 'elpy-module-flymake) ;; <- This removes flymake from elpy 
+ 

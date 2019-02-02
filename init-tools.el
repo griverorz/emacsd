@@ -296,3 +296,7 @@ Version 2018-08-03"
 (require 'openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "Skim.app" (file))))
+
+;; Neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)

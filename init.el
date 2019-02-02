@@ -21,7 +21,7 @@
   :ensure t
   :if (memq window-system '(mac ns x))
   :config
-  (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
+  (setq exec-path-from-shell-variables '("PATH"))
   (exec-path-from-shell-initialize))
 
 ;; My elisp files
@@ -30,7 +30,7 @@
 (setq use-package-verbose t)
 (require 'use-package)
 (setq load-prefer-newer t)
-
+ 
 ;; Load init files
 (load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
