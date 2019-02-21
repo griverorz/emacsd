@@ -31,7 +31,8 @@
   (let ((map (make-sparse-keymap)))
     ;; Alphabetical order to make it easier to find free C-c C-X
     ;; bindings in the future. Heh.
-
+    
+    (define-key map (kbd "C-c C-s") 'helm-swoop)
     (define-key map (kbd "C-M-x")   'python-shell-send-defun)
     (define-key map (kbd "C-c <")   'python-indent-shift-left)
     (define-key map (kbd "C-c >")   'python-indent-shift-right)

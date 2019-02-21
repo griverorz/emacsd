@@ -295,7 +295,7 @@ Version 2018-08-03"
 
 (require 'openwith)
 (openwith-mode t)
-(setq openwith-associations '(("\\.pdf\\'" "Skim.app" (file))))
+(setq openwith-associations '(("\\.pdf\\'" "open" (file))))
 
 ;; Speed bar
 (require 'neotree)

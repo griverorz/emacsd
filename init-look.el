@@ -5,6 +5,9 @@
                     :weight 'normal
                     :width 'normal)
 
+(custom-set-faces
+ '(sp-show-pair-match-face ((t (:background "gray30" :foreground "#e74c3c")))))
+
 ;; Theme
 (require 'doom-themes)
 
@@ -26,12 +29,12 @@
 
 ;; Modeline
 (use-package doom-modeline
-      :ensure t
-      :hook (after-init . doom-modeline-mode))
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
 (setq doom-modeline-icon t)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-buffer-file-name-style 'buffer-name)
-
+  
 ;; Italic
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
@@ -142,10 +145,10 @@
     (linum-mode -1)))
 
 ;; ;; Turn on auto-fill-mode by default in all major modes
-(setq auto-fill-mode 1)
+;; (setq auto-fill-mode 1)
 
 ;; Default fill column 
-(setq-default fill-column 80)
+;; (setq-default fill-column 80)
 
 ;; Navigation
 (global-set-key (kbd "C-x <up>") 'windmove-up)

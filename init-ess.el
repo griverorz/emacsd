@@ -12,14 +12,39 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 (setq ess-R-argument-suffix "=")
-(require 'ess-r-xref)
 (defalias 'newname 'oldname)
+
+(use-package ess-site :ensure ess)
 
 ;; Smartparens
 (add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))
+(bind-keys
+ :map smartparens-mode-map
+ ("C-M-a" . sp-beginning-of-sexp)
+ ("C-M-e" . sp-end-of-sexp)
+      
+ ("C-M-f" . sp-forward-sexp)
+ ("C-M-b" . sp-backward-sexp)
+ 
+ ("C-M-n" . sp-next-sexp)
+ ("C-M-p" . sp-previous-sexp)
+ 
+ ("C-S-f" . sp-forward-symbol)
+ ("C-S-b" . sp-backward-symbol)
+
+ ("C-M-t" . sp-transpose-sexp)
+ ("C-M-k" . sp-kill-sexp)
+ ("C-M-w" . sp-copy-sexp)
+ ("C-M-d" . delete-sexp)
+ 
+ ("M-[" . sp-backward-unwrap-sexp)
+ ("M-]" . sp-unwrap-sexp)
+ 
+ ("C-x C-t" . sp-transpose-hybrid-sexp))
+
 
 ;; Do not load data or save envir
-(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
+(setq inferior-R-args "--no-restore-history --no-restore-data --no-save")
 
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook

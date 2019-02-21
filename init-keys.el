@@ -1,4 +1,3 @@
-
 ;; Enable mouse support
 (unless window-system
   (require 'mouse)
