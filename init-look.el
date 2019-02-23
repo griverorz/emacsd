@@ -90,7 +90,9 @@
 ;; Truncate long lines
 (add-hook 'LaTeX-mode-hook #'visual-line-mode)
 (add-hook 'markdown-mode-hook #'visual-line-mode)
+(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
 (add-hook 'org-mode-hook #'visual-line-mode)
+(setq imenu-auto-rescan t)
 
 ;; Autload flyspell
 (eval-after-load "ispell"
