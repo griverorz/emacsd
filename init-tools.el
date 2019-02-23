@@ -307,3 +307,10 @@ Version 2018-08-03"
                  (let ((fit-window-to-buffer-horizontally t))
                    (fit-window-to-buffer)))))
 
+;; HTOP
+(defun htop ()
+  (interactive)
+  (if (get-buffer "*htop*")
+      (switch-to-buffer "*htop*")
+    (ansi-term "/bin/bash" "htop")   
+    (comint-send-string "*htop*" "htop\n")))
