@@ -77,6 +77,14 @@
 (define-key global-map (kbd "C-x \;") 'comment-line)
 (define-key global-map (kbd "C-c M-t") 'writeroom-mode)
 
+(with-eval-after-load 'writeroom-mode
+  (define-key writeroom-mode-map (kbd "C-M-<") #'writeroom-decrease-width)
+  (define-key writeroom-mode-map (kbd "C-M->") #'writeroom-increase-width)
+  (define-key writeroom-mode-map (kbd "C-M-=") #'writeroom-adjust-width))
+
+(advice-add 'text-scale-adjust :after
+            #'visual-fill-column-adjust)
+
 ;; Use hippie
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 

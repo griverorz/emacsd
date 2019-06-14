@@ -8,6 +8,8 @@
 (setq user-full-name "Gonzalo Rivero"
       user-mail-address "griverorz(at)gmail.com")
 
+(setq default-directory "/Users/gonzalorivero")
+
 ;; Marmalade
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")

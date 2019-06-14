@@ -1,6 +1,6 @@
 ;; Font
 (set-face-attribute 'default nil
-                    :family "Source Code Pro"
+                    :family "Source Code Pro for Powerline"
                     :height 140
                     :weight 'normal
                     :width 'normal)
@@ -34,7 +34,13 @@
 (setq doom-modeline-icon t)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-buffer-file-name-style 'buffer-name)
-  
+
+(defun enable-doom-modeline-icons (_frame)
+      (setq doom-modeline-icon t))
+
+(add-hook 'after-make-frame-functions
+          #'enable-doom-modeline-icons)
+
 ;; Italic
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
@@ -70,13 +76,15 @@
     (progn
       ;; if graphic
       (scroll-bar-mode -1)
-      (menu-bar-mode 1))
+      (menu-bar-mode -1))
   ;; if terminal
   (menu-bar-mode -1))
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq ns-use-proxy-icon nil)
 
+;; highlight current line
+(global-hl-line-mode +1)
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
