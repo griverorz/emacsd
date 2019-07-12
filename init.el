@@ -8,7 +8,7 @@
 (setq user-full-name "Gonzalo Rivero"
       user-mail-address "griverorz(at)gmail.com")
 
-(setq default-directory "/Users/gonzalorivero")
+(setq default-directory "/Users/gonzalorivero/")
 
 ;; Marmalade
 (require 'package)
@@ -100,11 +100,12 @@
 (global-company-mode)
 ;; (setq company-global-modes '(not python-mode))
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
-(setq company-minimum-prefix-length 3)
-(setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0.5)
-(setq company-selection-wrap-around t)
 (company-tng-configure-default)
+(setq company-selection-wrap-around t
+      company-tooltip-align-annotations t
+      company-minimum-prefix-length 2
+      company-dabbrev-downcase 0
+      company-tooltip-limit 10)
 
 ;; Do not use company in text modes
 (add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)

@@ -14,7 +14,7 @@
  '(haskell-tags-on-save t)
  '(package-selected-packages
    (quote
-    (synosaurus wordnut define-word osx-dictionary ess ggtags adaptive-wrap xref-js2 writeroom-mode which-key use-package-el-get smartparens smart-mode-line skewer-mode pymacs pyflakes powerline-evil poly-R pandoc-mode org-ref org-bullets openwith nginx-mode neotree multi-term magit langtool js-doc jedi ini-mode indium imenu-list helm-xref helm-swoop helm-projectile helm-mu helm-grepint helm-descbinds helm-c-yasnippet helm-ag haskell-mode fold-this flycheck expand-region exec-path-from-shell elpy doom-themes doom-modeline dockerfile-mode docker-compose-mode docker diminish csv-mode csv counsel-projectile company-quickhelp auctex ag)))
+    (avy ace-jump-mode tabbar yasnippet-snippets smartparens markdown-mode helm-rg centaur-tabs spaceline synosaurus wordnut define-word osx-dictionary ggtags adaptive-wrap xref-js2 writeroom-mode which-key use-package-el-get smart-mode-line skewer-mode pymacs pyflakes powerline-evil pandoc-mode org-ref org-bullets openwith nginx-mode neotree multi-term langtool js-doc jedi ini-mode imenu-list helm-xref helm-swoop helm-projectile helm-mu helm-grepint helm-descbinds helm-c-yasnippet helm-ag expand-region exec-path-from-shell elpy doom-themes doom-modeline dockerfile-mode docker-compose-mode docker diminish csv-mode csv counsel-projectile company-quickhelp auctex ag)))
  '(projectile-mode t nil (projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -102,7 +102,7 @@
 (add-hook 'org-mode-hook #'visual-line-mode)
 (setq imenu-auto-rescan t)
 
-;; Autload flyspell
+;; Autoload flyspell
 (eval-after-load "ispell"
   '(when (executable-find ispell-program-name)
    (add-hook 'text-mode-hook 'turn-on-flyspell)))
@@ -220,3 +220,4 @@
     tab-width 4
     tab-stop-list (quote (4 8))
 )
+

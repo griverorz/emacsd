@@ -314,3 +314,4 @@ Version 2018-08-03"
       (switch-to-buffer "*htop*")
     (ansi-term "/bin/bash" "htop")   
     (comint-send-string "*htop*" "htop\n")))
+

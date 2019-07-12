@@ -88,4 +88,7 @@
 ;; Use hippie
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-
+;; Avy package
+(use-package avy
+  :ensure t
+  :bind (("C-:" . avy-goto-word-1)))

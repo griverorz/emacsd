@@ -175,3 +175,6 @@
        'rmd-fold-block (point-min)
        ;; adjust this point to fold prior regions
        (if arg (point) (point-max))))))
+
+;; Company
+(setq ess-use-company t)
