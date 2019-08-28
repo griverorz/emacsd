@@ -1,3 +1,4 @@
+
 ;; Font
 (set-face-attribute 'default nil
                     :family "Source Code Pro for Powerline"
@@ -221,3 +222,15 @@
     tab-stop-list (quote (4 8))
 )
 
+;; Beacon
+(use-package beacon
+    :config
+    (beacon-mode 1)
+    (setq beacon-blink-delay 0.2)
+    (setq beacon-blink-duration 0.2)
+    (setq beacon-blink-when-point-moves 7)
+    (setq beacon-blink-when-window-changes nil)
+    (setq beacon-blink-when-window-scrolls nil)
+    (setq beacon-push-mark 5)
+    (setq beacon-size 15)
+)

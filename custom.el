@@ -14,7 +14,7 @@
  '(haskell-tags-on-save t)
  '(package-selected-packages
    (quote
-    (avy ace-jump-mode tabbar yasnippet-snippets smartparens markdown-mode helm-rg centaur-tabs spaceline synosaurus wordnut define-word osx-dictionary ggtags adaptive-wrap xref-js2 writeroom-mode which-key use-package-el-get smart-mode-line skewer-mode pymacs pyflakes powerline-evil pandoc-mode org-ref org-bullets openwith nginx-mode neotree multi-term langtool js-doc jedi ini-mode imenu-list helm-xref helm-swoop helm-projectile helm-mu helm-grepint helm-descbinds helm-c-yasnippet helm-ag expand-region exec-path-from-shell elpy doom-themes doom-modeline dockerfile-mode docker-compose-mode docker diminish csv-mode csv counsel-projectile company-quickhelp auctex ag)))
+    (ivy-xref org-ref ag swoop ivy-yasnippet magit flx which-key mu4e-overview org-mime beacon ess poly-R poly-markdown indium posframe pos-tip company-jedi emmet-mode web-mode avy tabbar smartparens markdown-mode centaur-tabs spaceline synosaurus wordnut define-word osx-dictionary ggtags adaptive-wrap xref-js2 writeroom-mode use-package-el-get smart-mode-line skewer-mode pymacs pyflakes powerline-evil pandoc-mode org-bullets openwith nginx-mode neotree multi-term langtool js-doc jedi ini-mode imenu-list expand-region exec-path-from-shell elpy doom-themes doom-modeline dockerfile-mode docker-compose-mode docker diminish csv-mode csv counsel-projectile company-quickhelp auctex)))
  '(projectile-mode t nil (projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

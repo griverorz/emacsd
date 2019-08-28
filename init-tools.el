@@ -7,25 +7,52 @@
 (use-package magit)
 
 ;; Ivy mode
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
+(use-package ivy :ensure t
+  :diminish (ivy-mode . "")
+  :bind
+  (:map ivy-mode-map
+   ("C-'" . ivy-avy))
+  :config
+  (ivy-mode 1)
+  ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
+  (setq ivy-use-virtual-buffers t)
+  ;; number of result lines to display
+  (setq ivy-height 10)
+  ;; does not count candidates
+  (setq ivy-count-format "")
+  ;; no regexp by default
+  (setq ivy-initial-inputs-alist nil)
+  ;; Minibuffers
+  (setq enable-recursive-minibuffers t)
+  ;; configure regexp engine.
+  (setq ivy-re-builders-alist
+        '((ivy-switch-buffer . ivy--regex-plus)
+          (swiper . ivy--regex-plus)
+          (t . ivy--regex-fuzzy))))
+
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "C-c M-x") 'counsel-M-x)
+(global-set-key (kbd "C-c C-o") 'ivy-occur)
+(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 (global-set-key (kbd "C-x b") 'counsel-ibuffer)
+(global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
+(global-set-key (kbd "C-x M-b") 'ibuffer)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
+;; (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-(setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                              (t . ivy--regex-fuzzy)))
+
+(require 'swoop)
+(global-set-key (kbd "C-o")   'swoop)
+(global-set-key (kbd "C-M-o") 'swoop-multi)
+(global-set-key (kbd "M-o")   'swoop-pcre-regexp)
 
 ;; Projectile
 (use-package projectile
@@ -36,6 +63,7 @@
   (projectile-mode +1))
 
 (projectile-global-mode)
+(counsel-projectile-mode)
 (setq projectile-indexing-method 'alien)
 (setq projectile-enable-caching t)
 (setq projectile-completion-system 'ivy)
@@ -75,40 +103,6 @@
 
 (global-prettify-symbols-mode +1)
 
-;; Helm
-(use-package helm
-	     :ensure t
-	     :init
-	     (progn
-	       (require 'helm-config)
-	       (setq helm-candidate-number-limit 100)
-	       ;; From https://gist.github.com/antifuchs/9238468
-	       (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
-		         helm-input-idle-delay 0.01  ; this actually updates things quickly.
-		         helm-yas-display-key-on-candidate t
-		         helm-quick-update t
-		         helm-mode-fuzzy-match t
-		         helm-mode-fuzzy-find t
-		         helm-M-x-fuzzy-match t
-		         helm-ff-skip-boring-files t)
-	       (helm-mode))
-	     :bind (
-		        ("C-c h" . helm-mini)
-		        ("C-h a" . helm-apropos)
-                ;; ("C-x C-f" . helm-find-files)
-		        ("M-y" . helm-show-kill-ring)
-		        ("M-x" . helm-M-x)
-                ("C-x C-b" . helm-buffers-list)
-		        ("C-x c o" . helm-occur)
-                ("C-c s" . projectile-ag)
-		        ("C-x c y" . helm-yas-complete)
-		        ("C-x c Y" . helm-yas-create-snippet-on-region)
-		        ("C-x c SPC" . helm-all-mark-rings)))
-
-(use-package helm-swoop)
-
-(use-package helm-projectile)
-(helm-projectile-on)
 
 ;; Package guide
 (use-package which-key
@@ -285,7 +279,7 @@
 The possible chars are: A to Z, a to z, 0 to 9.
 Call `universal-argument' before for different count.
 URL `http://ergoemacs.org/emacs/elisp_insert_random_number_string.html'
-Version 2018-08-03"
+sVersion 2018-08-03"
   (interactive "P")
   (let* (($charset "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
          ($baseCount (length $charset)))

@@ -2,7 +2,10 @@
 (setq mu4e-mu-binary "/usr/local/bin/mu")
 
 (require 'mu4e)
-(setq mu4e-maildir "~/.Mail")
+(require 'org-mu4e)
+(require 'org-mime)
+
+(setq mu4e-maildir "~/Maildir")
 (setq mu4e-drafts-folder "/[Gmail].Drafts")
 (setq mu4e-sent-folder   "/[Gmail].Sent Mail")
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
@@ -34,7 +37,8 @@
 ;;   - html2markdown | grep -v '&nbsp_place_holder;' (Requires html2text pypi)
 ;;   - w3m -dump -cols 80 -T text/html
 ;;   - view in browser (provided below)
-(setq mu4e-html2text-command "pandoc -f html -t org")
+(setq mu4e-html2text-command
+  "textutil -stdin -format html -convert txt -stdout")
 
 ;; spell check
 (add-hook 'mu4e-compose-mode-hook
@@ -49,7 +53,7 @@
   '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
 ;; fetch mail every 10 mins
-(setq mu4e-update-interval 600)
+(setq mu4e-update-interval 300)
 
 ;; configuration for sending mail
 (setq message-send-mail-function 'smtpmail-send-it

@@ -8,7 +8,7 @@
 (setq org-ref-show-broken-links t)
 
 ;; Document org
-(setq org-directory "~/Documents/org/")
+(setq org-directory "~/org/")
 
 ;; Export to latex
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
@@ -24,7 +24,6 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-switchb)
-(global-set-key "\C-cB" 'helm-org-agenda-files-headings)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
@@ -40,24 +39,23 @@
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
                              (concat org-directory "notes.org")
-			                 (concat org-directory "learn.org")
                              (concat org-directory "todo.org")
+                             (concat org-directory "writing.org")
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
 
 (setq org-archive-location (concat org-directory "archive/archived.org::"))
+(setq org-icalendar-combined-agenda-file (concat org-directory "org-calendar"))
 
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "notes.org"))
 
 (setq org-capture-templates
-      '(("t" "Todo" entry
-         (file+headline "~/Documents/org/todo.org" "Tasks")
-         "* TODO %?\n  %i\n")
-        ("j" "Journal" plain
-         (file+olp+datetree "~/Documents/org/journal.gpg")
-         "%?\nEntered on %U\n")))
-
+      '(("j" "Journal" plain
+       (file+olp+datetree "~/org/journal.gpg")
+         "%?\nEntered on %U\n")
+        ("t" "todo" entry (file+headline "~/todo.org" "Tasks")
+         "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
 
 ;; Navigation
 (setq org-goto-interface 'outline
@@ -113,3 +111,8 @@
 ;; imenu
 (eval-after-load "org"
   '(define-key org-mode-map (kbd "C-c `") 'counsel-imenu))
+
+;; Org babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))

@@ -14,8 +14,8 @@
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
-			             ("melpa-estable" . "https://stable.melpa.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa"     . "https://melpa.org/packages/")
+			             ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
 ;; Package shell initialize
@@ -41,7 +41,8 @@
 (load "~/.emacs.d/init-latex.el")
 (load "~/.emacs.d/init-ess.el")
 (load "~/.emacs.d/init-js.el")
-(load "~/.emacs.d/init-haskell.el")
+(load "~/.emacs.d/init-html.el")
+;; (load "~/.emacs.d/init-haskell.el")
 (load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 
@@ -63,6 +64,7 @@
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
 
@@ -78,27 +80,19 @@
   (set-input-method "spanish-prefix"))
 (define-key global-map "\C-cd" 'launch-journal)
 
-;; Enable backup files.
-(setq make-backup-files t)
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
-(setq backup-directory-alist
-      `((".*" . , "~/.emacs.d/backups/")))
-(setq auto-save-file-name-transforms
-      `((".*" , "~/.emacs.d/backups/")))
-
 ;; Binds
-(use-package helm-descbinds
-  :bind (("C-h b" . helm-descbinds)
-         ("C-h w" . helm-descbinds)))
-(use-package helm-xref)
-(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
+(require 'ivy-xref)
+;; XRef initialization is different in Emacs 27
+(if (< emacs-major-version 27)
+    ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+    ;; commands other than xref-find-definitions
+    ;; (e.g. project-find-regexp):
+    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
+  ;; Emacs 27 only:
+  (setq xref-show-definitions-function #'ivy-xref-show-defs))
 
 ;; Autocomplete with company
 (global-company-mode)
-;; (setq company-global-modes '(not python-mode))
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
 (company-tng-configure-default)
 (setq company-selection-wrap-around t
@@ -140,7 +134,7 @@
 (use-package diminish)
 (diminish 'ivy-mode)
 (diminish 'projectile-mode)
-(diminish 'helm-mode)
+;; (diminish 'helm-mode)
 (diminish 'smartparens-mode)
 (diminish 'auto-revert-mode)
 (diminish 'reftex-mode)
