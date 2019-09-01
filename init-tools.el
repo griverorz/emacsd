@@ -30,6 +30,8 @@
           (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy))))
 
+(require 'smex)
+
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
