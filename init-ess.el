@@ -178,3 +178,4 @@
 
 ;; Company
 (setq ess-use-company t)
+(setq ess-use-company 'script-only)

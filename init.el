@@ -80,6 +80,9 @@
   (set-input-method "spanish-prefix"))
 (define-key global-map "\C-cd" 'launch-journal)
 
+;; Backups
+(setq delete-old-versions t)
+
 ;; Binds
 (require 'ivy-xref)
 ;; XRef initialization is different in Emacs 27
@@ -99,7 +102,11 @@
       company-tooltip-align-annotations t
       company-minimum-prefix-length 2
       company-dabbrev-downcase 0
-      company-tooltip-limit 10)
+      company-tooltip-limit 7)
+(company-quickhelp-mode)
+(eval-after-load 'company
+  '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin))
+(setq company-quickhelp-delay nil)
 
 ;; Do not use company in text modes
 (add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
