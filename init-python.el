@@ -58,6 +58,7 @@
 
 
 ;; Python executable
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "/usr/local/bin/python3")

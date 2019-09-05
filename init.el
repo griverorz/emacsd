@@ -102,10 +102,12 @@
       company-tooltip-align-annotations t
       company-minimum-prefix-length 2
       company-dabbrev-downcase 0
+      company-idle-delay 0
       company-tooltip-limit 7)
 (company-quickhelp-mode)
 (eval-after-load 'company
   '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin))
+(define-key company-active-map (kbd "M-h") 'company-show-doc-buffer)
 (setq company-quickhelp-delay nil)
 
 ;; Do not use company in text modes
