@@ -62,7 +62,12 @@
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "/usr/local/bin/python3")
-(setq elpy-rpc-backend "jedi")
+
+;; Auto complete
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(setq elpy-rpc-backend "jedi")  
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
