@@ -42,7 +42,7 @@
 (load "~/.emacs.d/init-ess.el")
 (load "~/.emacs.d/init-js.el")
 (load "~/.emacs.d/init-html.el")
-;; (load "~/.emacs.d/init-haskell.el")
+(load "~/.emacs.d/init-haskell.el")
 (load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 

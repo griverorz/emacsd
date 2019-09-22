@@ -113,6 +113,17 @@
   '(define-key org-mode-map (kbd "C-c `") 'counsel-imenu))
 
 ;; Org babel
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)))
+(setq org-src-fontify-natively nil
+      org-src-tab-acts-natively t
+      org-confirm-babel-evaluate t
+      org-edit-src-content-indentation t)
+
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (R . t)
+     (js . t)
+     (haskell . t)
+     (python . t)))
+  )

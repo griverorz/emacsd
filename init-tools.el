@@ -30,7 +30,7 @@
           (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy))))
 
-(require 'smex)
+;; (require 'smex)
 
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -46,7 +46,7 @@
 (global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
 (global-set-key (kbd "C-x M-b") 'ibuffer)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
-;; (global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
@@ -310,4 +310,7 @@ sVersion 2018-08-03"
       (switch-to-buffer "*htop*")
     (ansi-term "/bin/bash" "htop")   
     (comint-send-string "*htop*" "htop\n")))
+
+;; Open in osx finder
+(require 'reveal-in-osx-finder)
 
