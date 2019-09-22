@@ -69,6 +69,7 @@
 (setq projectile-indexing-method 'alien)
 (setq projectile-enable-caching t)
 (setq projectile-completion-system 'ivy)
+(setq projectile-use-native-indexing t)
 
 ;; Bound trigger to C-TAB
 (define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
