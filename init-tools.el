@@ -30,7 +30,7 @@
           (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy))))
 
-;; (require 'smex)
+(require 'smex)
 
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -50,6 +50,12 @@
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(use-package counsel
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
 
 (require 'swoop)
 (global-set-key (kbd "C-o")   'swoop)
