@@ -244,6 +244,8 @@
 
 
 ;; Tags
+(require 'xref)
+
 (defun create-tags (dir-name)
   "Create tags file."
   (interactive "DDirectory: ")
