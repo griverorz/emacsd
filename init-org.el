@@ -38,7 +38,6 @@
 
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
-                             (concat org-directory "notes.org")
                              (concat org-directory "todo.org")
                              (concat org-directory "writing.org")
                              (concat org-directory "work.org")
@@ -54,7 +53,7 @@
       '(("j" "Journal" plain
        (file+olp+datetree "~/org/journal.gpg")
          "%?\nEntered on %U\n")
-        ("t" "todo" entry (file+headline "~/todo.org" "Tasks")
+        ("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
          "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
 
 ;; Navigation
