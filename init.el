@@ -6,9 +6,9 @@
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero"
-      user-mail-address "griverorz(at)gmail.com")
+      user-mail-address "gonzalorivero(at)westat.com")
 
-(setq default-directory "/Users/gonzalorivero/")
+(setq default-directory "/Users/rivero_g/")
 
 ;; Marmalade
 (require 'package)
@@ -43,7 +43,7 @@
 (load "~/.emacs.d/init-js.el")
 (load "~/.emacs.d/init-html.el")
 (load "~/.emacs.d/init-haskell.el")
-(load "~/.emacs.d/init-mail.el")
+;; (load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 
 ;; Bound trigger to C-TAB
