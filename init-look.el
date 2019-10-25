@@ -1,4 +1,3 @@
-
 ;; Font
 (set-face-attribute 'default nil
                     :family "Source Code Pro for Powerline"
@@ -32,6 +31,7 @@
 (use-package doom-modeline
     :ensure t
     :hook (after-init . doom-modeline-mode))
+
 (setq doom-modeline-icon t)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-buffer-file-name-style 'buffer-name)
@@ -48,11 +48,6 @@
 
 ;; Color cursor
 (set-cursor-color "#ff0000")
-
-;; Powerline
-;; (setq sml/no-confirm-load-theme t)
-;; (setq sml/theme 'dark)
-;; (sml/setup)
 
 ;; Menu bar mode
 (when window-system

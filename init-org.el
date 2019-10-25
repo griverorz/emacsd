@@ -24,37 +24,51 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-switchb)
+(define-key org-mode-map (kbd "C-c C-q") 'counsel-org-tag)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
 
 ;; Tags shortcuts
-(setq org-tag-alist '(("@work" . ?w) 
-                      ("@home" . ?h) 
-                      ("@research" . ?r)
-                      ("@errands" . ?e) 
-                      ("@write" . ?m)
-                      ("@reading" . ?b)))
+(setq org-tag-alist '(("work" . ?w) 
+                      ("home" . ?h) 
+                      ("research" . ?r)
+                      ("crypt" . ?c)
+                      ("errand" . ?e)
+                      ("write" . ?m)
+                      ("reading" . ?b)))
+
+;; Todo states
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "VERIFY(v@/!)" "|" "DONE(d!)" "CANCELLED(c@!)")))
 
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
-                             (concat org-directory "todo.org")
                              (concat org-directory "writing.org")
+                             (concat org-directory "projects.org")
+                             (concat org-directory "management.org")
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
 
 (setq org-archive-location (concat org-directory "archive/archived.org::"))
-(setq org-icalendar-combined-agenda-file (concat org-directory "org-calendar"))
+(setq org-icalendar-combined-agenda-file
+      (concat org-directory "org-calendar"))
 
 ;; Capture 
-(setq org-default-notes-file (concat org-directory "notes.org"))
+(setq org-default-notes-file (concat org-directory "inbox.org"))
 
+;; Templates
 (setq org-capture-templates
-      '(("j" "Journal" plain
-       (file+olp+datetree "~/org/journal.gpg")
-         "%?\nEntered on %U\n")
-        ("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
-         "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
+      '(
+        ("t" "Todo" entry (file "~/org/inbox.org")
+         "* TODO %? %^g\n%A")
+
+        ("M" "Short memo" entry (file "~/org/inbox.org")
+         "* Memo: %^{title} %^g \n:PROPERTIES:\n:TO: %^{To}\n:CREATED: %U\n:END:\n%i%?\n")
+
+        ("w" "Writing" entry (file+headline "~/org/inbox.org" "Writing")
+         "* %^{title}\n:PROPERTIES:\n:AUTHOR: Gonzalo Rivero\n:TITLE: %\\1\n:CREATED: %U\n:END:\n%?")
+        ))
 
 ;; Navigation
 (setq org-goto-interface 'outline
@@ -85,23 +99,22 @@
 (global-set-key (kbd "C-c <left>") 'org-timestamp-down-day)
 (global-set-key (kbd "C-c <right>") 'org-timestamp-up-day)
 
-;; Journal
-(defun launch-journal ()
-    (interactive)
-    (org-capture nil "j")
-    (activate-input-method 'spanish-prefix))
-(define-key global-map "\C-cd" 'launch-journal)
+;; Encryption
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+(setq org-crypt-key (quote ("2DD79909")))
+(setq auto-save-default nil)
 
-;; New post
-(defun new-post ()
-  (interactive)
-  (setq md-major-mode (quote markdown-mode))
-  (let ((buf (generate-new-buffer "untitled")))
-    (switch-to-buffer buf)
-    (writeroom-mode)    
-    (funcall (and md-major-mode))
-    (setq buffer-offer-save t)))
-(define-key global-map "\C-cp" 'new-post)
+;; Journal
+(use-package org-journal
+  :ensure t
+  :defer t
+  :custom
+  (org-journal-dir "~/journal/")
+  (org-journal-date-format "%A, %d %B %Y")
+  (org-journal-enable-encryption t)
+  (org-journal-encrypt-journal t))
 
 ;; Org bullets
 (require 'org-bullets)
@@ -112,7 +125,7 @@
   '(define-key org-mode-map (kbd "C-c `") 'counsel-imenu))
 
 ;; Org babel
-(setq org-src-fontify-natively nil
+(setq org-src-fontify-natively t
       org-src-tab-acts-natively t
       org-confirm-babel-evaluate t
       org-edit-src-content-indentation t)
@@ -124,5 +137,7 @@
      (R . t)
      (js . t)
      (haskell . t)
-     (python . t)))
+     (python . t)
+     (latex . t)
+     (ditaa . t)))
   )

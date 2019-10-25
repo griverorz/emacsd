@@ -49,6 +49,7 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
+(global-set-key (kbd "C-c C-q") 'counsel-org-tag)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (use-package counsel
@@ -152,6 +153,7 @@
 
  ;; EPA
 (use-package epa)
+(epa-file-enable)
 (use-package epa-file)
 (setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
 (custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg"))
