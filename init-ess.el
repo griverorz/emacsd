@@ -180,5 +180,7 @@
 (setq ess-use-company t)
 (setq ess-use-company 'script-only)
 
-;; xref
+;; Tags
 (require 'ess-r-xref)
+(require 'xref)
+
