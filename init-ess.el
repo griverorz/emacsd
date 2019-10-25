@@ -51,6 +51,9 @@
           (lambda ()
             (local-set-key (kbd "RET") 'newline)))
 
+;; FCI
+(add-hook 'ess-mode-hook 'fci-mode)
+
 ;; ESS syntax highlight  
 (setq ess-R-font-lock-keywords 
 	  '((ess-R-fl-keyword:keywords . t)
@@ -183,4 +186,3 @@
 ;; Tags
 (require 'ess-r-xref)
 (require 'xref)
-

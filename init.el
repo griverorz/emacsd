@@ -6,9 +6,9 @@
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero"
-      user-mail-address "gonzalorivero(at)westat.com")
+      user-mail-address "griverorz(at)gmail.com")
 
-(setq default-directory "/Users/rivero_g/")
+(setq default-directory "/Users/gonzalorivero/")
 
 ;; Marmalade
 (require 'package)
@@ -96,6 +96,10 @@
 
 ;; Autocomplete with company
 (global-company-mode)
+
+(add-hook 'eshell-mode-hook 'remove-company-eshell-hook) ;; Remove company from eshell
+(defun remove-company-eshell-hook () (company-mode -1))
+
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
 (company-tng-configure-default)
 (setq company-selection-wrap-around t
