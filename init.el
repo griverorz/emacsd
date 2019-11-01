@@ -6,9 +6,9 @@
 
 ;; Set my data
 (setq user-full-name "Gonzalo Rivero"
-      user-mail-address "gonzalorivero(at)westat.com")
+      user-mail-address "griverorz(at)gmail.com")
 
-(setq default-directory "/Users/rivero_g/")
+(setq default-directory "/Users/gonzalorivero/")
 
 ;; Marmalade
 (require 'package)
