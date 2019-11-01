@@ -5,9 +5,6 @@
                     :weight 'normal
                     :width 'normal)
 
-(custom-set-faces
- '(sp-show-pair-match-face ((t (:background "gray30" :foreground "#e74c3c")))))
-
 ;; Theme
 (require 'doom-themes)
 
@@ -27,20 +24,24 @@
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
-;; Modeline
-(use-package doom-modeline
-    :ensure t
-    :hook (after-init . doom-modeline-mode))
+;; ;; Modeline
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :hook (after-init . doom-modeline-mode))
 
-(setq doom-modeline-icon t)
-(setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-buffer-file-name-style 'buffer-name)
+;; (setq doom-modeline-icon t)
+;; (setq doom-modeline-major-mode-icon t)
+;; (setq doom-modeline-buffer-file-name-style 'buffer-name)
 
-(defun enable-doom-modeline-icons (_frame)
-      (setq doom-modeline-icon t))
+;; (defun enable-doom-modeline-icons (_frame)
+;;   (setq doom-modeline-icon t))
 
-(add-hook 'after-make-frame-functions
-          #'enable-doom-modeline-icons)
+;; (add-hook 'after-make-frame-functions
+;;           #'enable-doom-modeline-icons)
+
+;; SML
+(require 'powerline)
+(powerline-default-theme)
 
 ;; Italic
 (custom-set-faces
@@ -50,7 +51,7 @@
 (set-cursor-color "#ff0000")
 
 ;; Menu bar mode
-(when window-system
+(when (display-graphic-p)
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (blink-cursor-mode -1))
 
@@ -110,10 +111,16 @@
 (require 'smartparens)
 (require 'smartparens-config)
 (smartparens-global-mode 1)
-(show-smartparens-global-mode +1)
+(show-smartparens-global-mode 1)
 
 (sp-pair "\"" nil :unless '(sp-point-after-word-p))
 (sp-pair "'" nil :unless '(sp-point-after-word-p))
+
+(custom-set-faces
+ '(sp-show-pair-match-face
+   ((t (:background "#DCA3A3" :foreground "#2F2F2F"))))
+ '(sp-show-pair-match-content-face
+   ((t (:background "#2F2F2F")))))
 
 (add-hook 'js-mode-hook #'smartparens-mode)
 (add-hook 'lisp-mode-hook #'smartparens-mode)
@@ -126,6 +133,30 @@
 (add-hook 'rmd-mode-hook #'smartparens-mode)
 (add-hook 'js2-mode-hook #'smartparens-mode)
 (add-hook 'ess-mode-hook #'smartparens-mode)
+
+(bind-keys
+ :map smartparens-mode-map
+ ("C-M-a" . sp-beginning-of-sexp)
+ ("C-M-e" . sp-end-of-sexp)
+      
+ ("C-M-f" . sp-forward-sexp)
+ ("C-M-b" . sp-backward-sexp)
+ 
+ ("C-M-n" . sp-next-sexp)
+ ("C-M-p" . sp-previous-sexp)
+ 
+ ("C-S-f" . sp-forward-symbol)
+ ("C-S-b" . sp-backward-symbol)
+
+ ("C-M-t" . sp-transpose-sexp)
+ ("C-M-k" . sp-kill-sexp)
+ ("C-M-w" . sp-copy-sexp)
+ ("C-M-d" . delete-sexp)
+ 
+ ("M-[" . sp-backward-unwrap-sexp)
+ ("M-]" . sp-unwrap-sexp)
+
+ ("C-x C-t" . sp-transpose-hybrid-sexp))
 
 ;; Cua
 (cua-selection-mode t)

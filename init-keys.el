@@ -1,5 +1,5 @@
 ;; Enable mouse support
-(unless window-system
+(when (display-graphic-p)
   (require 'mouse)
   (xterm-mouse-mode t)
   (global-set-key [mouse-4] '(lambda ()
