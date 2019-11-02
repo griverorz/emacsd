@@ -73,13 +73,6 @@
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
 (setq save-abbrevs 'silently)
 
-;; Journal
-(defun launch-journal ()
-  (interactive)
-  (org-capture nil "j")
-  (set-input-method "spanish-prefix"))
-(define-key global-map "\C-cd" 'launch-journal)
-
 ;; Backups
 (setq delete-old-versions t)
 

@@ -152,13 +152,13 @@
 (setq insert-directory-program (executable-find "gls"))
 
  ;; EPA
-(use-package epa)
+(setq epg-gpg-program  "/usr/local/bin/gpg")
+(require 'epa-file)
+(require 'pinentry)
 (epa-file-enable)
-(use-package epa-file)
-(setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
-(custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg"))
-(epa-file-name-regexp-update)
-(setf epa-pinentry-mode 'loopback)
+(setq epa-file-select-keys nil)
+(setq  epa-pinentry-mode 'loopback)
+(pinentry-start)
 
 ;; Copy to clipboard
 (setq *is-a-mac* (eq system-type 'darwin))

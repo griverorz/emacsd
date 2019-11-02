@@ -24,24 +24,27 @@
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
-;; ;; Modeline
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :hook (after-init . doom-modeline-mode))
+;; Modeline
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
-;; (setq doom-modeline-icon t)
-;; (setq doom-modeline-major-mode-icon t)
-;; (setq doom-modeline-buffer-file-name-style 'buffer-name)
+(setq doom-modeline-icon (display-graphic-p))
+(setq doom-modeline-unicode-fallback t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-buffer-file-name-style 'buffer-name)
+(setq doom-modeline-project-detection 'project)
+(setq doom-modeline-buffer-file-name-style 'relative-to-project)
 
-;; (defun enable-doom-modeline-icons (_frame)
-;;   (setq doom-modeline-icon t))
+;; Whether display environment version.
+(setq doom-modeline-env-version t)
 
-;; (add-hook 'after-make-frame-functions
-;;           #'enable-doom-modeline-icons)
+(defun enable-doom-modeline-icons (_frame)
+  (setq doom-modeline-icon t))
 
-;; SML
-(require 'powerline)
-(powerline-default-theme)
+(add-hook 'after-make-frame-functions
+          #'enable-doom-modeline-icons)
+
 
 ;; Italic
 (custom-set-faces

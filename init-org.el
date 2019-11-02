@@ -1,6 +1,7 @@
 ;; Basic configuration
 (use-package org)
 (use-package org-ref)
+(use-package org-journal)
 
 ;; Citation
 (define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
@@ -101,11 +102,13 @@
 (global-set-key (kbd "C-c <right>") 'org-timestamp-up-day)
 
 ;; Encryption
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-(setq org-crypt-key (quote ("2DD79909")))
-(setq auto-save-default nil)
+(use-package org
+    :bind ("C-c d" . org-decrypt-entry)
+    :init (org-crypt-use-before-save-magic)
+    :custom
+    (org-tags-exclude-from-inheritance (quote ("crypt")))
+    (org-crypt-key "1E3A49578FE54AAC231A3248E75FC0192DD79909")
+    (auto-save-default nil))
 
 ;; Journal
 (use-package org-journal
@@ -114,8 +117,8 @@
   :custom
   (org-journal-dir "~/journal/")
   (org-journal-date-format "%A, %d %B %Y")
-  (org-journal-enable-encryption t)
-  (org-journal-encrypt-journal t))
+  (org-journal-enable-encryption nil)
+  (org-journal-encrypt-journal nil))
 
 ;; Org bullets
 (require 'org-bullets)
