@@ -87,6 +87,9 @@
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)
 
+;; Clock
+(setq org-clock-idle-time 10)
+
 ;; Refile
 (setq org-reverse-note-order t)
 (setq org-refile-use-outline-path nil)
