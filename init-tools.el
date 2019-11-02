@@ -30,7 +30,8 @@
           (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy))))
 
-(require 'smex)
+(use-package smex)
+(use-package flx)
 
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -58,7 +59,7 @@
    :map ivy-minibuffer-map
    ("M-y" . ivy-next-line)))
 
-(require 'swoop)
+(use-package swoop)
 (global-set-key (kbd "C-o")   'swoop)
 (global-set-key (kbd "C-M-o") 'swoop-multi)
 (global-set-key (kbd "M-o")   'swoop-pcre-regexp)
@@ -153,8 +154,8 @@
 
  ;; EPA
 (setq epg-gpg-program  "/usr/local/bin/gpg")
-(require 'epa-file)
-(require 'pinentry)
+(use-package epa-file)
+(use-package pinentry)
 (epa-file-enable)
 (setq epa-file-select-keys nil)
 (setq  epa-pinentry-mode 'loopback)
@@ -221,7 +222,7 @@
 (use-package langtool)
 
 (defun langtool-autoshow-detail-popup (overlays)
-  (when (require 'popup)
+  (when (use-package popup)
     ;; Do not interrupt current popup
     (unless (or popup-instances
                 ;; suppress popup after type `C-g` .
@@ -246,7 +247,7 @@
 
 
 ;; Tags
-(require 'xref)
+(use-package xref)
 
 (defun create-tags (dir-name)
   "Create tags file."
@@ -300,12 +301,12 @@ sVersion 2018-08-03"
       (insert (elt $charset (random $baseCount))))))
 
 
-(require 'openwith)
+(use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "open" (file))))
 
 ;; Speed bar
-(require 'neotree)
+(use-package neotree)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-window-fixed-size nil)
@@ -323,5 +324,5 @@ sVersion 2018-08-03"
     (comint-send-string "*htop*" "htop\n")))
 
 ;; Open in osx finder
-(require 'reveal-in-osx-finder)
+(use-package reveal-in-osx-finder)
 

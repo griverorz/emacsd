@@ -29,7 +29,7 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (setq use-package-verbose t)
-(require 'use-package)
+(use-package use-package)
 (setq load-prefer-newer t)
  
 ;; Load init files
@@ -75,9 +75,13 @@
 
 ;; Backups
 (setq delete-old-versions t)
+;disable backup
+(setq backup-inhibited t)
+;disable auto save
+(setq auto-save-default nil)
 
 ;; Binds
-(require 'ivy-xref)
+(use-package ivy-xref)
 ;; XRef initialization is different in Emacs 27
 (if (< emacs-major-version 27)
     ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
