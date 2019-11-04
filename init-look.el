@@ -174,9 +174,6 @@
 (column-number-mode 1)
 
 ;; Column inidicator
-(require 'fill-column-indicator)
-(setq fci-rule-column 80)
-
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 (defun goto-line-with-feedback ()

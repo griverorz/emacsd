@@ -71,9 +71,6 @@
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 (setq elpy-rpc-backend "jedi")  
 
-;; FCI
-(add-hook 'python-mode-hook 'fci-mode)
-
 ;; Avoid annoying and useless warnings
 (with-no-warnings
   (require 'cl))
