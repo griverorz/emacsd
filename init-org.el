@@ -155,8 +155,7 @@
 ;; Org babel
 (setq org-src-fontify-natively t
       org-src-tab-acts-natively t
-      org-confirm-babel-evaluate t
-      org-edit-src-content-indentation t)
+      org-confirm-babel-evaluate t)
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
