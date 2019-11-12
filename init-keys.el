@@ -1,5 +1,5 @@
 ;; Enable mouse support
-(unless window-system
+(when (display-graphic-p)
   (require 'mouse)
   (xterm-mouse-mode t)
   (global-set-key [mouse-4] '(lambda ()
@@ -13,11 +13,14 @@
   )
 
 
+(global-set-key (kbd "<f5>") 'toggle-frame-fullscreen)
+
 ;; It's all about the project.
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c f") 'find-file-in-project)
 
 ;; Pop to mark
-(bind-key "C-x p" 'pop-to-mark-command)
+(bind-key "C-x p" 'pop-to-mark-qcommand)
 (setq set-mark-command-repeat-pop t)
 
 ;; Occur 
@@ -46,7 +49,6 @@
 (global-set-key (kbd "C-x C-i") 'imenu)
 
 ;; File finding
-(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 
@@ -75,5 +77,19 @@
 (define-key global-map (kbd "C-x \;") 'comment-line)
 (define-key global-map (kbd "C-c M-t") 'writeroom-mode)
 
+(with-eval-after-load 'writeroom-mode
+  (define-key writeroom-mode-map (kbd "C-M-<") #'writeroom-decrease-width)
+  (define-key writeroom-mode-map
+    (kbd "C-M->") #'writeroom-increase-width)
+  (define-key writeroom-mode-map (kbd "C-M-=") #'writeroom-adjust-width))
+
+(advice-add 'text-scale-adjust :after
+            #'visual-fill-column-adjust)
+
 ;; Use hippie
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+;; Avy package
+(use-package avy
+  :ensure t
+  :bind (("C-:" . avy-goto-word-1)))

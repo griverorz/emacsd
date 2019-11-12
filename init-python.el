@@ -12,17 +12,6 @@
 (with-no-warnings
   (require 'cl))
 
-;; jedi-company
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-;; python indent
-(setq python-indent-offset 4)
-(set-variable 'py-indent-offset 4)
-(set-variable 'python-indent-guess-indent-offset nil)
-(set-variable 'indent-tabs-mode nil)
-
 (defun elpy-eval-region-or-line ()
     "Evaluate the region or the current line if there's no active region."
     (interactive)
@@ -42,7 +31,8 @@
   (let ((map (make-sparse-keymap)))
     ;; Alphabetical order to make it easier to find free C-c C-X
     ;; bindings in the future. Heh.
-
+    
+    (define-key map (kbd "C-c C-s") 'helm-swoop)
     (define-key map (kbd "C-M-x")   'python-shell-send-defun)
     (define-key map (kbd "C-c <")   'python-indent-shift-left)
     (define-key map (kbd "C-c >")   'python-indent-shift-right)
@@ -50,12 +40,10 @@
     (define-key map (kbd "C-c C-z") 'elpy-shell-switch-to-shell)
     (define-key map (kbd "C-c C-d") 'elpy-doc)
     (define-key map (kbd "C-c C-f") 'find-file-in-project)
-    ;; (define-key map (kbd "C-c C-i") 'yasnippet-expand)
     (define-key map (kbd "C-c C-j") 'idomenu)
     (define-key map (kbd "C-c C-o") 'elpy-occur-definitions)
     (define-key map (kbd "C-c C-q") 'elpy-show-defun)
     (define-key map (kbd "C-c C-r") 'elpy-refactor)
-    (define-key map (kbd "C-c C-s") 'elpy-rgrep-symbol)
     (define-key map (kbd "C-c C-t") 'elpy-test)
     (define-key map (kbd "C-c C-v") 'elpy-check)
     (define-key map (kbd "C-c C-w") 'elpy-doc-websearch)
@@ -70,22 +58,33 @@
 
 
 ;; Python executable
-(setq python-shell-interpreter "ipython3"
-      python-shell-interpreter-args "-i --simple-prompt")
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+(setq python-shell-interpreter "python3")
+;; (setq python-shell-interpreter "ipython3"
+;;       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "/usr/local/bin/python3")
+(setq elpy-rpc-backend "jedi")
+
+;; Auto complete
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(setq elpy-rpc-backend "jedi")  
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
   (require 'cl))
-
-;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook (lambda () (company-mode -1)) 'append)
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
 
 ;; python indent
 (setq python-indent-offset 4)
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
+
+;; Python flycheck
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+(remove-hook 'elpy-modules 'elpy-module-flymake) ;; <- This removes flymake from elpy 
+ 

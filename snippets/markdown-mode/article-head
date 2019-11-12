@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: article
+# key: article
+# --
+
+---
+title: $1
+author: Gonzalo Rivero
+date: `(format-time-string "%Y-%m-%d")`
+fontsize: 11pt
+output:
+   bookdown::pdf_document2:
+    fig_width: 6.5
+    number_sections: true
+    keep_tex: true
+toc: false
+citecolor: blue
+bibliography: $2
+abstract: |
+          Some nice abstract here
+---

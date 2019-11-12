@@ -8,28 +8,33 @@
 (setq user-full-name "Gonzalo Rivero"
       user-mail-address "griverorz(at)gmail.com")
 
+(setq default-directory "/Users/gonzalorivero/")
+
 ;; Marmalade
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
                          ("marmalade"     . "https://marmalade-repo.org/packages/")
-			             ("melpa-estable" . "https://stable.melpa.org/packages/")
-                         ("melpa"         . "https://melpa.org/packages/")))
+                         ("melpa"     . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+			             ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
 ;; Package shell initialize
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (setq exec-path-from-shell-variables '("PATH"))
+  (exec-path-from-shell-initialize))
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
- (package-install 'use-package))
+  (package-install 'use-package))
 (setq use-package-verbose t)
-(require 'use-package)
+(use-package use-package)
 (setq load-prefer-newer t)
-
-;; Server
-(load "server")
-
+ 
 ;; Load init files
+(load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
 (load "~/.emacs.d/init-keys.el")
 (load "~/.emacs.d/init-tools.el")
@@ -37,8 +42,9 @@
 (load "~/.emacs.d/init-latex.el")
 (load "~/.emacs.d/init-ess.el")
 (load "~/.emacs.d/init-js.el")
+(load "~/.emacs.d/init-html.el")
 (load "~/.emacs.d/init-haskell.el")
-;; (load "~/.emacs.d/init-mail.el")
+(load "~/.emacs.d/init-mail.el")
 (load "~/.emacs.d/init-python.el")
 
 ;; Bound trigger to C-TAB
@@ -56,9 +62,10 @@
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . rmd-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd\\'" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
 
@@ -67,35 +74,43 @@
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs")
 (setq save-abbrevs 'silently)
 
-;; Journal
-(defun launch-journal ()
-  (interactive)
-  (org-capture nil "j")
-  (set-input-method "spanish-prefix"))
-(define-key global-map "\C-cd" 'launch-journal)
-
-;; Enable backup files.
-(setq make-backup-files t)
+;; Backups
 (setq delete-old-versions t)
-(setq version-control t)
-(setq backup-directory-alist
-      `((".*" . , "~/.emacs.d/backups/")))
-(setq auto-save-file-name-transforms
-      `((".*" , "~/.emacs.d/backups/")))
+;disable backup
+(setq backup-inhibited t)
+;disable auto save
+(setq auto-save-default nil)
 
 ;; Binds
-(use-package helm-descbinds
-  :bind (("C-h b" . helm-descbinds)
-         ("C-h w" . helm-descbinds)))
-(use-package helm-xref)
-(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
+(use-package ivy-xref)
+;; XRef initialization is different in Emacs 27
+(if (< emacs-major-version 27)
+    ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
+    ;; commands other than xref-find-definitions
+    ;; (e.g. project-find-regexp):
+    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
+  ;; Emacs 27 only:
+  (setq xref-show-definitions-function #'ivy-xref-show-defs))
 
 ;; Autocomplete with company
-(add-hook 'after-init-hook 'global-company-mode)
-(setq company-global-modes '(not python-mode))
+(global-company-mode)
+
+(add-hook 'eshell-mode-hook 'remove-company-eshell-hook) ;; Remove company from eshell
+(defun remove-company-eshell-hook () (company-mode -1))
+
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
-(setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0)
+(company-tng-configure-default)
+(setq company-selection-wrap-around t
+      company-tooltip-align-annotations t
+      company-minimum-prefix-length 2
+      company-dabbrev-downcase 0
+      company-idle-delay 0
+      company-tooltip-limit 7)
+(company-quickhelp-mode)
+(eval-after-load 'company
+  '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin))
+(define-key company-active-map (kbd "M-h") 'company-show-doc-buffer)
+(setq company-quickhelp-delay nil)
 
 ;; Do not use company in text modes
 (add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
@@ -130,8 +145,7 @@
 (use-package diminish)
 (diminish 'ivy-mode)
 (diminish 'projectile-mode)
-(diminish 'helm-mode)
-(diminish 'flycheck-mode)
+;; (diminish 'helm-mode)
 (diminish 'smartparens-mode)
 (diminish 'auto-revert-mode)
 (diminish 'reftex-mode)
@@ -145,3 +159,4 @@
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+(put 'set-goal-column 'disabled nil)

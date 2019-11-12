@@ -3,6 +3,7 @@
 (unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
+(setq inferior-R-program-name "/usr/local/bin/R")
 (setq exec-path (append exec-path '("/usr/local/stata")))
 
 (use-package ess-site)
@@ -11,28 +12,51 @@
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
 (ess-toggle-underscore nil)
 (setq ess-R-argument-suffix "=")
+(defalias 'newname 'oldname)
 
-;; Set autocomplete using company
-(setq ess-use-company 'script-only)
+(use-package ess-site :ensure ess)
 
-;;; ESS
-(defun my-ess-hook ()
-  ;; ensure company-R-library is in ESS backends
-  (make-local-variable 'company-backends)
-  (cl-delete-if (lambda (x) (and (eq (car-safe x) 'company-R-args))) company-backends)
-  (push (list 'company-R-args 'company-R-objects 'company-R-library :separate)
-        company-backends))
-
-(add-hook 'ess-mode-hook 'my-ess-hook)
+;; Smartparents
+(add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))
 
 ;; Do not load data or save envir
-(setq inferior-R-args "--no-restore-history --no-restore-data --no-save ")
+(setq inferior-R-args "--no-restore-history --no-restore-data --no-save")
 
 ;; Not to indent comments in R mode
 (add-hook 'ess-mode-hook
           (lambda ()
             (local-set-key (kbd "RET") 'newline)))
 
+;; ESS syntax highlight  
+(setq ess-R-font-lock-keywords 
+	  '((ess-R-fl-keyword:keywords . t)
+	    (ess-R-fl-keyword:constants . t)
+	    (ess-R-fl-keyword:modifiers . t)
+	    (ess-R-fl-keyword:fun-defs . t)
+	    (ess-R-fl-keyword:assign-ops . t)
+	    (ess-fl-keyword:fun-calls . t)
+	    (ess-fl-keyword:numbers . t)
+	    (ess-fl-keyword:operators . t)
+	    (ess-fl-keyword:delimiters . t)
+	    (ess-fl-keyword:= . t)
+	    (ess-R-fl-keyword:F&T . t)
+	    (ess-R-fl-keyword:%op% . t)))
+
+(setq inferior-ess-r-font-lock-keywords 
+	  '((ess-S-fl-keyword:prompt . t)
+ 	    (ess-R-fl-keyword:messages . t)
+	    (ess-R-fl-keyword:modifiers . nil)
+	    (ess-R-fl-keyword:fun-defs . t)
+	    (ess-R-fl-keyword:keywords . nil)
+	    (ess-R-fl-keyword:assign-ops . t)
+	    (ess-R-fl-keyword:constants . t)
+	    (ess-fl-keyword:matrix-labels . t)
+	    (ess-fl-keyword:fun-calls . nil)
+	    (ess-fl-keyword:numbers . nil)
+	    (ess-fl-keyword:operators . nil)
+	    (ess-fl-keyword:delimiters . nil)
+	    (ess-fl-keyword:= . t)
+	    (ess-R-fl-keyword:F&T . nil)))
 
 ;; Not to indent comments in R mode
 (defun then_R_operator ()
@@ -91,6 +115,7 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
+(setq ess-use-flymake t)
 
 ;; Create comments
 (defun fill-to-end (char)
@@ -100,43 +125,24 @@
     (while (< (current-column) 80)
       (insert-char char))))
 
-;; Polymode
-;; Just an Emacs personal dir containing polymode packages etc.
-(setq MY-EMACS  "~/.emacs.d/") 
-
-(defun my-emacs  (subfolder)
-  "Get path to personal dir + subfolder"
-  (concat (expand-file-name MY-EMACS) "/" subfolder))
-
-;; ESS Markdown
-(defun rmd-mode ()
-  "ESS Markdown mode for rmd files"
-  (interactive)
-  (setq load-path 
-        (append (list (my-emacs "polymode/") 
-                      (my-emacs "polymode/modes/"))
-                load-path))
-  (require 'poly-R)
-  (require 'poly-markdown)
-  (poly-markdown+r-mode))
-
 ;; Let you use markdown buffer easily
 (setq ess-nuke-trailing-whitespace-p nil)  
 
-(defun rmd-fold-block ()
-  "Fold the contents of the current R block, in an Rmarkdown file (can be undone
-   with fold-this-unfold-at-point)"
+
+;; Fold
+(defun rmd-fold-block (span)
+  "Fold the contents of the current R block"
   (interactive)
   (and (eq (oref pm/chunkmode :mode) 'r-mode)
        (pm-with-narrowed-to-span nil
-         (goto-char (point-min))
-         (forward-line)
-         (fold-this (point) (point-max)))))
+                                 (goto-char (point-min))
+                                 (fold-this (point) (point-max)))))
+
+(defun rmd-unfold-all-blocks ()
+  fold-this-unfold-all)
 
 (defun rmd-fold-all-blocks (arg)
-  "Fold all R blocks in an Rmarkdown file (can be undone with
-   fold-this-unfold-all)"
-  ;; Interactive, with a prefix argument
+  "Fold all R blocks in an Rmarkdown file"
   (interactive "P")
   (save-restriction
     (widen)
@@ -145,3 +151,11 @@
        'rmd-fold-block (point-min)
        ;; adjust this point to fold prior regions
        (if arg (point) (point-max))))))
+
+;; Company
+(setq ess-use-company t)
+(setq ess-use-company 'script-only)
+
+;; Tags
+(require 'ess-r-xref)
+(require 'xref)
