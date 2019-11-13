@@ -158,7 +158,7 @@
 (epa-file-enable)
 (setq epa-file-select-keys nil)
 (setq  epa-pinentry-mode 'loopback)
-(pinentry-start)
+;; (pinentry-start)
 
 ;; Copy to clipboard
 (setq *is-a-mac* (eq system-type 'darwin))

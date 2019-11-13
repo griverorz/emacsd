@@ -9,7 +9,7 @@
 (setq org-ref-show-broken-links t)
 
 ;; Document org
-(setq org-directory "~/org/")
+(setq org-directory "~/Resilio/org/")
 
 ;; Export to latex
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
@@ -62,13 +62,13 @@
 ;; Templates
 (setq org-capture-templates
       '(
-        ("t" "Todo" entry (file "~/org/inbox.org")
+        ("t" "Todo" entry (file "~/org/Resilio/inbox.org")
          "* TODO %? %^g\n%A")
 
-        ("M" "Short memo" entry (file "~/org/inbox.org")
+        ("M" "Short memo" entry (file "~/org/Resilio/inbox.org")
          "* Memo: %^{title} %^g \n:PROPERTIES:\n:TO: %^{To}\n:CREATED: %U\n:END:\n%i%?\n")
 
-        ("w" "Writing" entry (file+headline "~/org/inbox.org" "Writing")
+        ("w" "Writing" entry (file+headline "~/org/Resilio/inbox.org" "Writing")
          "* %^{title}\n:PROPERTIES:\n:AUTHOR: Gonzalo Rivero\n:TITLE: %\\1\n:CREATED: %U\n:END:\n%?")
         ))
 
@@ -139,7 +139,7 @@
   :ensure t
   :defer t
   :custom
-  (org-journal-dir "~/journal/")
+  (org-journal-dir "~/Resilio/journal/")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-enable-encryption nil)
   (org-journal-encrypt-journal nil))

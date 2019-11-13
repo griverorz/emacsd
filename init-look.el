@@ -25,25 +25,25 @@
 (doom-themes-org-config)
 
 ;; Modeline
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :hook (after-init . doom-modeline-mode))
 
-(setq doom-modeline-icon (display-graphic-p))
-(setq doom-modeline-unicode-fallback t)
-(setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-buffer-file-name-style 'buffer-name)
-(setq doom-modeline-project-detection 'project)
-(setq doom-modeline-buffer-file-name-style 'relative-to-project)
+;; (setq doom-modeline-icon (display-graphic-p))
+;; (setq doom-modeline-unicode-fallback t)
+;; (setq doom-modeline-major-mode-icon t)
+;; (setq doom-modeline-buffer-file-name-style 'buffer-name)
+;; (setq doom-modeline-project-detection 'project)
+;; (setq doom-modeline-buffer-file-name-style 'relative-to-project)
 
-;; Whether display environment version.
-(setq doom-modeline-env-version t)
+;; ;; Whether display environment version.
+;; (setq doom-modeline-env-version t)
 
-(defun enable-doom-modeline-icons (_frame)
-  (setq doom-modeline-icon t))
+;; (defun enable-doom-modeline-icons (_frame)
+;;   (setq doom-modeline-icon t))
 
-(add-hook 'after-make-frame-functions
-          #'enable-doom-modeline-icons)
+;; (add-hook 'after-make-frame-functions
+;;           #'enable-doom-modeline-icons)
 
 
 ;; Italic
@@ -72,16 +72,16 @@
       diff-switches "-u")
 
 ;; Activate menu only in GUI
-(if (display-graphic-p)
-    (progn
-      ;; if graphic
-      (scroll-bar-mode -1)
-      (menu-bar-mode -1))
-  ;; if terminal
-  (menu-bar-mode -1))
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(setq ns-use-proxy-icon nil)
+;; (if (display-graphic-p)
+;;     (progn
+;;       ;; if graphic
+;;       (scroll-bar-mode -1)
+;;       (menu-bar-mode -1))
+;;   ;; if terminal
+;;   (menu-bar-mode -1))
+;; (tool-bar-mode -1)
+;; (scroll-bar-mode -1)
+;; (setq ns-use-proxy-icon nil)
 
 ;; highlight current line
 (global-hl-line-mode +1)
