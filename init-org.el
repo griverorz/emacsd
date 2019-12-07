@@ -12,7 +12,10 @@
 (setq org-directory "~/org/")
 
 ;; Export to latex
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings 'minted)
+
+(setq org-latex-pdf-process (list "latexmk -output-directory=%o -shell-escape -bibtex -f -pdf %f"))
 
 ;; Log
 (setq org-log-done t)
@@ -24,6 +27,7 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-c C-." 'org-time-stamp)
 (global-set-key "\C-cb" 'org-switchb)
 (define-key org-mode-map (kbd "C-c C-q") 'counsel-org-tag)
 

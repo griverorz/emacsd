@@ -11,7 +11,7 @@
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
 
-;; shortcuts
+; shortcuts
 (setq mu4e-maildir-shortcuts
     '( ("/INBOX"               . ?i)
        ("/[Gmail].Sent Mail"   . ?s)))

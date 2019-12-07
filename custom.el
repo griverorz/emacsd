@@ -1,5 +1,6 @@
 (setq reftex-default-bibliography
       '("/Users/gonzalorivero/digital-media-politics/bibliography.bib"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -12,7 +13,7 @@
  '(haskell-tags-on-save t)
  '(package-selected-packages
    (quote
-    (pinentry xref-js2 which-key web-mode visual-fill-column use-package unfill swoop smex smartparens smart-mode-line-powerline-theme reveal-in-osx-finder poly-org poly-R pandoc-mode org-ref org-mime org-journal org-bullets openwith neotree multi-term magit langtool ivy-xref indium imenu-list haskell-mode flycheck find-file-in-project fill-column-indicator expand-region exec-path-from-shell ess emmet-mode elpy doom-themes doom-modeline doom dockerfile-mode docker-compose-mode docker diminish counsel-projectile company-quickhelp company-jedi company-go column-enforce-mode beacon avy auctex all-the-icons-ivy))))
+    (stan-mode xref-js2 writeroom-mode which-key web-mode use-package unfill swoop smex smartparens smart-mode-line-powerline-theme reveal-in-osx-finder poly-org poly-R pinentry pandoc-mode org-ref org-plus-contrib org-mime org-journal org-bullets org openwith neotree multi-term magit langtool ivy-xref indium imenu-list haskell-mode flycheck flx find-file-in-project expand-region exec-path-from-shell ess emmet-mode elpy doom-themes doom-modeline doom dockerfile-mode docker-compose-mode docker diminish counsel-projectile company-quickhelp company-jedi company-go column-enforce-mode beacon babel avy auctex all-the-icons-ivy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
