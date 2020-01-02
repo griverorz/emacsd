@@ -3,19 +3,26 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
+;; Recent
+(require 'recentf)
+(add-to-list 'recentf-exclude
+             (file-expand-wildcards
+              (expand-file-name "~/journal/*")))
+
 ;; Magit
 (use-package magit)
 
+;; Avy mode
+(use-package avy :ensure t
+  :diminish (avy-mode . "")
+  :bind (("C-:" . avy-goto-char)
+         ("C-'" . avy-goto-line)))
+  
 ;; Ivy mode
 (use-package ivy :ensure t
   :diminish (ivy-mode . "")
-  :bind
-  (:map ivy-mode-map
-   ("C-'" . ivy-avy))
   :config
   (ivy-mode 1)
-  ;; add ‘recentf-mode’ and bookmarks to ‘ivy-switch-buffer’.
-  (setq ivy-use-virtual-buffers t)
   ;; number of result lines to display
   (setq ivy-height 10)
   ;; does not count candidates

@@ -19,6 +19,11 @@
 			             ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
+;; Tech preferences
+(setq load-prefer-newer t)
+(setq gc-cons-threshold 50000000)
+(setq large-file-warning-threshold 100000000)
+
 ;; Package shell initialize
 (use-package exec-path-from-shell
   :ensure t
@@ -96,7 +101,9 @@
 ;; Autocomplete with company
 (global-company-mode)
 
-(add-hook 'eshell-mode-hook 'remove-company-eshell-hook) ;; Remove company from eshell
+(add-hook
+ 'eshell-mode-hook
+ 'remove-company-eshell-hook) ;; Remove company from eshell
 (defun remove-company-eshell-hook () (company-mode -1))
 
 (global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)

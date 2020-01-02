@@ -3,7 +3,6 @@
 (unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
-(setq inferior-R-program-name "/usr/local/bin/R")
 (setq exec-path (append exec-path '("/usr/local/stata")))
 
 (use-package ess-site)
@@ -115,7 +114,6 @@
 (setq comint-scroll-to-bottom-on-input t)
 (setq comint-scroll-to-bottom-on-output t)
 (setq comint-move-point-for-output t)
-(setq ess-use-flymake t)
 
 ;; Create comments
 (defun fill-to-end (char)
@@ -128,30 +126,6 @@
 ;; Let you use markdown buffer easily
 (setq ess-nuke-trailing-whitespace-p nil)  
 
-
-;; Fold
-(defun rmd-fold-block (span)
-  "Fold the contents of the current R block"
-  (interactive)
-  (and (eq (oref pm/chunkmode :mode) 'r-mode)
-       (pm-with-narrowed-to-span nil
-                                 (goto-char (point-min))
-                                 (fold-this (point) (point-max)))))
-
-(defun rmd-unfold-all-blocks ()
-  fold-this-unfold-all)
-
-(defun rmd-fold-all-blocks (arg)
-  "Fold all R blocks in an Rmarkdown file"
-  (interactive "P")
-  (save-restriction
-    (widen)
-    (save-excursion
-      (pm-map-over-spans
-       'rmd-fold-block (point-min)
-       ;; adjust this point to fold prior regions
-       (if arg (point) (point-max))))))
-
 ;; Company
 (setq ess-use-company t)
 (setq ess-use-company 'script-only)
@@ -159,3 +133,28 @@
 ;; Tags
 (require 'ess-r-xref)
 (require 'xref)
+
+;; Lintr
+;; 2019-10-05 ess and flymake
+(setq ess-r-flymake-linters '(
+    ;; "absolute_paths_linter=NULL"
+    ;; "assignment_linter=NULL"
+    ;; "closed_curly_linter=NULL"
+    ;; "commas_linter=NULL"
+    ;; "commented_code_linter=NULL"
+    "infix_spaces_linter=NULL"
+    ;; "line_length_linter=80"
+    ;; "no_tab_linter=NULL"
+    ;; "object_usage_linter=NULL"
+    ;; "camel_case_linter=NULL"
+    ;; "snake_case_linter=NULL"
+    ;; "multiple_dots_linter=NULL"
+    ;; "object_name_linter=NULL"
+    ;; "object_length_linter=NULL"
+    ;; "open_curly_linter=NULL"
+    ;; "single_quotes_linter=NULL"
+    ;; "spaces_inside_linter=NULL"
+    ;; "spaces_left_parentheses_linter=NULL"
+    ;; "trailing_blank_lines_linter=NULL"
+    ;; "trailing_whitespace_linter=NULL"
+))
