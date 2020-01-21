@@ -86,6 +86,8 @@
 (setq backup-inhibited t)
 ;disable auto save
 (setq auto-save-default nil)
+;; locks
+(setq create-lockfiles nil)
 
 ;; Binds
 (use-package ivy-xref)
