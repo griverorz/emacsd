@@ -158,3 +158,4 @@
     ;; "trailing_blank_lines_linter=NULL"
     ;; "trailing_whitespace_linter=NULL"
 ))
+
