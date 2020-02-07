@@ -142,7 +142,7 @@
     ;; "closed_curly_linter=NULL"
     ;; "commas_linter=NULL"
     ;; "commented_code_linter=NULL"
-    "infix_spaces_linter=NULL"
+    ;; "infix_spaces_linter=NULL"
     ;; "line_length_linter=80"
     ;; "no_tab_linter=NULL"
     ;; "object_usage_linter=NULL"

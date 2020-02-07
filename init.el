@@ -10,8 +10,6 @@
 
 (setq default-directory "/Users/rivero_g/")
 
-(setq default-directory "/Users/gonzalorivero/")
-
 ;; Marmalade
 (require 'package)
 (setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
