@@ -19,11 +19,12 @@
 
 ;; Marmalade
 (require 'package)
-(setq package-archives '(("gnu"           . "https://elpa.gnu.org/packages/")
-                         ("marmalade"     . "https://marmalade-repo.org/packages/")
-                         ("melpa"     . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-			             ("melpa-estable" . "https://stable.melpa.org/packages/")))
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("marmalade" . "https://marmalade-repo.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
 ;; Tech preferences
@@ -125,8 +126,12 @@
       company-tooltip-limit 7)
 (company-quickhelp-mode)
 (eval-after-load 'company
-  '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin))
-(define-key company-active-map (kbd "M-h") 'company-show-doc-buffer)
+  '(define-key company-active-map
+     (kbd "C-c h")
+     #'company-quickhelp-manual-begin))
+(define-key company-active-map
+  (kbd "M-h")
+  'company-show-doc-buffer)
 (setq company-quickhelp-delay nil)
 
 ;; Do not use company in text modes
@@ -178,7 +183,8 @@
   :after flymake
   :config
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
-  (setq flymake-diagnostic-at-point-display-diagnostic-function (quote flymake-diagnostic-at-point-display-minibuffer)))
+  (setq flymake-diagnostic-at-point-display-diagnostic-function
+        (quote flymake-diagnostic-at-point-display-minibuffer)))
 
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
