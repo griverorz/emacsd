@@ -90,7 +90,7 @@
 ;; Backups
 (setq delete-old-versions t)
 ;disable backup
-(setq backup-inhibited t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 ;disable auto save
 (setq auto-save-default nil)
 ;; locks

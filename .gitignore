@@ -9,6 +9,8 @@ transient
 smex-items
 .Rhistory
 elpa/
+elpy/
+*cache
 eshell/
 bookmarks
 recentf
