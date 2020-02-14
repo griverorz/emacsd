@@ -4,11 +4,18 @@
 	 "/usr/texbin" ":"
 	 (getenv "PATH")))
 
-;; Set my data
-(setq user-full-name "Gonzalo Rivero"
-      user-mail-address "griverorz(at)gmail.com")
 
-(setq default-directory "/Users/gonzalorivero/")
+;; Set my data
+(when (string-equal user-login-name "gonzalorivero")
+  (setq user-full-name "Gonzalo Rivero"
+        user-mail-address "griverorz(at)gmail.com")
+  (setq default-directory "/Users/gonzalorivero/"))
+
+(when (string-equal user-login-name "rivero_g")
+  (setq user-full-name "Gonzalo Rivero"
+        user-mail-address "gonzalorivero(at)westat.com")
+  (setq default-directory "/Users/rivero_g/"))
+
 
 ;; Marmalade
 (require 'package)
@@ -177,4 +184,3 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 (put 'set-goal-column 'disabled nil)
-
