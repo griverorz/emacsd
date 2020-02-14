@@ -9,7 +9,7 @@
 (setq org-ref-show-broken-links t)
 
 ;; Document org
-(setq org-directory "/Volumes/Keybase/private/griverorz/org/")
+(setq org-directory "~/org/")
 
 ;; Export to latex
 (add-to-list 'org-latex-packages-alist '("" "minted"))

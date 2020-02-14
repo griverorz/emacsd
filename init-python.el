@@ -56,20 +56,11 @@
     map)
   "Key map for the Emacs Lisp Python Environment.")
 
-
 ;; Python executable
-;; (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-;; (setq python-shell-interpreter "python3")
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i --simple-prompt")
-(setq elpy-rpc-python-command "/usr/local/bin/python3")
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+(setq python-shell-interpreter "python3")
+(setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
-
-;; Auto complete
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-(setq elpy-rpc-backend "jedi")  
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
