@@ -34,7 +34,7 @@
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-buffer-file-name-style 'buffer-name)
 (setq doom-modeline-project-detection 'project)
-(setq doom-modeline-buffer-file-name-style 'relative-to-project)
+(setq doom-modeline-buffer-file-name-style 'file-name)
 
 ;; Whether display environment version.
 (setq doom-modeline-env-version t)
