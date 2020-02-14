@@ -29,7 +29,7 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
-;; (setq doom-modeline-icon (display-graphic-p))
+(setq doom-modeline-icon (display-graphic-p))
 (setq doom-modeline-unicode-fallback t)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-buffer-file-name-style 'buffer-name)

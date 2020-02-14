@@ -58,11 +58,16 @@
 
 
 ;; Python executable
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-(setq python-shell-interpreter "python3")
-;; (setq python-shell-interpreter "ipython3"
-;;       python-shell-interpreter-args "-i --simple-prompt")
-(setq elpy-rpc-python-command "/usr/local/bin/python3")
+;; (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+(setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
+(add-to-list 'python-shell-completion-native-disabled-interpreters
+             "jupyter")
+;; (setq python-shell-interpreter "python3")
+;; ;; (setq python-shell-interpreter "ipython3"
+;; ;;       python-shell-interpreter-args "-i --simple-prompt")
+;; (setq elpy-rpc-python-command "/usr/local/bin/python3")
 (setq elpy-rpc-backend "jedi")
 
 ;; Auto complete

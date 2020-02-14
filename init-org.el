@@ -39,11 +39,13 @@
                       ("home" . ?h) 
                       ("research" . ?r)
                       ("crypt" . ?c)
+                      ("coding" . ?p)
                       ("errand" . ?e)
                       ("write" . ?m)
                       ("reading" . ?b)))
 ;; Tags next to text
 (setq org-tags-column 0)
+
 ;; Todo states
 (setq org-todo-keywords
       '((sequence "TODO(t)" "VERIFY(v@/!)" "|" "DONE(d!)" "CANCELLED(c@!)")))
