@@ -84,6 +84,7 @@
 
 ;; highlight current line
 (global-hl-line-mode +1)
+(set-face-attribute 'hl-line nil :inherit nil :background "gray25")
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
