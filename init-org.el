@@ -162,6 +162,8 @@
   (kbd "C-x C-s")
   'org-journal-save-entry-and-exit)
 
+(define-key org-mode-map (kbd "C-'") nil)
+
 ;; Org bullets
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
