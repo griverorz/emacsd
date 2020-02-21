@@ -1,9 +1,6 @@
 ;; ESS
-(add-to-list 'load-path "~/.emacs.d/ess/lisp")
+;; (add-to-list 'load-path "~/.emacs.d/ess/lisp")
 (unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
-
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/stata"))
-(setq exec-path (append exec-path '("/usr/local/stata")))
 
 (use-package ess-site)
 (autoload 'R "ess-site.el" "ESS" t)
@@ -76,26 +73,6 @@
 ;; rather I want unconditionally that the buffer is shown in the current frame.
 (define-key compilation-minor-mode-map [(?n)] 'next-error-no-select)
 (define-key compilation-minor-mode-map [(?p)] 'previous-error-no-select)
-
-(defun my-ess-start-R ()
-  (interactive)
-  (if (not (member "*R*" (mapcar (function buffer-name) (buffer-list))))
-      (progn
-        (delete-other-windows)
-        (setq w1 (selected-window))
-        (setq w1name (buffer-name))
-        (setq w2 (split-window w1 nil t))
-        (R)
-        (set-window-buffer w2 "*R*")
-        (set-window-buffer w1 w1name))))
-
-(defun my-ess-eval ()
-  (interactive)
-  (my-ess-start-R))
-
-(add-hook 'ess-mode-hook
-          '(lambda()
-             (local-set-key [(super return)] 'my-ess-eval)))
 
 (add-hook 'inferior-ess-mode-hook
           '(lambda()
