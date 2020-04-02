@@ -46,10 +46,6 @@
 ;; Tags next to text
 (setq org-tags-column 0)
 
-;; Todo states
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "VERIFY(v@/!)" "|" "DONE(d!)" "CANCELLED(c@!)")))
-
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
                              (concat org-directory "writing.org")
@@ -139,6 +135,9 @@
     (org-tags-exclude-from-inheritance (quote ("crypt")))
     (org-crypt-key "1E3A49578FE54AAC231A3248E75FC0192DD79909")
     (auto-save-default nil))
+
+;; Do not inherit
+(setq org-tags-exclude-from-inheritance '("work"))
 
 ;; Journal
 (use-package org-journal
