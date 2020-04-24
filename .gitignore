@@ -21,3 +21,6 @@ projectile.cache
 snippets/markdown-mode/blogpost
 .mc-lists.el
 custom.el
+tramp
+abbrev_defs
+org-clock-save.el
