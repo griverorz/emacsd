@@ -23,6 +23,8 @@
   :diminish (ivy-mode . "")
   :config
   (ivy-mode 1)
+  ;; (set-face-attribute 'ivy-current-match nil :inherit 'hl-line foo)
+  (setq ivy-format-function #'ivy-format-function-arrow)
   ;; number of result lines to display
   (setq ivy-height 10)
   ;; does not count candidates
@@ -139,7 +141,6 @@
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (put 'upcase-region 'disabled nil)
-(setq markdown-hide-urls t)
 (add-hook 'org-mode-hook 'turn-on-reftex)
 
 (setq reftex-external-file-finders
@@ -203,50 +204,13 @@
        1))
    ))
 
-(defun my/paste-in-minibuffer ()
-  (local-set-key (kbd "M-y") 'paste-from-x-clipboard)
-  )
-
-
-(defun copy-from-clipboard-and-cc-kill-ring ()
-  "paste from clipboard and cc the content into kill ring"
-  (interactive)
-  (let (str)
-    (with-temp-buffer
-      (paste-from-x-clipboard)
-      (setq str (buffer-string)))
-    ;; finish the paste
-    (insert str)
-    ;; cc the content into kill ring at the same time
-    (kill-new str)
-    ))
-
-
-
-;; Langtools
-(setq langtool-language-tool-jar
-      "/Applications/LanguageTool-4.2/languagetool-commandline.jar")
-(use-package langtool)
-
-(defun langtool-autoshow-detail-popup (overlays)
-  (when (use-package popup)
-    ;; Do not interrupt current popup
-    (unless (or popup-instances
-                ;; suppress popup after type `C-g` .
-                (memq last-command '(keyboard-quit)))
-      (let ((msg (langtool-details-error-message overlays)))
-        (popup-tip msg)))))
-
-(setq langtool-autoshow-message-function
-      'langtool-autoshow-detail-popup)
-
 
 ;; Multi-term replacement for ansi-term
 (use-package multi-term)
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
-(setq multi-term-program "/bin/bash")   ;; use bash
+(setq multi-term-program "/bin/zsh")   ;; use bash
 
 ;; multiterm
 (global-set-key (kbd "C-c t") 'multi-term-next)
@@ -311,24 +275,6 @@ sVersion 2018-08-03"
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "open" (file))))
-
-;; Speed bar
-(use-package neotree)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-window-fixed-size nil)
-(add-hook 'neo-change-root-hook
-          (lambda () (neo-buffer--with-resizable-window
-                 (let ((fit-window-to-buffer-horizontally t))
-                   (fit-window-to-buffer)))))
-
-;; HTOP
-(defun htop ()
-  (interactive)
-  (if (get-buffer "*htop*")
-      (switch-to-buffer "*htop*")
-    (ansi-term "/bin/bash" "htop")   
-    (comint-send-string "*htop*" "htop\n")))
 
 ;; Open in osx finder
 (use-package reveal-in-osx-finder)

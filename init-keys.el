@@ -93,3 +93,13 @@
 (use-package avy
   :ensure t
   :bind (("C-:" . avy-goto-word-1)))
+
+;; Toggle modeline
+(defun toggle-mode-line () "toggles the modeline on and off"
+  (interactive)
+  (setq mode-line-format
+	(if (equal mode-line-format nil)
+	    (default-value 'mode-line-format)) )
+  (redraw-display))
+
+(global-set-key [M-f12] 'toggle-mode-line)

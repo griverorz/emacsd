@@ -62,9 +62,6 @@
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
 
-;; Avoid annoying and useless warnings
-(with-no-warnings
-  (require 'cl))
 
 ;; python indent
 (setq python-indent-offset 4)

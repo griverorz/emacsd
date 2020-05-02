@@ -18,8 +18,6 @@
 
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 (doom-themes-neotree-config)
-;; or for treemacs users
-(doom-themes-treemacs-config)
 
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
@@ -84,12 +82,12 @@
 
 ;; highlight current line
 (global-hl-line-mode +1)
+(set-face-attribute 'hl-line nil :inherit nil :background "gray20")
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)
-
 
 ;; Delete seleted text when typing
 (delete-selection-mode 1)
@@ -210,7 +208,6 @@
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c M-p") 'mc/mark-all-like-this)
 
-
 ;; iBuffer groups
 (setq ibuffer-saved-filter-groups
     '(("home"
@@ -263,4 +260,3 @@
     (setq beacon-push-mark 5)
     (setq beacon-size 15)
 )
-
