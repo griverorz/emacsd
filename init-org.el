@@ -29,7 +29,8 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-c C-." 'org-time-stamp)
 (global-set-key "\C-cb" 'org-switchb)
-(define-key org-mode-map (kbd "C-c C-q") 'counsel-org-tag)
+(global-set-key "\C-c C-b" 'counsel-org-agenda-headlines)
+
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
@@ -45,6 +46,7 @@
                       ("reading" . ?b)))
 ;; Tags next to text
 (setq org-tags-column 0)
+(setq org-agenda-tags-column 0)
 
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
