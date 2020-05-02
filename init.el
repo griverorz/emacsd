@@ -89,7 +89,7 @@
 (setq save-abbrevs 'silently)
 
 ;; Backups
-(setq delete-old-versions t)
+(setq delete-old-versions nil)
 ;disable backup
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 ;disable auto save
