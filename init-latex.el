@@ -31,10 +31,10 @@
 	    (setq TeX-source-correlate-method 'synctex)
 
 	    (setq TeX-view-program-list
-		  '(("Skim" 
-		     "open -a Skim.app %o"))
+		  '(("Preview" 
+		     "open -a Preview.app %o"))
 		  TeX-view-program-selection
-		  '((output-pdf "Skim")))))
+		  '((output-pdf "Preview")))))
 (setq TeX-PDF-mode t)
 
 ;; Turn RefTeX on

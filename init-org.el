@@ -24,13 +24,13 @@
 (setq org-ellipsis "⤵")
 
 ;; Bindings
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-c C-." 'org-time-stamp)
-(global-set-key "\C-cb" 'org-switchb)
-(global-set-key "\C-c C-b" 'counsel-org-agenda-headlines)
-
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c C-.") 'org-time-stamp)
+(global-set-key (kbd "C-c b") 'org-switchb)
+(global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
+(define-key org-mode-map (kbd "C-c C-c") #'counsel-org-tag)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)

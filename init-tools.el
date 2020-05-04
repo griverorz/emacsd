@@ -29,8 +29,8 @@
   (setq ivy-height 10)
   ;; does not count candidates
   (setq ivy-count-format "")
-  ;; no regexp by default
-  (setq ivy-initial-inputs-alist nil)
+  ;; ;; no regexp by default
+  (setq ivy-initial-inputs-alist ())
   ;; Minibuffers
   (setq enable-recursive-minibuffers t)
   ;; configure regexp engine.
@@ -58,8 +58,6 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
-(global-set-key (kbd "C-c C-q") 'counsel-org-tag)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (use-package counsel
@@ -279,3 +277,7 @@ sVersion 2018-08-03"
 ;; Open in osx finder
 (use-package reveal-in-osx-finder)
 
+
+;; Current date
+(defun insert-current-date () (interactive)
+       (insert (shell-command-to-string "echo -n $(date +%B,\\ %d\\ %Y)")))

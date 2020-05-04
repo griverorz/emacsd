@@ -189,3 +189,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 (put 'set-goal-column 'disabled nil)
+
+;; Default to Spanish
+(setq default-input-method "spanish-prefix")
