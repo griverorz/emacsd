@@ -203,18 +203,6 @@
    ))
 
 
-;; Multi-term replacement for ansi-term
-(use-package multi-term)
-(autoload 'multi-term "multi-term" nil t)
-(autoload 'multi-term-next "multi-term" nil t)
-
-(setq multi-term-program "/bin/zsh")   ;; use bash
-
-;; multiterm
-(global-set-key (kbd "C-c t") 'multi-term-next)
-(global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
-
-
 ;; Tags
 (use-package xref)
 
