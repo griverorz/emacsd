@@ -29,7 +29,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c C-.") 'org-time-stamp)
 (global-set-key (kbd "C-c b") 'org-switchb)
-(global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
+(define-key org-mode-map (kbd "C-c C-b") #'counsel-org-agenda-headlines)
 (define-key org-mode-map (kbd "C-c C-c") #'counsel-org-tag)
 
 ;; Modules
@@ -67,7 +67,7 @@
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file "~/org/inbox.org")
-         "* TODO %? %^g\n%A")
+         "* TODO %? %^g")
 
         ("M" "Short memo" entry (file "~/org/inbox.org")
          "* Memo: %^{title} %^g \n:PROPERTIES:\n:TO: %^{To}\n:CREATED: %U\n:END:\n%i%?\n")
