@@ -40,10 +40,11 @@
                       ("home" . ?h) 
                       ("research" . ?r)
                       ("crypt" . ?c)
-                      ("coding" . ?p)
                       ("errand" . ?e)
-                      ("write" . ?m)
+                      ("email" . ?m)
+                      ("meeting" . ?t)
                       ("reading" . ?b)))
+
 ;; Tags next to text
 (setq org-tags-column 0)
 (setq org-agenda-tags-column 0)
@@ -63,7 +64,6 @@
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "inbox.org"))
 
-;; Templates
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file "~/org/inbox.org")
@@ -71,6 +71,9 @@
 
         ("M" "Short memo" entry (file "~/org/inbox.org")
          "* Memo: %^{title} %^g \n:PROPERTIES:\n:TO: %^{To}\n:CREATED: %U\n:END:\n%i%?\n")
+
+        ("m" "Meeting" entry (file "~/org/inbox.org")
+         "** TODO Meeting about %^{topic} :meeting:\nSCHEDULED: %U\n\n *Attendees:*\n- [X] Gonzalo Rivero\n- [ ] %^{person}\n\n *Notes:*\n%?")
 
         ("w" "Writing" entry (file+headline "~/org/inbox.org" "Writing")
          "* %^{title}\n:PROPERTIES:\n:AUTHOR: Gonzalo Rivero\n:TITLE: %\\1\n:CREATED: %U\n:END:\n%?")
