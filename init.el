@@ -122,7 +122,7 @@
       company-tooltip-align-annotations t
       company-minimum-prefix-length 2
       company-dabbrev-downcase 0
-      company-idle-delay 0
+      company-idle-delay .1
       company-tooltip-limit 7)
 (company-quickhelp-mode)
 (eval-after-load 'company

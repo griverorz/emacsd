@@ -42,7 +42,7 @@
 (use-package smex)
 (use-package flx)
 
-(global-set-key (kbd "C-c C-s") 'swiper)
+(global-set-key (kbd "M-o") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c C-o") 'ivy-occur)
@@ -65,11 +65,6 @@
   (("M-y" . counsel-yank-pop)
    :map ivy-minibuffer-map
    ("M-y" . ivy-next-line)))
-
-(use-package swoop)
-(global-set-key (kbd "C-o")   'swoop)
-(global-set-key (kbd "C-M-o") 'swoop-multi)
-(global-set-key (kbd "M-o")   'swoop-pcre-regexp)
 
 ;; Projectile
 (use-package projectile

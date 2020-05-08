@@ -2,6 +2,7 @@
 ;; (add-to-list 'load-path "~/.emacs.d/ess/lisp")
 (unless (getenv "LANG") (setenv "LANG" "en_US.UTF-8"))
 
+
 (use-package ess-site)
 (autoload 'R "ess-site.el" "ESS" t)
 (autoload 'R-mode "ess-site.el" t)
@@ -107,6 +108,7 @@
 (setq ess-use-company t)
 (setq ess-use-company 'script-only)
 
+
 ;; Tags
 (require 'ess-r-xref)
 (require 'xref)
@@ -135,4 +137,5 @@
     ;; "trailing_blank_lines_linter=NULL"
     ;; "trailing_whitespace_linter=NULL"
 ))
+
 
