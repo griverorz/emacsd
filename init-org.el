@@ -36,13 +36,15 @@
 (setq org-expiry-inactive-timestamps t)
 
 ;; Tags shortcuts
-(setq org-tag-alist '(("work" . ?w) 
+(setq org-tag-alist '(("overhead" . ?o) 
                       ("home" . ?h) 
                       ("research" . ?r)
                       ("crypt" . ?c)
                       ("errand" . ?e)
-                      ("email" . ?m)
+                      ("work" . ?p)
+                      ("email" . ?w)
                       ("meeting" . ?t)
+                      ("coding" . ?d)
                       ("reading" . ?b)))
 
 ;; Tags next to text
