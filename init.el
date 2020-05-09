@@ -177,13 +177,9 @@
 ;; Narrow region
 (put 'narrow-to-region 'disabled nil)
 
-;; Flymake diagnostic at point
-(use-package flymake-diagnostic-at-point
-  :after flymake
-  :config
-  (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
-  (setq flymake-diagnostic-at-point-display-diagnostic-function
-        (quote flymake-diagnostic-at-point-display-minibuffer)))
+;; Flycheck diagnostic at point
+(flymake-mode nil)
+(global-flycheck-mode)
 
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
