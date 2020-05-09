@@ -15,7 +15,7 @@
 ;; Avy mode
 (use-package avy :ensure t
   :diminish (avy-mode . "")
-  :bind (("C-:" . avy-goto-char)
+  :bind (("C-\"" . avy-goto-char)
          ("C-'" . avy-goto-line)))
   
 ;; Ivy mode

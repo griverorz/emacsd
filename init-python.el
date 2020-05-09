@@ -7,6 +7,7 @@
 
 ;; elpy
 (elpy-enable)
+(setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
 
 ;; Avoid annoying and useless warnings
 (with-no-warnings
@@ -69,3 +70,5 @@
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
 
+(flycheck-add-next-checker 'python-flake8 'python-mypy)
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
