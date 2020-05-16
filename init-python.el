@@ -9,6 +9,8 @@
 (elpy-enable)
 (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
 
+(setq elpy-shell-starting-directory 'current-directory)
+
 ;; Avoid annoying and useless warnings
 (with-no-warnings
   (require 'cl))
