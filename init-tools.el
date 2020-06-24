@@ -15,8 +15,8 @@
 ;; Avy mode
 (use-package avy :ensure t
   :diminish (avy-mode . "")
-  :bind (("C-:" . avy-goto-char)
-         ("C-\"" . avy-goto-line)))
+  :bind (("C-\"" . avy-goto-char)
+         ("C-'" . avy-goto-line)))
   
 ;; Ivy mode
 (use-package ivy :ensure t
@@ -72,7 +72,11 @@
   :pin melpa
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (setq projectile-require-project-root nil)
+  (setq projectile-require-project-files-functions nil)
+  (setq projectile-track-known-projects-automatically nil))
+
 
 (projectile-global-mode)
 (counsel-projectile-mode)

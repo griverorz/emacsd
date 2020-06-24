@@ -46,6 +46,13 @@
 (use-package use-package)
 (setq load-prefer-newer t)
  
+;; Flycheck diagnostic at point
+(use-package flycheck
+  :ensure t
+  :config
+  (flymake-mode nil)
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
 ;; Load init files
 (load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
@@ -177,9 +184,6 @@
 ;; Narrow region
 (put 'narrow-to-region 'disabled nil)
 
-;; Flycheck diagnostic at point
-(flymake-mode nil)
-(global-flycheck-mode)
 
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
