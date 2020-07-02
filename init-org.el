@@ -185,3 +185,6 @@
      (latex . t)
      (ditaa . t)))
   )
+
+;; Disable flymake warning
+(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)

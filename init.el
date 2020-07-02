@@ -24,6 +24,7 @@
         ("marmalade" . "https://marmalade-repo.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
+        ("melpa" . "http://melpa.milkbox.net/packages/")
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
