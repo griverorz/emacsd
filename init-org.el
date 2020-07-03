@@ -29,7 +29,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c C-.") 'org-time-stamp)
 (global-set-key (kbd "C-c b") 'org-switchb)
-(define-key org-mode-map (kbd "C-c C-b") #'counsel-org-agenda-headlines)
+(global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
 (define-key org-mode-map (kbd "C-c C-c") #'counsel-org-tag)
 
 ;; Modules
