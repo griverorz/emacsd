@@ -108,17 +108,8 @@
 ;; Do not prompt to resume an active clock, just resume it
 (setq org-clock-persist-query-resume nil)
 
-;; global Effort estimate values
-(setq org-global-properties
-      '(("Effort_ALL" .
-         "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 8:00")))
-;;        1    2    3    4    5    6    7    8    9    0
-;; These are the hotkeys ^^
-
-
 ;; Set default column view headings: Task Priority Effort Clock_Summary
 (setq org-columns-default-format "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
-
 
 ;; Refile
 (setq org-reverse-note-order t)
@@ -194,3 +185,6 @@
      (latex . t)
      (ditaa . t)))
   )
+
+;; Disable flymake warning
+(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
