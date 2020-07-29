@@ -24,7 +24,6 @@
         ("marmalade" . "https://marmalade-repo.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
@@ -59,6 +58,7 @@
 (load "~/.emacs.d/init-look.el")
 (load "~/.emacs.d/init-keys.el")
 (load "~/.emacs.d/init-tools.el")
+(load "~/.emacs.d/init-markdown.el")
 (load "~/.emacs.d/init-org.el")
 (load "~/.emacs.d/init-latex.el")
 (load "~/.emacs.d/init-ess.el")
@@ -147,44 +147,8 @@
 (add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
 (add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
 
-;; Define markdown citation formats
-(defvar markdown-cite-format)
-(setq markdown-cite-format
-      '(
-        (?\C-m . "[@%l]")
-        (?p . "[@%l]")
-        (?t . "@%l")
-        )
-      )
-
-;; wrap reftex-citation with local variables for markdown format
-(defun markdown-reftex-citation ()
-  (interactive)
-  (let ((reftex-cite-format markdown-cite-format)
-        (reftex-cite-key-separator "; @"))
-    (reftex-citation)))
-
-;; bind modified reftex-citation to C-c[, without enabling reftex-mode
-;; https://www.gnu.org/software/auctex/manual/reftex/Citations-Outside-LaTeX.html#SEC31
-(add-hook
- 'markdown-mode-hook
- (lambda ()
-   (define-key markdown-mode-map "\C-c[" 'markdown-reftex-citation)))
-
-;; Diminish
-(use-package diminish)
-(diminish 'ivy-mode)
-(diminish 'projectile-mode)
-(diminish 'smartparens-mode)
-(diminish 'auto-revert-mode)
-(diminish 'reftex-mode)
-(diminish 'markdown-mode)
-(diminish 'pandoc-mode)
-(diminish 'which-key-mode)
-
 ;; Narrow region
 (put 'narrow-to-region 'disabled nil)
-
 
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")

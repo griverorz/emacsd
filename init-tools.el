@@ -77,7 +77,6 @@
   (setq projectile-require-project-files-functions nil)
   (setq projectile-track-known-projects-automatically nil))
 
-
 (projectile-global-mode)
 (counsel-projectile-mode)
 (setq projectile-indexing-method 'alien)
@@ -97,10 +96,8 @@
 ;; Docker mode
 (use-package docker
 	     :ensure t)
-
 (use-package dockerfile-mode
 	     :ensure t)
-
 (use-package docker-compose-mode
 	     :ensure t)
 
@@ -110,10 +107,8 @@
 ;; Lambda mode
 (defconst lisp--prettify-symbols-alist
   '(("lambda"  . ?λ)))
-
 (defconst python--prettify-symbols-alist
   '(("lambda"  . ?λ)))
-
 (global-prettify-symbols-mode +1)
 
 
@@ -125,24 +120,6 @@
 (which-key-setup-minibuffer)
 (setq which-key-popup-type 'minibuffer)
 (setq which-key-idle-delay 1.)
-
-;; Markdown
-(setq markdown-open-command "/usr/local/bin/mark")
-(use-package reftex)
-(autoload 'markdown-mode
-  "markdown-mode.el"
-  "Major mode for editing Markdown files" t)
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-(put 'upcase-region 'disabled nil)
-(add-hook 'org-mode-hook 'turn-on-reftex)
-
-(setq reftex-external-file-finders
-      '(("bib" . "kpsewhich -format=.bib %f")))
-
-;; Pandoc
-(load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'pandoc-mode)
-(add-hook 'org-mode-hook 'pandoc-mode)
 
 ;; Combo for dired 
 (use-package find-dired)
@@ -198,48 +175,6 @@
    ))
 
 
-;; Tags
-(use-package xref)
-
-(defun create-tags (dir-name)
-  "Create tags file."
-  (interactive "DDirectory: ")
-  (eshell-command 
-   (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
-
-
-(defadvice find-tag (around refresh-etags activate)
-  "Rerun etags and reload tags if tag not found and redo find-tag.              
-   If buffer is modified, ask about save before running etags."
-     (let ((extension (file-name-extension (buffer-file-name))))
-    (condition-case err
-        ad-do-it
-      (error (and (buffer-modified-p)
-                  (not (ding))
-                  (y-or-n-p "Buffer is modified, save it? ")
-                  (save-buffer))
-             (er-refresh-etags extension)
-             ad-do-it))))
-
-(defun er-refresh-etags (&optional extension)
-  "Run etags on all peer files in current dir and reload them silently."
-  (interactive)
-  (shell-command (format "etags *.%s" (or extension "el")))
-  (let ((tags-revert-without-query t))  ; don't query, revert silently          
-    (visit-tags-table default-directory nil)))
-
-;; Never “Keep current list of tags tables also”
-(setq tags-add-tables nil)
-
-;; Imenu
-(use-package imenu-list
-  :ensure t
-  :ensure t
-  :bind (("C-c `" . imenu-list-smart-toggle))
-  :config
-  (setq imenu-list-focus-after-activation t
-        imenu-list-auto-resize nil))
-
 (defun insert-random-string (NUM)
   "Insert a random alphanumerics string of length 5.
 The possible chars are: A to Z, a to z, 0 to 9.
@@ -259,7 +194,6 @@ sVersion 2018-08-03"
 
 ;; Open in osx finder
 (use-package reveal-in-osx-finder)
-
 
 ;; Current date
 (defun insert-current-date () (interactive)

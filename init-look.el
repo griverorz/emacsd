@@ -49,6 +49,8 @@
 
 ;; Color cursor
 (set-cursor-color "#ff0000")
+(blink-cursor-mode 1)
+(setq blink-cursor-interval .4)
 
 ;; Menu bar mode
 (when (display-graphic-p)
@@ -82,7 +84,7 @@
 
 ;; highlight current line
 (global-hl-line-mode +1)
-(set-face-attribute 'hl-line nil :inherit nil :background "gray20")
+(set-face-attribute 'hl-line nil :inherit nil :background "gray25")
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
@@ -182,18 +184,6 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
-;; ;; Turn on auto-fill-mode by default in all major modes
-;; (setq auto-fill-mode 1)
-
-;; Default fill column 
-;; (setq-default fill-column 80)
-
-;; Navigation
-(global-set-key (kbd "C-x <up>") 'windmove-up)
-(global-set-key (kbd "C-x <down>") 'windmove-down)
-(global-set-key (kbd "C-x <right>") 'windmove-right)
-(global-set-key (kbd "C-x <left>") 'windmove-left)
-
 ;; Disable bells
 (setq ring-bell-function 'ignore)
 
@@ -253,10 +243,10 @@
     :config
     (beacon-mode 1)
     (setq beacon-blink-delay 0.2)
-    (setq beacon-blink-duration 0.2)
+    (setq beacon-blink-duration 0.3)
     (setq beacon-blink-when-point-moves 7)
     (setq beacon-blink-when-window-changes nil)
     (setq beacon-blink-when-window-scrolls nil)
-    (setq beacon-push-mark 5)
+    (setq beacon-push-mark 9)
     (setq beacon-size 15)
 )

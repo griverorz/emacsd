@@ -30,7 +30,7 @@
 (global-set-key (kbd "C-c C-.") 'org-time-stamp)
 (global-set-key (kbd "C-c b") 'org-switchb)
 (global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
-(define-key org-mode-map (kbd "C-c C-c") #'counsel-org-tag)
+(define-key org-mode-map (kbd "C-x t") #'counsel-org-tag)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
