@@ -6,19 +6,19 @@
 (autoload 'R "ess-site.el" "ESS" t)
 (autoload 'R-mode "ess-site.el" t)
 (autoload 'Rd-mode "ess-site.el" "ESS" t)
-(ess-toggle-underscore nil)
 (setq ess-R-argument-suffix "=")
 (defalias 'newname 'oldname)
 (setq ess-use-flymake nil) ;; disable Flymake
 (add-hook 'ess-mode-hook
           (lambda () (flycheck-mode t)))
 
-(use-package ess-site :ensure ess)
+(use-package ess-site :ensure ess :defer t)
 
 ;; Smartparents
 (add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))
 
 ;; Do not load data or save envir
+(setq inferior-ess-r-program "/usr/local/bin/R") 
 (setq inferior-R-args "--no-restore-history --no-restore-data --no-save")
 
 ;; Not to indent comments in R mode

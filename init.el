@@ -1,9 +1,13 @@
+;; Tech preferences
+(setq load-prefer-newer t)
+(setq gc-cons-threshold 50000000)
+(setq large-file-warning-threshold 100000000)
+
 (getenv "PATH")
 (setenv "PATH"
 	(concat
 	 "/usr/texbin" ":"
 	 (getenv "PATH")))
-
 
 ;; Set my data
 (when (string-equal user-login-name "gonzalorivero")
@@ -27,17 +31,19 @@
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
-;; Tech preferences
-(setq load-prefer-newer t)
-(setq gc-cons-threshold 50000000)
-(setq large-file-warning-threshold 100000000)
 
 ;; Package shell initialize
 (use-package exec-path-from-shell
   :ensure t
   :config
+  (setq exec-path-from-shell-check-startup-files nil)
   (setq exec-path-from-shell-variables '("PATH"))
   (exec-path-from-shell-initialize))
+
+(defun er-byte-compile-init-dir ()
+  "Byte-compile all your dotfiles."
+  (interactive)
+  (byte-recompile-directory user-emacs-directory 0))
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
@@ -45,13 +51,16 @@
 (setq use-package-verbose t)
 (use-package use-package)
 (setq load-prefer-newer t)
- 
+
 ;; Flycheck diagnostic at point
 (use-package flycheck
   :ensure t
+  :defer t
   :config
   (flymake-mode nil)
+  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)  
   (add-hook 'after-init-hook #'global-flycheck-mode))
+
 
 ;; Load init files
 (load "~/.emacs.d/init-server.el")
@@ -157,3 +166,4 @@
 
 ;; Default to Spanish
 (setq default-input-method "spanish-prefix")
+

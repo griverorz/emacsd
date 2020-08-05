@@ -28,7 +28,7 @@
 
 ;; Markdown
 (setq markdown-open-command "/usr/local/bin/mark")
-(use-package reftex)
+(use-package reftex :defer t)
 (autoload 'markdown-mode
   "markdown-mode.el"
   "Major mode for editing Markdown files" t)

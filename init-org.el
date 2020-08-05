@@ -1,6 +1,6 @@
 ;; Basic configuration
 (use-package org)
-(use-package org-ref)
+(use-package org-ref :defer t)
 (use-package org-journal)
 
 ;; Citation

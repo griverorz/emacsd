@@ -27,7 +27,8 @@
 
 (add-hook 'elpy-mode-hook
           (lambda ()
-	    (local-set-key (kbd "C-c C-l") 'elpy-eval-region-or-line)))
+            (local-set-key (kbd "C-c C-l") 'elpy-eval-region-or-line)
+            (flycheck-add-next-checker 'python-flake8 'python-mypy)))
 
 
 (defvar elpy-mode-map
@@ -72,5 +73,4 @@
 (set-variable 'python-indent-guess-indent-offset nil)
 (set-variable 'indent-tabs-mode nil)
 
-(flycheck-add-next-checker 'python-flake8 'python-mypy)
 (setq flycheck-check-syntax-automatically '(mode-enabled save))

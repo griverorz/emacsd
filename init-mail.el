@@ -1,23 +1,23 @@
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
 (setq mu4e-mu-binary "/usr/local/bin/mu")
 
-(require 'mu4e)
-(require 'org-mu4e)
-(require 'org-mime)
+(use-package mu4e)
+(use-package org-mu4e :defer t)
+(use-package org-mime :defer t)
 
 (setq mu4e-maildir "~/Maildir")
-(setq mu4e-drafts-folder "/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-(setq mu4e-trash-folder  "/[Gmail].Trash")
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-sent-folder   "/Sent Mail")
+(setq mu4e-trash-folder  "/Trash")
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
 
 ; shortcuts
 (setq mu4e-maildir-shortcuts
     '( ("/INBOX"               . ?i)
-       ("/[Gmail].Sent Mail"   . ?s)
-       ("/[Gmail].Trash"       . ?t)
-       ("/[Gmail].All Mail"    . ?a)))
+       ("/Sent Mail"   . ?s)
+       ("/Trash"       . ?t)
+       ("/All Mail"    . ?a)))
 
 ;; something about ourselves
 (setq

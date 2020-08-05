@@ -1,5 +1,5 @@
 ;; Yasnippet
-(use-package yasnippet)
+(use-package yasnippet :defer t)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
@@ -10,7 +10,7 @@
               (expand-file-name "~/journal/*")))
 
 ;; Magit
-(use-package magit)
+(use-package magit :defer t)
 
 ;; Avy mode
 (use-package avy :ensure t
@@ -95,11 +95,14 @@
 
 ;; Docker mode
 (use-package docker
-	     :ensure t)
+  :ensure t
+  :defer t)
 (use-package dockerfile-mode
-	     :ensure t)
+  :ensure t
+  :defer t)
 (use-package docker-compose-mode
-	     :ensure t)
+  :ensure t
+  :defer t)
 
 ;; End sentence with single space
 (setq sentence-end-double-space nil)
@@ -132,11 +135,10 @@
 
  ;; EPA
 (setq epg-gpg-program  "/usr/local/bin/gpg")
-(use-package epa-file)
-(use-package pinentry)
-(epa-file-enable)
+(use-package epa-file :defer t)
+(use-package pinentry :defer t)
 (setq epa-file-select-keys nil)
-(setq  epa-pinentry-mode 'loopback)
+(setq epa-pinentry-mode 'loopback)
 (pinentry-start)
 
 ;; Copy to clipboard
@@ -188,12 +190,12 @@ sVersion 2018-08-03"
       (insert (elt $charset (random $baseCount))))))
 
 
-(use-package openwith)
+(use-package openwith :defer t)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "open" (file))))
 
 ;; Open in osx finder
-(use-package reveal-in-osx-finder)
+(use-package reveal-in-osx-finder :defer t)
 
 ;; Current date
 (defun insert-current-date () (interactive)

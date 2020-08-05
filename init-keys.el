@@ -30,7 +30,7 @@
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 
 ;; expand region
-(use-package expand-region)
+(use-package expand-region :defer t)
 (global-set-key (kbd "M-=") 'er/expand-region)
 
 ;; Font size
@@ -91,6 +91,7 @@
 
 ;; Avy package
 (use-package avy
+  :defer t
   :ensure t
   :bind (("C-:" . avy-goto-word-1)))
 
