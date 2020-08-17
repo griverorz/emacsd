@@ -1,7 +1,7 @@
 ;; Basic configuration
 (use-package org)
-(use-package org-ref :defer t)
-(use-package org-journal)
+(use-package org-ref  :defer t)
+(use-package org-crypt :defer t)
 
 ;; Citation
 (define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
@@ -53,7 +53,6 @@
 
 ;; Set org files
 (setq org-agenda-files (list (concat org-directory "home.org")
-                             (concat org-directory "writing.org")
                              (concat org-directory "projects.org")
                              (concat org-directory "management.org")
                              (concat org-directory "work.org")
@@ -137,27 +136,6 @@
 ;; Do not inherit
 (setq org-tags-exclude-from-inheritance '("work"))
 
-;; Journal
-(use-package org-journal
-  :ensure t
-  :defer t
-  :custom
-  (org-journal-dir "~/journal/")
-  (org-journal-date-format "%A, %d %B %Y")
-  (org-journal-enable-encryption nil)
-  (org-journal-encrypt-journal nil))
-
-(defun org-journal-save-entry-and-exit()
-  "Simple convenience function.
-  Saves the buffer of the current day's entry and kills the window
-  Similar to org-capture like behavior"
-  (interactive)
-  (save-buffer)
-  (kill-buffer-and-window))
-
-(define-key org-journal-mode-map
-  (kbd "C-x C-s")
-  'org-journal-save-entry-and-exit)
 
 (define-key org-mode-map (kbd "C-'") nil)
 
@@ -188,3 +166,25 @@
 
 ;; Disable flymake warning
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+
+;; Journal
+(use-package org-journal
+  :ensure t
+  :custom
+  (org-journal-dir "~/journal/")
+  (org-journal-date-format "%A, %d %B %Y")
+  (org-journal-enable-encryption nil)
+  (org-journal-encrypt-journal nil)
+  (org-journal-enable-agenda-integration t))
+
+(defun org-journal-save-entry-and-exit()
+  "Simple convenience function.
+  Saves the buffer of the current day's entry and kills the window
+  Similar to org-capture like behavior"
+  (interactive)
+  (save-buffer)
+  (kill-buffer-and-window))
+
+(define-key org-journal-mode-map
+  (kbd "C-x C-s")
+  'org-journal-save-entry-and-exit)

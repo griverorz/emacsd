@@ -55,7 +55,6 @@
 ;; Flycheck diagnostic at point
 (use-package flycheck
   :ensure t
-  :defer t
   :config
   (flymake-mode nil)
   (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)  
@@ -93,6 +92,7 @@
 (add-to-list 'auto-mode-alist '("\\.bugs\\'" . jags-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.Rmd\\'" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
