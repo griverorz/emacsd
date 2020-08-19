@@ -31,6 +31,40 @@
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
+(setq package-selected-packages
+      '(swiper
+        counsel-projectile
+        use-package
+        smartparens
+        beacon
+        smex
+        flx
+        which-key
+        magit
+        org-ref
+        pinentry
+        openwith
+        markdown-mode
+        doom-themes
+        polymode
+        polymode-markdown
+        poly-R
+        multiple-cursors
+        org-bullets
+        auctex
+        ess
+        haskell-mode
+        pandoc-mode
+        elpy
+        company-quickhelp
+        ivy-xref))
+
+;; install packages if needed
+(unless (cl-every 'package-installed-p package-selected-packages)
+  (message "Missing packages detected, please wait...")
+  (package-refresh-contents)
+  (package-install-selected-packages))
+
 
 ;; Package shell initialize
 (use-package exec-path-from-shell
@@ -57,16 +91,14 @@
   :ensure t
   :config
   (flymake-mode nil)
-  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)  
+  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
 
 ;; Load init files
 (load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
 (load "~/.emacs.d/init-keys.el")
 (load "~/.emacs.d/init-tools.el")
-(load "~/.emacs.d/init-markdown.el")
 (load "~/.emacs.d/init-org.el")
 (load "~/.emacs.d/init-latex.el")
 (load "~/.emacs.d/init-ess.el")
@@ -74,6 +106,7 @@
 (load "~/.emacs.d/init-html.el")
 (load "~/.emacs.d/init-haskell.el")
 (load "~/.emacs.d/init-mail.el")
+(load "~/.emacs.d/init-markdown.el")
 (load "~/.emacs.d/init-python.el")
 
 ;; Bound trigger to C-TAB
@@ -166,4 +199,3 @@
 
 ;; Default to Spanish
 (setq default-input-method "spanish-prefix")
-

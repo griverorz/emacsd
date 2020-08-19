@@ -1,5 +1,5 @@
 ;; Yasnippet
-(use-package yasnippet :defer t)
+(use-package yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
@@ -10,7 +10,7 @@
               (expand-file-name "~/journal/*")))
 
 ;; Magit
-(use-package magit :defer t)
+(use-package magit)
 
 ;; Avy mode
 (use-package avy :ensure t
@@ -46,7 +46,7 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c C-o") 'ivy-occur)
-(global-set-key (kbd "M-x") 'counsel-M-x)
+;;(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> l") 'counsel-find-library)

@@ -12,7 +12,7 @@
 (add-hook 'ess-mode-hook
           (lambda () (flycheck-mode t)))
 
-(use-package ess-site :ensure ess :defer t)
+(use-package ess-site :ensure ess)
 
 ;; Smartparents
 (add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))
