@@ -56,7 +56,11 @@
         haskell-mode
         pandoc-mode
         elpy
+        writeroom-mode
         company-quickhelp
+        web-mode
+        emmet-mode
+        simple-httpd
         ivy-xref))
 
 ;; install packages if needed
