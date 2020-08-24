@@ -25,7 +25,6 @@
 (require 'package)
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("marmalade" . "https://marmalade-repo.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
@@ -55,6 +54,8 @@
         ess
         haskell-mode
         pandoc-mode
+        emmet-mode
+        web-mode
         elpy
         writeroom-mode
         company-quickhelp
