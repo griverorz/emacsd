@@ -60,6 +60,7 @@
         writeroom-mode
         company-quickhelp
         web-mode
+        js2-mode
         emmet-mode
         simple-httpd
         ivy-xref))
