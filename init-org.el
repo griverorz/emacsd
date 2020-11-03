@@ -140,8 +140,8 @@
 (define-key org-mode-map (kbd "C-'") nil)
 
 ;; Org bullets
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(require 'org-superstar)
+(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
 ;; imenu
 (eval-after-load "org"

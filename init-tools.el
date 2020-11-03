@@ -17,18 +17,16 @@
   :diminish (avy-mode . "")
   :bind (("C-\"" . avy-goto-char)
          ("C-'" . avy-goto-line)))
-  
+
 ;; Ivy mode
 (use-package ivy :ensure t
   :diminish (ivy-mode . "")
   :config
   (ivy-mode 1)
-  ;; (set-face-attribute 'ivy-current-match nil :inherit 'hl-line foo)
-  (setq ivy-format-function #'ivy-format-function-arrow)
+  ;; better color of highlight
+  (setq ivy-current-match '((t (:background "gray25"))))
   ;; number of result lines to display
   (setq ivy-height 10)
-  ;; does not count candidates
-  (setq ivy-count-format "")
   ;; ;; no regexp by default
   (setq ivy-initial-inputs-alist ())
   ;; Minibuffers
@@ -39,6 +37,7 @@
           (swiper . ivy--regex-plus)
           (t . ivy--regex-fuzzy))))
 
+(use-package ivy-hydra)
 (use-package smex)
 (use-package flx)
 
@@ -46,14 +45,13 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c C-o") 'ivy-occur)
-;;(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 (global-set-key (kbd "C-x b") 'counsel-ibuffer)
-(global-set-key (kbd "C-x C-b") 'counsel-switch-buffer)
+(global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)
 (global-set-key (kbd "C-x M-b") 'ibuffer)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-ag)

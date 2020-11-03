@@ -49,7 +49,7 @@
         polymode-markdown
         poly-R
         multiple-cursors
-        org-bullets
+        org-superstar
         auctex
         ess
         haskell-mode
