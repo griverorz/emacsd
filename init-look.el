@@ -86,6 +86,14 @@
 (global-hl-line-mode +1)
 (set-face-attribute 'hl-line nil :inherit nil :background "gray25")
 
+;; better highlight of ivy
+(custom-set-faces
+ '(ivy-current-match
+   ((((class color) (background light))
+     :background "gray25" :foreground "white")
+    (((class color) (background dark))
+     :underline t))))
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
 (setq ns-use-proxy-icon nil)

@@ -23,8 +23,6 @@
   :diminish (ivy-mode . "")
   :config
   (ivy-mode 1)
-  ;; better color of highlight
-  (setq ivy-current-match '((t (:background "gray25"))))
   ;; number of result lines to display
   (setq ivy-height 10)
   ;; ;; no regexp by default
