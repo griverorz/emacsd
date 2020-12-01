@@ -52,6 +52,7 @@
         org-superstar
         auctex
         ess
+        go-mode
         haskell-mode
         pandoc-mode
         emmet-mode
