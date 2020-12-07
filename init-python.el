@@ -61,8 +61,8 @@
   "Key map for the Emacs Lisp Python Environment.")
 
 ;; Python executable
-(setq python-shell-interpreter "python3"
-      python-shell-interpreter-args "-i")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt --pylab")
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
 

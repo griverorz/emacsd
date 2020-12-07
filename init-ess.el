@@ -26,7 +26,7 @@
           (lambda ()
             (local-set-key (kbd "RET") 'newline)))
 
-;; ESS syntax highlight  
+;; ESS syntax highlight
 (setq ess-R-font-lock-keywords 
 	  '((ess-R-fl-keyword:keywords . t)
 	    (ess-R-fl-keyword:constants . t)
@@ -109,7 +109,6 @@
 ;; Company
 (setq ess-use-company t)
 (setq ess-use-company 'script-only)
-
 
 ;; Tags
 (require 'ess-r-xref)

@@ -42,6 +42,7 @@
         magit
         org-ref
         pinentry
+        helm-org-rifle
         openwith
         markdown-mode
         doom-themes
@@ -60,6 +61,7 @@
         elpy
         writeroom-mode
         company-quickhelp
+        company-go
         web-mode
         js2-mode
         emmet-mode

@@ -188,3 +188,6 @@
 (define-key org-journal-mode-map
   (kbd "C-x C-s")
   'org-journal-save-entry-and-exit)
+
+;; org-rifle
+(global-set-key [f8] 'helm-org-rifle)
