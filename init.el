@@ -24,8 +24,7 @@
 ;; Marmalade
 (require 'package)
 (setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
+      '(("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
@@ -35,6 +34,7 @@
         counsel-projectile
         use-package
         smartparens
+        expand-region
         beacon
         smex
         flx
