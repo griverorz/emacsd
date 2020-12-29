@@ -74,7 +74,7 @@
 (if (display-graphic-p)
     (progn
       ;; if graphic
-      (scroll-bar-mode -1)
+     (scroll-bar-mode -1)
       (menu-bar-mode -1))
   ;; if terminal
   )

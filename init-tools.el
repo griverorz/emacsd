@@ -181,11 +181,10 @@ Call `universal-argument' before for different count.
 URL `http://ergoemacs.org/emacs/elisp_insert_random_number_string.html'
 sVersion 2018-08-03"
   (interactive "P")
-  (let* (($charset "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+  (let* (($charset "abcdef0123456789")
          ($baseCount (length $charset)))
-    (dotimes (_ (if (numberp NUM) (abs NUM) 5))
+    (dotimes (_ (if (numberp NUM) (abs NUM) 32))
       (insert (elt $charset (random $baseCount))))))
-
 
 (use-package openwith :defer t)
 (openwith-mode t)

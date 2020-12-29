@@ -54,6 +54,7 @@
         auctex
         ess
         go-mode
+        go-eldoc
         haskell-mode
         pandoc-mode
         emmet-mode
@@ -90,7 +91,7 @@
 
 ;; My elisp files
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+  (package install 'use-package))
 (setq use-package-verbose t)
 (use-package use-package)
 (setq load-prefer-newer t)
