@@ -7,7 +7,7 @@
 
 (setq mu4e-maildir "~/Maildir")
 (setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder   "/Sent Mail")
+(setq mu4e-sent-folder   "/Sent Messages")
 (setq mu4e-trash-folder  "/Trash")
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
@@ -15,9 +15,8 @@
 ; shortcuts
 (setq mu4e-maildir-shortcuts
     '( ("/INBOX"               . ?i)
-       ("/Sent Mail"   . ?s)
-       ("/Trash"       . ?t)
-       ("/All Mail"    . ?a)))
+       ("/Sent Messages"   . ?s)
+       ("/Trash"       . ?t)))
 
 ;; something about ourselves
 (setq
