@@ -14,7 +14,6 @@
 ;; Export to latex
 (add-to-list 'org-latex-packages-alist '("" "minted"))
 (setq org-latex-listings 'minted)
-
 (setq org-latex-pdf-process (list "latexmk -output-directory=%o -shell-escape -bibtex -f -pdf %f"))
 
 ;; Log
@@ -58,6 +57,7 @@
                              (concat org-directory "work.org")
                              (concat org-directory "research.org")))
 
+;; Location of archive
 (setq org-archive-location (concat org-directory "archive/archived.org::"))
 (setq org-icalendar-combined-agenda-file
       (concat org-directory "org-calendar"))
@@ -65,6 +65,7 @@
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "inbox.org"))
 
+;; Setting org templates
 (setq org-capture-templates
       '(
         ("t" "Todo" entry (file "~/org/inbox.org")
@@ -80,10 +81,12 @@
          "* %^{title}\n:PROPERTIES:\n:AUTHOR: Gonzalo Rivero\n:TITLE: %\\1\n:CREATED: %U\n:END:\n%?")
         ))
 
+
 ;; Navigation
 (setq org-goto-interface 'outline
       org-goto-max-level 10)
 (use-package imenu)
+
 
 ;; Indentation in org-mode
 (setq org-hide-leading-stars t)
@@ -91,6 +94,7 @@
 (setq org-startup-indented t)
 (setq org-startup-folded 0)
 (add-hook 'org-mode-hook 'org-indent-mode)
+
 
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)
@@ -135,15 +139,13 @@
 
 ;; Do not inherit
 (setq org-tags-exclude-from-inheritance '("work"))
-
-
 (define-key org-mode-map (kbd "C-'") nil)
 
 ;; Org bullets
 (require 'org-superstar)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
 
-;; imenu
+;; Imenu
 (eval-after-load "org"
   '(define-key org-mode-map (kbd "C-c `") 'counsel-imenu))
 
@@ -189,5 +191,5 @@
   (kbd "C-x C-s")
   'org-journal-save-entry-and-exit)
 
-;; org-rifle
+;; Org-rifle
 (global-set-key [f8] 'helm-org-rifle)

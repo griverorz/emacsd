@@ -43,20 +43,24 @@
 (add-hook 'after-make-frame-functions
           #'enable-doom-modeline-icons)
 
-;; Italic
+
+;; Enables italics
 (custom-set-faces
  '(font-lock-comment-face ((t (:foreground "#99968b" :slant italic)))))
+
 
 ;; Color cursor
 (set-cursor-color "#ff0000")
 (blink-cursor-mode 1)
 (setq blink-cursor-interval .4)
 
+
 ;; Menu bar mode
 (when (display-graphic-p)
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (blink-cursor-mode -1))
 
+;; Disables some defaults
 (setq inhibit-startup-message t
       sentence-end-double-space nil
       shift-select-mode nil
@@ -69,26 +73,28 @@
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
       diff-switches "-u")
+(put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
+;; Remove yes-no
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Activate menu only in GUI
-(if (display-graphic-p)
-    (progn
-      ;; if graphic
-     (scroll-bar-mode -1)
-      (menu-bar-mode -1))
-  ;; if terminal
-  )
 
-(menu-bar-mode -1)
+;; Disable most app features
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 (setq ns-use-proxy-icon nil)
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
+(setq ns-use-proxy-icon nil)
+(setq frame-title-format nil)
 
-;; highlight current line
+;; Highlight current line
 (global-hl-line-mode +1)
 (set-face-attribute 'hl-line nil :inherit nil :background "gray25")
 
-;; better highlight of ivy
+;; Better highlight of ivy
 (custom-set-faces
  '(ivy-current-match
    ((((class color) (background light))
@@ -96,28 +102,8 @@
     (((class color) (background dark))
      :underline t))))
 
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; assuming you are using a dark theme
-(setq ns-use-proxy-icon nil)
-(setq frame-title-format nil)
-
 ;; Delete seleted text when typing
 (delete-selection-mode 1)
-
-;; Truncate long lines
-(add-hook 'LaTeX-mode-hook #'visual-line-mode)
-(add-hook 'markdown-mode-hook #'visual-line-mode)
-(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
-(add-hook 'org-mode-hook #'visual-line-mode)
-(setq imenu-auto-rescan t)
-
-;; Autoload flyspell
-(eval-after-load "ispell"
-  '(when (executable-find ispell-program-name)
-   (add-hook 'text-mode-hook 'turn-on-flyspell)))
-
-;; Remove yes-no
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Parenthesis
 (require 'smartparens)
@@ -145,21 +131,19 @@
 (add-hook 'rmd-mode-hook #'smartparens-mode)
 (add-hook 'js2-mode-hook #'smartparens-mode)
 (add-hook 'ess-mode-hook #'smartparens-mode)
+(add-hook 'ess-post-run-hook (lambda () (smartparens-mode 1)))
 
 (bind-keys
  :map smartparens-mode-map
  ("C-M-a" . sp-beginning-of-sexp)
  ("C-M-e" . sp-end-of-sexp)
-      
+ 
  ("C-M-f" . sp-forward-sexp)
  ("C-M-b" . sp-backward-sexp)
-
- ;; ("C-M-n" . sp-next-sexp)
- ;; ("C-M-p" . sp-previous-sexp)
- 
+  
  ("C-S-f" . sp-forward-symbol)
  ("C-S-b" . sp-backward-symbol)
-
+ 
  ("C-M-t" . sp-transpose-sexp)
  ("C-M-k" . sp-kill-sexp)
  ("C-M-w" . sp-copy-sexp)
@@ -167,10 +151,10 @@
  
  ("M-[" . sp-backward-unwrap-sexp)
  ("M-]" . sp-unwrap-sexp)
-
+ 
  ("C-x C-t" . sp-transpose-hybrid-sexp))
 
-;; Cua
+;; Cua mode
 (cua-selection-mode t)
 (cua-mode t)
 (define-key cua-global-keymap "\M-\r" 'cua-set-rectangle-mark)
@@ -194,13 +178,16 @@
         (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
 
+
 ;; Disable bells
 (setq ring-bell-function 'ignore)
+
 
 ;; Default to utf-8
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
 
 ;; Multicursor
 (use-package multiple-cursors) 
@@ -208,40 +195,13 @@
 (global-set-key (kbd "M-p") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c M-p") 'mc/mark-all-like-this)
 
-;; iBuffer groups
-(setq ibuffer-saved-filter-groups
-    '(("home"
-       ("emacs-config" (or (filename . ".emacs.d")
-                           (filename . "emacs-config")))
-       ("Org" (or (mode . org-mode)
-                  (filename . "OrgMode")))
-       ("ESS" (or (mode . ess-mode)
-		  (mode . iESS)))
-       ("LaTeX" (mode . latex-mode))
-       ("Dired" (mode . dired-mode))
-       ("Lisp" (mode . lisp-mode))
-       ("Python" (mode . python-mode))
-       ("Twitter" (mode . twittering-mode))
-       ("Help" (or (name . "\*Help\*")
-                   (name . "\*Apropos\*")
-                   (name . "\*info\*"))))))
-
-(add-hook 'ibuffer-mode-hook 
-          '(lambda ()
-	     (ibuffer-auto-mode 1)
-             (ibuffer-switch-to-saved-filter-groups "default")))
-
-(setq ibuffer-show-empty-filter-groups nil)
-(setq ibuffer-expert t)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(autoload 'ibuffer "ibuffer" "List buffers." t)
 
 ;; Date and time in status bar
 (setq display-time-day-and-date t
       display-time-24hr-format t)
 (display-time)
 
-;; Defaut is 4
+;; Set tabs to 4 spaces
 (setq-default
     indent-tabs-mode nil
     tab-width 4
@@ -260,3 +220,10 @@
     (setq beacon-push-mark 9)
     (setq beacon-size 15)
 )
+
+;; Truncate long lines
+(add-hook 'LaTeX-mode-hook #'visual-line-mode)
+(add-hook 'markdown-mode-hook #'visual-line-mode)
+(add-hook 'markdown-mode-hook 'imenu-add-menubar-index)
+(add-hook 'org-mode-hook #'visual-line-mode)
+(setq imenu-auto-rescan t)

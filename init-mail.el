@@ -6,17 +6,18 @@
 (use-package org-mime :defer t)
 
 (setq mu4e-maildir "~/Maildir")
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-sent-folder   "/Sent Messages")
-(setq mu4e-trash-folder  "/Trash")
+(setq mu4e-drafts-folder "/[Gmail].Drafts")
+(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
+(setq mu4e-trash-folder  "/[Gmail].Trash")
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
 
 ; shortcuts
 (setq mu4e-maildir-shortcuts
     '( ("/INBOX"               . ?i)
-       ("/Sent Messages"   . ?s)
-       ("/Trash"       . ?t)))
+       ("/[Gmail].Sent Mail"   . ?s)
+       ("/[Gmail].Trash"       . ?t)
+       ("/[Gmail].All Mail"    . ?a)))
 
 ;; something about ourselves
 (setq

@@ -1,36 +1,9 @@
-;; Set env path
-(setenv "PATH"
-        (concat
-         "~/.virtualenvs/default/bin" ":"
-         (getenv "PATH")
-         ))
-
-;; elpy
+;; Elpy
 (elpy-enable)
 (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
-
 (setq elpy-shell-starting-directory 'current-directory)
 
-;; Avoid annoying and useless warnings
-(with-no-warnings
-  (require 'cl))
-
-(defun elpy-eval-region-or-line ()
-    "Evaluate the region or the current line if there's no active region."
-    (interactive)
-    (let (beg end)
-        (if (region-active-p)
-            (setq beg (region-beginning) end (region-end))
-            (setq beg (line-beginning-position) end (line-end-position)))
-	(python-shell-send-string (elpy-shell--region-without-indentation beg end))
-        (next-line)))
-
-(add-hook 'elpy-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-l") 'elpy-eval-region-or-line)
-            (flycheck-add-next-checker 'python-flake8 'python-mypy)))
-
-
+;; Elpy hooks
 (defvar elpy-mode-map
   (let ((map (make-sparse-keymap)))
     ;; Alphabetical order to make it easier to find free C-c C-X
@@ -67,7 +40,7 @@
 (setq elpy-rpc-backend "jedi")
 
 
-;; python indent
+;; Indent
 (setq python-indent-offset 4)
 (set-variable 'py-indent-offset 4)
 (set-variable 'python-indent-guess-indent-offset nil)

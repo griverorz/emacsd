@@ -12,14 +12,14 @@
         )
       )
 
-;; wrap reftex-citation with local variables for markdown format
+;; Wrap reftex-citation with local variables for markdown format
 (defun markdown-reftex-citation ()
   (interactive)
   (let ((reftex-cite-format markdown-cite-format)
         (reftex-cite-key-separator "; @"))
     (reftex-citation)))
 
-;; bind modified reftex-citation to C-c[, without enabling reftex-mode
+;; Bind modified reftex-citation to C-c[, without enabling reftex-mode
 ;; https://www.gnu.org/software/auctex/manual/reftex/Citations-Outside-LaTeX.html#SEC31
 (add-hook
  'markdown-mode-hook

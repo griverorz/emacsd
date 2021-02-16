@@ -8,6 +8,9 @@
 	(concat
 	 "/usr/texbin" ":"
 	 (getenv "PATH")))
+(setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
+(setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
+
 
 ;; Set my data
 (when (string-equal user-login-name "gonzalorivero")
@@ -15,10 +18,10 @@
         user-mail-address "griverorz(at)gmail.com")
   (setq default-directory "/Users/gonzalorivero/"))
 
-(when (string-equal user-login-name "rivero_g")
+(when (string-equal user-login-name "grivero")
   (setq user-full-name "Gonzalo Rivero"
-        user-mail-address "gonzalorivero(at)westat.com")
-  (setq default-directory "/Users/rivero_g/"))
+        user-mail-address "grivero(at)pewresearch.com")
+  (setq default-directory "/Users/grivero/"))
 
 
 ;; Marmalade
@@ -26,9 +29,11 @@
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa-estable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
+;; Install missing packages if needed
 (setq package-selected-packages
       '(swiper
         counsel-projectile
@@ -69,7 +74,6 @@
         simple-httpd
         ivy-xref))
 
-;; install packages if needed
 (unless (cl-every 'package-installed-p package-selected-packages)
   (message "Missing packages detected, please wait...")
   (package-refresh-contents)
@@ -84,58 +88,38 @@
   (setq exec-path-from-shell-variables '("PATH"))
   (exec-path-from-shell-initialize))
 
+
+;; My elisp files
 (defun er-byte-compile-init-dir ()
   "Byte-compile all your dotfiles."
   (interactive)
   (byte-recompile-directory user-emacs-directory 0))
 
-;; My elisp files
 (unless (package-installed-p 'use-package)
   (package install 'use-package))
 (setq use-package-verbose t)
 (use-package use-package)
 (setq load-prefer-newer t)
 
-;; Flycheck diagnostic at point
-(defun flycheck-display-error-messages-truncated (errors)
-  (when (and errors (flycheck-may-use-echo-area-p))
-    (let ((messages (seq-map #'flycheck-error-format-message-and-id errors)))
-      (message (string-join messages "\n\n") ;; here is the relevant modification
-               flycheck-error-message-buffer)
-      ;; We cannot rely on `display-message-or-buffer' returning the right
-      ;; window. See URL `https://github.com/flycheck/flycheck/issues/1643'.
-      (-when-let ((buf (get-buffer flycheck-error-message-buffer)))
-        (with-current-buffer buf
-          (unless (derived-mode-p 'flycheck-error-message-mode)
-            (flycheck-error-message-mode)))))))
-
-(use-package flycheck
-  :ensure t
-  :config
-  :init (global-flycheck-mode)
-  (flymake-mode nil)
-  (setq flycheck-check-syntax-automatically '(save))
-  (setq flycheck-display-errors-function #'flycheck-display-error-messages-truncated)
-  (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake))
 
 ;; Load init files
+(load "~/.emacs.d/init-flycheck.el")
 (load "~/.emacs.d/init-server.el")
 (load "~/.emacs.d/init-look.el")
 (load "~/.emacs.d/init-keys.el")
 (load "~/.emacs.d/init-tools.el")
 (load "~/.emacs.d/init-org.el")
 (load "~/.emacs.d/init-latex.el")
+(load "~/.emacs.d/init-docker.el")
 (load "~/.emacs.d/init-ess.el")
 (load "~/.emacs.d/init-js.el")
 (load "~/.emacs.d/init-html.el")
 (load "~/.emacs.d/init-haskell.el")
 (load "~/.emacs.d/init-mail.el")
-(load "~/.emacs.d/init-markdown.el")
 (load "~/.emacs.d/init-python.el")
+(load "~/.emacs.d/init-markdown.el")
+(load "~/.emacs.d/init-defuns.el")
 
-;; Bound trigger to C-TAB
-(define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
-(define-key yas-minor-mode-map (kbd "TAB") nil)
 
 ;; Open files in correct mode and default to text
 (add-to-list 'auto-mode-alist '("\\.el\\'" . lisp-mode))
@@ -157,69 +141,18 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (setq major-mode 'text-mode)
 
-;; Abbreviation mode
-(setq save-abbrevs t)
-(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
-(setq save-abbrevs 'silently)
 
 ;; Backups
 (setq delete-old-versions nil)
-;disable backup
+;; Enable backup
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-;disable auto save
+;; Disable auto save
 (setq auto-save-default nil)
-;; locks
+;; Disables lock files
 (setq create-lockfiles nil)
 
-;; Binds
-(use-package ivy-xref)
-;; XRef initialization is different in Emacs 27
-(if (< emacs-major-version 27)
-    ;; Necessary in Emacs <27. In Emacs 27 it will affect all xref-based
-    ;; commands other than xref-find-definitions
-    ;; (e.g. project-find-regexp):
-    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
-  ;; Emacs 27 only:
-  (setq xref-show-definitions-function #'ivy-xref-show-defs))
-
-;; Autocomplete with company
-(global-company-mode)
-
-(add-hook
- 'eshell-mode-hook
- 'remove-company-eshell-hook) ;; Remove company from eshell
-(defun remove-company-eshell-hook () (company-mode -1))
-
-(global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
-(company-tng-configure-default)
-(setq company-selection-wrap-around t
-      company-tooltip-align-annotations t
-      company-minimum-prefix-length 2
-      company-dabbrev-downcase 0
-      company-idle-delay .1
-      company-tooltip-limit 7)
-(company-quickhelp-mode)
-(eval-after-load 'company
-  '(define-key company-active-map
-     (kbd "C-c h")
-     #'company-quickhelp-manual-begin))
-(define-key company-active-map
-  (kbd "M-h")
-  'company-show-doc-buffer)
-(setq company-quickhelp-delay nil)
-
-;; Do not use company in text modes
-(add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
-(add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
-(add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
-
-;; Narrow region
-(put 'narrow-to-region 'disabled nil)
 
 ;; Add custom variables somewhere else
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-(put 'set-goal-column 'disabled nil)
 
-;; Default to Spanish
-(setq default-input-method "spanish-prefix")

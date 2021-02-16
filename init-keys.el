@@ -13,25 +13,11 @@
   )
 
 
+;; Enable full screen
 (global-set-key (kbd "<f5>") 'toggle-frame-fullscreen)
-
-;; It's all about the project.
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-c f") 'find-file-in-project)
-
-;; Pop to mark
-(bind-key "C-x p" 'pop-to-mark-qcommand)
-(setq set-mark-command-repeat-pop t)
 
 ;; Occur 
 (global-set-key (kbd "C-c o") 'occur)
-
-;; You know, like Readline.
-(global-set-key (kbd "C-M-h") 'backward-kill-word)
-
-;; expand region
-(use-package expand-region :defer t)
-(global-set-key (kbd "M-=") 'er/expand-region)
 
 ;; Font size
 (define-key global-map (kbd "C-+") 'text-scale-increase)
@@ -45,36 +31,10 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "C-M-%") 'query-replace)
 
-;; Jump to a definition in the current file. (Protip: this is awesome.)
-(global-set-key (kbd "C-x C-i") 'imenu)
-
-;; File finding
-(global-set-key (kbd "C-c y") 'bury-buffer)
-(global-set-key (kbd "C-c r") 'revert-buffer)
-
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)
 
-;; Start a new eshell even if one is active.
-(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
-
-;; Help should search more than just commands
-(define-key 'help-command "a" 'apropos)
-
-;; Apropos
-(global-set-key (kbd "C-c M-.") 'xref-find-apropos)
-
-;; M-S-6 is awkward
-(global-set-key (kbd "C-c q") 'join-line)
-
-;; So good!
-(global-set-key (kbd "C-c g") 'magit-status)
-
-;; Not sure anymore
-(define-key input-decode-map "\e[1;2A" [S-up])
-
-;; Let's try with the default commands
-(define-key global-map (kbd "C-x \;") 'comment-line)
+;; Enables writeroom
 (define-key global-map (kbd "C-c M-t") 'writeroom-mode)
 
 (with-eval-after-load 'writeroom-mode
@@ -86,21 +46,3 @@
 (advice-add 'text-scale-adjust :after
             #'visual-fill-column-adjust)
 
-;; Use hippie
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-;; Avy package
-(use-package avy
-  :defer t
-  :ensure t
-  :bind (("C-:" . avy-goto-word-1)))
-
-;; Toggle modeline
-(defun toggle-mode-line () "toggles the modeline on and off"
-  (interactive)
-  (setq mode-line-format
-	(if (equal mode-line-format nil)
-	    (default-value 'mode-line-format)) )
-  (redraw-display))
-
-(global-set-key [M-f12] 'toggle-mode-line)

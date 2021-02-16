@@ -1,8 +1,3 @@
-;; TeX master file
-(setenv "PATH" (concat "/Users/gonzalorivero/.cabal/bin:" (getenv "PATH")))
-(setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
-(setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
-
 (require 'tex)
 (setq TeX-parse-self t); Enable parse on load.
 (setq TeX-auto-save t); Enable parse on save.
@@ -22,7 +17,7 @@
 ;; RefTeX and default bibliography
 (put 'downcase-region 'disabled nil)
 
-;; use skim for PDF
+;; Use Preview for PDF
 (add-hook 'LaTeX-mode-hook 
 	  (lambda ()
 	    ;; Enable source-specials for Control-click forward/reverse search.
@@ -42,18 +37,6 @@
 
 ;; Autoload corrector
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-
-;; Autoload fold
-(autoload 'TeX-fold-mode
-  "tex-fold"
-  "Minor mode for hiding and revealing macros and environments."
-  t)
-
-(add-hook 'TeX-mode-hook
-          (lambda ()
-            (setq TeX-command-extra-options "-shell-escape")
-            )
-          )
 
 ;; set special font highlighting for \cite* commands
 (add-hook 'LaTeX-mode-hook

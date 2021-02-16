@@ -3,6 +3,10 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
+;; Bound trigger to C-TAB
+(define-key yas-minor-mode-map (kbd "C-c C-x y") 'yas-insert-snippet) 
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+
 ;; Recent
 (require 'recentf)
 (add-to-list 'recentf-exclude
@@ -11,11 +15,13 @@
 
 ;; Magit
 (use-package magit)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Avy mode
 (use-package avy :ensure t
   :diminish (avy-mode . "")
   :bind (("C-\"" . avy-goto-char)
+         ("C-:" . avy-goto-word-1)         
          ("C-'" . avy-goto-line)))
 
 ;; Ivy mode
@@ -41,6 +47,8 @@
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "M-o") 'swiper)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c f") 'find-file-in-project)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "C-c C-o") 'ivy-occur)
@@ -90,17 +98,6 @@
 (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-;; Docker mode
-(use-package docker
-  :ensure t
-  :defer t)
-(use-package dockerfile-mode
-  :ensure t
-  :defer t)
-(use-package docker-compose-mode
-  :ensure t
-  :defer t)
-
 ;; End sentence with single space
 (setq sentence-end-double-space nil)
 
@@ -110,7 +107,6 @@
 (defconst python--prettify-symbols-alist
   '(("lambda"  . ?λ)))
 (global-prettify-symbols-mode +1)
-
 
 ;; Package guide
 (use-package which-key
@@ -138,54 +134,7 @@
 (setq epa-pinentry-mode 'loopback)
 (pinentry-start)
 
-;; Copy to clipboard
-(setq *is-a-mac* (eq system-type 'darwin))
-(setq *cygwin* (eq system-type 'cygwin) )
-(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
-(defun copy-to-x-clipboard ()
-  (interactive)
-  (if (region-active-p)
-      (progn
-        (cond
-         ((and (display-graphic-p) x-select-enable-clipboard)
-          (x-set-selection 'CLIPBOARD
-                           (buffer-substring (region-beginning) (region-end))))
-         (t (shell-command-on-region (region-beginning) (region-end)
-                                     (cond
-                                      (*cygwin* "putclip")
-                                      (*is-a-mac* "pbcopy")
-                                      (*linux* "xsel -ib")))
-            ))
-        (message "Yanked region to clipboard!")
-        (deactivate-mark))
-        (message "No region active; can't yank to clipboard!")))
-
-(defun paste-from-x-clipboard()
-  (interactive)
-  (cond
-   ((and (display-graphic-p) x-select-enable-clipboard)
-    (insert (x-selection 'CLIPBOARD)))
-   (t (shell-command
-       (cond
-        (*cygwin* "getclip")
-        (*is-a-mac* "pbpaste")
-        (t "xsel -ob"))
-       1))
-   ))
-
-
-(defun insert-random-string (NUM)
-  "Insert a random alphanumerics string of length 5.
-The possible chars are: A to Z, a to z, 0 to 9.
-Call `universal-argument' before for different count.
-URL `http://ergoemacs.org/emacs/elisp_insert_random_number_string.html'
-sVersion 2018-08-03"
-  (interactive "P")
-  (let* (($charset "abcdef0123456789")
-         ($baseCount (length $charset)))
-    (dotimes (_ (if (numberp NUM) (abs NUM) 32))
-      (insert (elt $charset (random $baseCount))))))
-
+;; Open with
 (use-package openwith :defer t)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "open" (file))))
@@ -193,6 +142,51 @@ sVersion 2018-08-03"
 ;; Open in osx finder
 (use-package reveal-in-osx-finder :defer t)
 
-;; Current date
-(defun insert-current-date () (interactive)
-       (insert (shell-command-to-string "echo -n $(date +%B,\\ %d\\ %Y)")))
+;; Autoload flyspell
+(eval-after-load "ispell"
+  '(when (executable-find ispell-program-name)
+   (add-hook 'text-mode-hook 'turn-on-flyspell)))
+
+;; Default to Spanish
+(setq default-input-method "spanish-prefix")
+
+
+;; Company
+(global-company-mode)
+
+(add-hook
+ 'eshell-mode-hook
+ 'remove-company-eshell-hook) ;; Remove company from eshell
+(defun remove-company-eshell-hook () (company-mode -1))
+
+(global-set-key (kbd "C-c (") 'company-complete-common-or-cycle)
+(company-tng-configure-default)
+(setq company-selection-wrap-around t
+      company-tooltip-align-annotations t
+      company-minimum-prefix-length 2
+      company-dabbrev-downcase 0
+      company-idle-delay .1
+      company-tooltip-limit 7)
+
+(company-quickhelp-mode)
+
+(eval-after-load 'company
+  '(define-key company-active-map
+     (kbd "C-c h")
+     #'company-quickhelp-manual-begin))
+(define-key company-active-map
+  (kbd "M-h")
+  'company-show-doc-buffer)
+(setq company-quickhelp-delay nil)
+
+;; Do not use company in text modes
+(add-hook 'markdown-mode-hook (lambda () (company-mode -1)) 'append)
+(add-hook 'org-mode-hook (lambda () (company-mode -1)) 'append)
+(add-hook 'LaTeX-mode-hook (lambda () (company-mode -1)) 'append)
+
+;; Use hippie mode
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+;; expand region
+(use-package expand-region :defer t)
+(global-set-key (kbd "M-=") 'er/expand-region)
