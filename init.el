@@ -71,6 +71,7 @@
         web-mode
         js2-mode
         emmet-mode
+        exec-path-from-shell
         simple-httpd
         ivy-xref))
 

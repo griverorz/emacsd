@@ -3,6 +3,8 @@
 (setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
 (setq elpy-shell-starting-directory 'current-directory)
 
+(exec-path-from-shell-copy-env "PYTHONPATH")
+
 ;; Elpy hooks
 (defvar elpy-mode-map
   (let ((map (make-sparse-keymap)))
@@ -33,12 +35,15 @@
     map)
   "Key map for the Emacs Lisp Python Environment.")
 
+;; Jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+
 ;; Python executable
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt --pylab")
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
-
 
 ;; Indent
 (setq python-indent-offset 4)
@@ -47,3 +52,4 @@
 (set-variable 'indent-tabs-mode nil)
 
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
+(flycheck-add-next-checker 'python-flake8 'python-mypy)
