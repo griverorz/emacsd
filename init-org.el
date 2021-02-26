@@ -192,4 +192,4 @@
   'org-journal-save-entry-and-exit)
 
 ;; Org-rifle
-(global-set-key [f8] 'helm-org-rifle)
+(global-set-key [f8] 'counsel-org-goto-all)

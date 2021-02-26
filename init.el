@@ -47,7 +47,6 @@
         magit
         org-ref
         pinentry
-        helm-org-rifle
         openwith
         markdown-mode
         doom-themes
