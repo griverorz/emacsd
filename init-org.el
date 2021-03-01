@@ -134,7 +134,7 @@
     ;; :init (org-crypt-use-before-save-magic)
     :custom
     (org-tags-exclude-from-inheritance (quote ("crypt")))
-    (org-crypt-key "1E3A49578FE54AAC231A3248E75FC0192DD79909")
+    (org-crypt-key "2202a2f3679f3d777af1b4a4a91397ad")
     (auto-save-default nil))
 
 ;; Do not inherit

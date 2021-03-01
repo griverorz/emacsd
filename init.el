@@ -41,6 +41,7 @@
         smartparens
         expand-region
         beacon
+        neotree
         smex
         flx
         which-key

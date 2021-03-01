@@ -18,6 +18,7 @@
 
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 (doom-themes-neotree-config)
+(setq neo-window-fixed-size nil) ;; Allow resizing neotree
 
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
