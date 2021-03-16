@@ -131,10 +131,10 @@
 ;; Encryption
 (use-package org
     :bind ("C-c d" . org-decrypt-entry)
-    ;; :init (org-crypt-use-before-save-magic)
+    :init (org-crypt-use-before-save-magic)
     :custom
     (org-tags-exclude-from-inheritance (quote ("crypt")))
-    (org-crypt-key "2202a2f3679f3d777af1b4a4a91397ad")
+    (org-crypt-key "37391085395F13E60C8A33D5DD8FBAC75F59750A")
     (auto-save-default nil))
 
 ;; Do not inherit

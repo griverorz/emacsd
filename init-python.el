@@ -37,13 +37,20 @@
 
 ;; Jedi
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
 
 ;; Python executable
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt --pylab")
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
+
+;; LSP
+;; (use-package lsp-python-ms
+;;   :ensure t
+;;   :init (setq lsp-python-ms-auto-install-server t)
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-python)
+;;                           (lsp))))  ; or lsp-deferred
 
 ;; Indent
 (setq python-indent-offset 4)
@@ -53,3 +60,5 @@
 
 (setq flycheck-check-syntax-automatically '(mode-enabled save))
 (flycheck-add-next-checker 'python-flake8 'python-mypy)
+
+
