@@ -3,11 +3,6 @@
 (use-package org-ref  :defer t)
 (use-package org-crypt :defer t)
 
-;; Citation
-(define-key org-mode-map (kbd "C-c [") 'org-reftex-citation)
-(setq org-ref-show-citation-on-enter nil)
-(setq org-ref-show-broken-links t)
-
 ;; Document org
 (setq org-directory "~/org/")
 
@@ -30,6 +25,7 @@
 (global-set-key (kbd "C-c b") 'org-switchb)
 (global-set-key (kbd "C-c C-b") 'counsel-org-agenda-headlines)
 (define-key org-mode-map (kbd "C-x t") #'counsel-org-tag)
+(define-key org-mode-map (kbd "C-'") nil)
 
 ;; Modules
 (setq org-expiry-inactive-timestamps t)
@@ -59,60 +55,55 @@
 
 ;; Location of archive
 (setq org-archive-location (concat org-directory "archive/archived.org::"))
-(setq org-icalendar-combined-agenda-file
-      (concat org-directory "org-calendar"))
 
 ;; Capture 
 (setq org-default-notes-file (concat org-directory "inbox.org"))
 
 ;; Setting org templates
 (setq org-capture-templates
-      '(
-        ("t" "Todo" entry (file "~/org/inbox.org")
-         "* TODO %? %^g")
+       `(
+         ("t" "Todo" entry (file "~/org/inbox.org")
+          "* TODO %? %^g")
+         
+         ("m" "Meeting" entry (file "~/org/inbox.org")
+          ,(concat "** TODO Meeting about %^{topic}:meeting:\n"
+                   "SCHEDULED: %U\n\n"
+                   "*Attendees:*\n- [X] Gonzalo Rivero\n- [ ] %^{person}\n\n"
+                   "*Notes:*\n%?"))
 
-        ("M" "Short memo" entry (file "~/org/inbox.org")
-         "* Memo: %^{title} %^g \n:PROPERTIES:\n:TO: %^{To}\n:CREATED: %U\n:END:\n%i%?\n")
-
-        ("m" "Meeting" entry (file "~/org/inbox.org")
-         "** TODO Meeting about %^{topic} :meeting:\nSCHEDULED: %U\n\n *Attendees:*\n- [X] Gonzalo Rivero\n- [ ] %^{person}\n\n *Notes:*\n%?")
-
+         ("b" "Beamer" entry (file "~/org/inbox.org")
+          ,(concat "* %^{title}\n"
+                   ":PROPERTIES:\n"
+                   ":EXPORT_LaTeX_CLASS: beamer\n"
+                   ":EXPORT_FILE_NAME: %^{filename}\n"
+                   ":END:\n"
+                   "#+OPTIONS: toc:nil\n"
+                   "#+LATEX_HEADER: \\beamertemplatenavigationsymbolsempty\n"
+                   "** %?"
+                   ))
+       
         ("w" "Writing" entry (file+headline "~/org/inbox.org" "Writing")
-         "* %^{title}\n:PROPERTIES:\n:AUTHOR: Gonzalo Rivero\n:TITLE: %\\1\n:CREATED: %U\n:END:\n%?")
-        ))
-
+         ,(concat "* %^{title}\n"
+                 ":PROPERTIES:\n"
+                 ":AUTHOR: Gonzalo Rivero\n"
+                 ":TITLE: %\\1\n"
+                 ":CREATED: %U\n"
+                 ":END:\n%?")))
+        )
 
 ;; Navigation
 (setq org-goto-interface 'outline
       org-goto-max-level 10)
-(use-package imenu)
-
 
 ;; Indentation in org-mode
 (setq org-hide-leading-stars t)
 (setq org-startup-truncated nil)
 (setq org-startup-indented t)
-(setq org-startup-folded 0)
+(setq org-startup-folded 1)
 (add-hook 'org-mode-hook 'org-indent-mode)
-
 
 (bind-key "C-c C-w" 'org-refile)
 (setq org-cycle-include-plain-lists 'integrate)
-
-;; CLOCK
-;; Set idle time before alerts to 10
-(setq org-clock-idle-time 10)
-;; Resume clocking task when emacs is restarted
-(org-clock-persistence-insinuate)
-;; Save the running clock and all clock history when exiting Emacs, load it on startup
-(setq org-clock-persist t)
-;; Resume clocking task on clock-in if the clock is open
-(setq org-clock-in-resume t)
-;; Do not prompt to resume an active clock, just resume it
-(setq org-clock-persist-query-resume nil)
-
-;; Set default column view headings: Task Priority Effort Clock_Summary
-(setq org-columns-default-format "%50ITEM(Task) %2PRIORITY %10Effort(Effort){:} %10CLOCKSUM")
 
 ;; Refile
 (setq org-reverse-note-order t)
@@ -137,9 +128,21 @@
     (org-crypt-key "37391085395F13E60C8A33D5DD8FBAC75F59750A")
     (auto-save-default nil))
 
-;; Do not inherit
-(setq org-tags-exclude-from-inheritance '("work"))
-(define-key org-mode-map (kbd "C-'") nil)
+;; Custom list of todo
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "IN-PROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
+
+;; Custom agenda view
+(setq org-agenda-custom-commands
+      '(("c" "Simple agenda view"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
+          (agenda "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                      (org-agenda-span 1)))
+          (tags-todo "-PRIORITY=\"A\"" ((org-agenda-overriding-header "TODO tasks:"))))
+         ))
+      )
 
 ;; Org bullets
 (require 'org-superstar)

@@ -157,3 +157,4 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+(put 'narrow-to-page 'disabled nil)
