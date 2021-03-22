@@ -130,19 +130,30 @@
 
 ;; Custom list of todo
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "IN-PROGRESS(i)" "|" "DONE(d)" "CANCELLED(c)")))
+      '((sequence "TODO(t)" "ONGOING(o)" "|" "DONE(d)" "CANCELLED(c)")))
+
+;; Custom filter to not print habits in agenda
+(defun gr-org-skip-subtree-if-habit ()
+  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+    (if (string= (org-entry-get nil "STYLE") "habit")
+        subtree-end
+      nil)))
 
 ;; Custom agenda view
 (setq org-agenda-custom-commands
       '(("c" "Simple agenda view"
          ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-          (agenda "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header
+                  "High-priority unfinished tasks:")))
+          (agenda "" ((org-agenda-skip-function
+                       '(org-agenda-skip-entry-if 'todo 'done))
                       (org-agenda-span 1)))
-          (tags-todo "-PRIORITY=\"A\"" ((org-agenda-overriding-header "TODO tasks:"))))
-         ))
-      )
+          (tags-todo "-PRIORITY=\"A\"" ((org-agenda-skip-function
+                                         '(gr-org-skip-subtree-if-habit))
+                                        (org-agenda-overriding-header "TODO tasks:")))))))
 
 ;; Org bullets
 (require 'org-superstar)
@@ -169,8 +180,8 @@
      (ditaa . t)))
   )
 
-;; Disable flymake warning
-(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+;; ;; Disable flymake warning
+;; (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 
 ;; Journal
 (use-package org-journal
